@@ -140,8 +140,23 @@
     .testimonial { padding: 32px; }
     .testimonial-quote { font-size: 17px; }
     .testimonial-quote-large { font-size: 19px; }
-    .nav-links { display: none; }
+    .nav-inner { flex-direction: column; gap: 12px; padding: 14px 24px; }
+    .nav-links { gap: 24px; }
+    .nav-links a { font-size: 13px; }
+    .case-footer { flex-direction: column; align-items: flex-start; gap: 14px; }
     .contact-options { flex-direction: column; align-items: stretch; }
+    .contact-options .button { justify-content: center; }
+  }
+  @media (max-width: 480px) {
+    h1 { font-size: 34px; letter-spacing: -0.02em; }
+    h2 { font-size: 28px; }
+    .lead { font-size: 18px; }
+    .hero { padding: 80px 0 56px; }
+    section { padding: 64px 0; }
+    .stat-number { font-size: 40px; }
+    .case-highlight-number { font-size: 26px; }
+    .service, .case-study, .testimonial { padding: 28px 24px; }
+    .container, .container-narrow { padding: 0 20px; }
   }
 </style>
 </head>

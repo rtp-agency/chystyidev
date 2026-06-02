@@ -85,6 +85,18 @@ footer { background: var(--gray-100); color: var(--gray-500); padding: 32px 0; b
   .lead { font-size: 18px; }
   .case-hero { padding: 60px 0 40px; }
   .case-section { padding: 40px 0; }
-  .case-stats-grid { grid-template-columns: 1fr; gap: 20px; }
+  .case-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .case-quote-block { padding: 20px 24px; font-size: 15px; }
+  .case-nav-inner { flex-direction: column; gap: 14px; align-items: flex-start; }
+}
+@media (max-width: 480px) {
+  h1 { font-size: 30px; letter-spacing: -0.02em; }
+  h2 { font-size: 24px; }
+  .lead { font-size: 17px; }
+  .case-hero { padding: 48px 0 32px; }
+  .case-section { padding: 36px 0; }
+  .case-stats-grid { grid-template-columns: 1fr; }
+  .case-stat-number { font-size: 30px; }
+  .container { padding: 0 20px; }
+  .tech-table td { font-size: 14px; }
 }
