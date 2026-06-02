@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Localization Pipeline — Case Study · David Chystyi</title>
+<link rel="stylesheet" href="case-styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo"><a href="index.html">David Chystyi</a></div>
+    <a href="index.html#work" class="nav-back">← Back to work</a>
+  </div>
+</nav>
+
+<div class="container">
+  <section class="case-hero">
+    <div class="case-eyebrow">Case Study 03</div>
+    <h1>Multi-Model AI Video Localization Pipeline</h1>
+    <p class="lead">
+      Four AI services orchestrated into one coherent pipeline. Source video in, 
+      localized derivative video out — for under $1.
+    </p>
+    <div class="case-meta">
+      <span class="case-meta-item"><strong>Role:</strong> Solo Developer</span>
+      <span class="case-meta-divider">·</span>
+      <span class="case-meta-item"><strong>Timeline:</strong> 3 months production</span>
+      <span class="case-meta-divider">·</span>
+      <span class="case-meta-item"><strong>Status:</strong> Active deployment</span>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <h2>The business problem</h2>
+    <p>
+      A content arbitrage agency wanted to take publicly available English-language 
+      videos and create localized variations for different markets — different 
+      languages, different audience targeting, different content niches. The 
+      constraint: <strong>straight translation creates copyright issues</strong> 
+      (you can't just translate someone's content and re-upload), so they needed 
+      something that produced derivative content rather than translations.
+    </p>
+    <p>
+      The use case was a custom commercial requirement, not a market product — 
+      there was no existing tool that could do this. The client wanted to test a 
+      content scaling hypothesis: could AI uniqualize source material at sufficient 
+      quality and volume to make arbitrage economically viable.
+    </p>
+  </section>
+
+  <section class="case-section">
+    <h2>What made this hard</h2>
+    <p>The naive approach — translate + re-voice + re-upload — fails for two reasons:</p>
+    <ul>
+      <li><strong>Copyright</strong> — even with translation, you're reusing original footage and structure</li>
+      <li><strong>Algorithm detection</strong> — platforms identify duplicated content</li>
+    </ul>
+    <p>The system needed to produce videos with:</p>
+    <ul>
+      <li>New visual footage (assembled from a library, not the source)</li>
+      <li>Rewritten scripts (preserving meaning, changing wording)</li>
+      <li>New voiceovers in target language</li>
+      <li>All while remaining semantically coherent — the new visuals had to actually match what the new audio was saying</li>
+    </ul>
+  </section>
+
+  <section class="case-section">
+    <h2>Architecture: two-stage pipeline</h2>
+
+    <h3>Stage 1: library population</h3>
+    <p>The system first builds a searchable visual library:</p>
+    <ul>
+      <li>User submits video URLs in bulk via Telegram bot (queue-based processing)</li>
+      <li>Videos downloaded server-side, then segmented by scene detection (cut detection, not fixed intervals)</li>
+      <li>Each segment gets a semantic embedding via Vertex AI</li>
+      <li>Embeddings + segments stored locally in Qdrant vector database</li>
+      <li>Each segment also gets a JSON description of its content (improves matching accuracy later)</li>
+    </ul>
+    <div class="case-quote-block">
+      Architectural decision worth noting: the previous implementation stored 
+      embeddings in Firebase, which was expensive and unnecessary. I migrated 
+      everything to a locally-hosted Qdrant instance, eliminating the recurring 
+      database costs entirely. Only embedding creation costs money now — storage 
+      and retrieval are free.
+    </div>
+
+    <h3>Stage 2: new video generation</h3>
+    <p>When the client wants to produce a new video:</p>
+    <ul>
+      <li>Submit source link + configuration (language, voice, music, emoji, subtitles — all selectable via bot)</li>
+      <li>FFmpeg extracts audio from source video</li>
+      <li>Audio transcribed via self-hosted Whisper Large (locally hosted to avoid API costs at scale)</li>
+      <li>Transcript rewritten by Gemini — preserves semantic meaning while changing phrasing</li>
+      <li>Rewritten script translated to target language</li>
+      <li>Multi-language TTS generates voiceover in selected voice/language</li>
+      <li>Vertex AI matches new audio segments to library footage via embedding similarity</li>
+      <li>FFmpeg assembles final video: matched footage + new audio + selected enhancements (background music, sound effects, memes, subtitles)</li>
+      <li>Delivered to client via Telegram</li>
+    </ul>
+  </section>
+
+  <section class="case-section">
+    <h2>Key technical decisions</h2>
+
+    <h3>Why Vertex AI for embeddings</h3>
+    <p>
+      OpenAI didn't expose API access to the specific video embedding model needed 
+      at the time. Local alternatives would be expensive to run. Vertex AI offered 
+      the best cost-quality balance for production use.
+    </p>
+
+    <h3>Why self-hosted Whisper</h3>
+    <p>
+      At scale, API costs for transcription become significant. Self-hosting on 
+      local GPU eliminated recurring transcription expense entirely.
+    </p>
+
+    <h3>Why multi-language TTS via reseller provider</h3>
+    <p>
+      Instead of subscribing directly with rigid plan-based API limits, I used a 
+      pay-as-you-go reseller. Same quality output, no subscription lock-in, easier 
+      cost scaling.
+    </p>
+
+    <h3>Why Qdrant locally</h3>
+    <p>
+      Vector database hosted on a local server eliminated cloud database recurring 
+      costs. The full library lived on a single home server (i5 10th gen + GTX 1070).
+    </p>
+  </section>
+
+  <section class="case-section">
+    <h2>Cost engineering</h2>
+    <p>Per-video cost breakdown for a 20-minute output:</p>
+    <ul>
+      <li>Embedding creation (one-time per source video): negligible</li>
+      <li>Whisper transcription: free (self-hosted)</li>
+      <li>Gemini rewriting + translation: ~cents</li>
+      <li>Multi-language voiceover (via reseller): primary cost component</li>
+      <li>Storage: free (local)</li>
+      <li>Processing: electricity only</li>
+    </ul>
+    <div class="case-quote-block">
+      Total per video: under $1, even for long-form 20-minute content.
+    </div>
+    <p>
+      This is the kind of cost structure that makes content arbitrage economically 
+      viable at scale — manually localizing a 20-minute video would take a 
+      designer/editor 8–15 hours of work.
+    </p>
+  </section>
+
+  <section class="case-section">
+    <h2>Production setup</h2>
+    <ul>
+      <li>Deployed on home server (i5-10K + GTX 1070, 16GB RAM)</li>
+      <li>Single Telegram bot interface — client submits URLs, receives finished videos</li>
+      <li>FFmpeg with GPU acceleration for video assembly</li>
+      <li>Throughput: ~2 videos per hour for 20-minute outputs (assembly is the bottleneck)</li>
+      <li>Scalable design: architecture supports parallel deployment across multiple GPU nodes (didn't require high-end cards — 2060/3060 sufficient for this workload)</li>
+      <li>Category-based embedding namespaces (e.g., separate libraries for cooking content, gaming content) — keeps semantic matching relevant within domains</li>
+    </ul>
+  </section>
+
+  <section class="case-section">
+    <h2>Challenges solved</h2>
+
+    <h3>1. Embedding quality for visual matching</h3>
+    <p>
+      Initial implementation produced poor semantic matches — new audio about 
+      Topic X would get visually unrelated footage. Solution: augmented each video 
+      segment's embedding with a JSON content description, dramatically improving 
+      match relevance.
+    </p>
+
+    <h3>2. Pacing and rhythm in assembled videos</h3>
+    <p>
+      Auto-assembled videos initially looked unnatural — segments too short 
+      (under 1.5s) or too long (over 15s), character cuts at awkward moments. 
+      Built constraints into the assembly logic: minimum/maximum segment durations, 
+      avoiding repeat segments within proximity, audio level normalization.
+    </p>
+
+    <h3>3. Migration from Firebase to local Qdrant</h3>
+    <p>
+      Inherited architecture stored embeddings in Firebase at recurring cost. 
+      Migrated entire pipeline to locally-hosted Qdrant, eliminating ongoing 
+      database expense entirely.
+    </p>
+
+    <h3>4. Whisper translation quality</h3>
+    <p>
+      Standard Whisper translations sometimes produced awkward output. Added 
+      Gemini as a rewriting layer that improved both meaning preservation and 
+      natural language flow in the target language.
+    </p>
+  </section>
+
+  <section class="case-section">
+    <h2>Outcome</h2>
+    <div class="case-stats-grid">
+      <div>
+        <div class="case-stat-number">&lt; $1</div>
+        <div class="case-stat-label">Per 20-minute video produced</div>
+      </div>
+      <div>
+        <div class="case-stat-number">4+</div>
+        <div class="case-stat-label">AI services orchestrated</div>
+      </div>
+      <div>
+        <div class="case-stat-number">~2/hour</div>
+        <div class="case-stat-label">Throughput for 20-min outputs</div>
+      </div>
+      <div>
+        <div class="case-stat-number">3 mo</div>
+        <div class="case-stat-label">Active production use</div>
+      </div>
+    </div>
+    <p>
+      End-to-end automation — client submits a URL via Telegram, receives 
+      ready-to-publish video without intermediate manual steps. Sub-$1 cost per 
+      20-minute output. Scalable architecture designed to expand across multiple 
+      GPU instances and category-specific libraries.
+    </p>
+  </section>
+
+  <section class="case-section">
+    <h2>Tech stack</h2>
+    <table class="tech-table">
+      <tr><td>Language</td><td>Python</td></tr>
+      <tr><td>Video Processing</td><td>FFmpeg (GPU-accelerated)</td></tr>
+      <tr><td>Embeddings</td><td>Vertex AI</td></tr>
+      <tr><td>Transcription</td><td>Whisper Large (self-hosted)</td></tr>
+      <tr><td>LLM Rewriting</td><td>Gemini</td></tr>
+      <tr><td>Voice Synthesis</td><td>Multi-language TTS</td></tr>
+      <tr><td>Vector Database</td><td>Qdrant (self-hosted)</td></tr>
+      <tr><td>Interface</td><td>Telegram Bot</td></tr>
+    </table>
+  </section>
+
+  <section class="case-section">
+    <h2>What this demonstrates</h2>
+    <ul>
+      <li>Multi-model AI orchestration — coordinated 4+ AI services into a single coherent pipeline</li>
+      <li>Semantic understanding of video content — embedding-based matching for visual-audio coherence</li>
+      <li>End-to-end product engineering — from raw input URL to finished deliverable, all automated</li>
+      <li>Cost optimization through architecture — strategic decisions on what to self-host vs API, keeping per-video cost under $1 even for premium AI stack</li>
+      <li>Custom solution development — built something that didn't exist as a product, for a specific commercial need</li>
+    </ul>
+  </section>
+</div>
+
+<section class="case-cta">
+  <div class="case-cta-inner">
+    <h2>Got a similar problem?</h2>
+    <p>I'd love to hear about what you're building.</p>
+    <a href="mailto:david@chystyi.dev" class="button">david@chystyi.dev →</a>
+  </div>
+</section>
+
+<div class="case-nav">
+  <div class="case-nav-inner">
+    <a href="case-2.html" class="case-nav-link">← Previous: Open Source Lipsync</a>
+    <a href="case-4.html" class="case-nav-link">Next: Motion Control Workflow →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-text">© 2026 David Chystyi</div>
+    <ul class="footer-links">
+      <li><a href="https://www.linkedin.com/in/david-chistiy-01a3a2376/">LinkedIn</a></li>
+      <li><a href="https://github.com/rtp-agency">GitHub</a></li>
+      <li><a href="mailto:david@chystyi.dev">Email</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="reveal.js" defer></script>
+</body>
+</html>
