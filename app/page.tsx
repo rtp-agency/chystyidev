@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
+import { CountUp } from "@/components/CountUp";
+import { Marquee } from "@/components/Marquee";
 import {
   stats,
   offers,
@@ -8,6 +10,7 @@ import {
   work,
   additional,
   testimonials,
+  marqueeTech,
 } from "@/lib/site";
 
 export default function Home() {
@@ -17,6 +20,7 @@ export default function Home() {
 
       {/* Hero */}
       <section className="hero">
+        <div className="aurora" aria-hidden="true" />
         <div className="container">
           <Reveal>
             <h1>
@@ -53,19 +57,24 @@ export default function Home() {
                 Available for new projects
               </span>
               <span>·</span>
-              <span>AI cost optimization &amp; reliability</span>
+              <span>AI consulting · cost optimization · implementation</span>
             </div>
           </Reveal>
         </div>
       </section>
+
+      {/* Tech marquee */}
+      <Marquee items={marqueeTech} />
 
       {/* Stats */}
       <section className="stats">
         <div className="container">
           <div className="stats-grid">
             {stats.map((s, i) => (
-              <Reveal key={s.number} delay={i * 0.1} className="stat">
-                <div className="stat-number">{s.number}</div>
+              <Reveal key={s.label} delay={i * 0.1} className="stat">
+                <div className="stat-number">
+                  <CountUp value={s.value} prefix={s.prefix} suffix={s.suffix} />
+                </div>
                 <div className="stat-label">{s.label}</div>
               </Reveal>
             ))}

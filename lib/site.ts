@@ -1,7 +1,25 @@
 export const stats = [
-  { number: "80–99%", label: "Typical reduction in AI running costs" },
-  { number: "$30K+", label: "Annual client AI infrastructure costs eliminated" },
-  { number: "4", label: "Production AI systems in active commercial use" },
+  { value: 99, prefix: "", suffix: "%+", label: "Maximum reduction in AI running costs" },
+  { value: 30, prefix: "$", suffix: "K+", label: "Annual client AI infrastructure costs eliminated" },
+  { value: 4, prefix: "", suffix: "", label: "Production AI systems in active commercial use" },
+];
+
+// Scrolling credibility strip under the hero.
+export const marqueeTech = [
+  "Multi-agent LLM",
+  "FastAPI",
+  "React",
+  "ComfyUI",
+  "Whisper",
+  "Gemini",
+  "Vertex AI",
+  "Qdrant",
+  "Wan 2.2",
+  "FFmpeg",
+  "Docker",
+  "PostgreSQL",
+  "Celery",
+  "Redis",
 ];
 
 export type Offer = {

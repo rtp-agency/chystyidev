@@ -20,7 +20,20 @@ export async function generateMetadata({
   return {
     title: `${c.title} — Case Study · David Chystyi`,
     description: c.lead,
-    openGraph: { title: c.title, description: c.lead, type: "article" },
+    keywords: [
+      "AI cost optimization",
+      "AI cost reduction",
+      "AI implementation",
+      "AI consulting case study",
+      "production AI",
+    ],
+    alternates: { canonical: `/work/${c.slug}` },
+    openGraph: {
+      title: c.title,
+      description: c.lead,
+      type: "article",
+      url: `https://chystyi.dev/work/${c.slug}`,
+    },
   };
 }
 

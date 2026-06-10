@@ -27,15 +27,104 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://chystyi.dev"),
-  title: "David Chystyi — AI Cost Optimization & Reliability Consultant",
+  title:
+    "David Chystyi — AI Consulting, Cost Optimization & Implementation",
   description:
-    "I cut what businesses spend running AI models and make those models reliable on structurally complex tasks. Production AI for commercial clients.",
+    "AI consulting focused on AI cost optimization and reliable AI implementation. I cut AI running costs by 80–99% and make AI dependable on complex production tasks.",
+  keywords: [
+    "AI consulting",
+    "AI cost optimization",
+    "AI cost reduction",
+    "AI implementation",
+    "AI strategy consulting",
+    "AI consultant",
+    "LLM cost optimization",
+    "reduce AI costs",
+    "multi-agent AI systems",
+    "production AI",
+    "AI reliability",
+    "AI infrastructure optimization",
+  ],
+  authors: [{ name: "David Chystyi", url: "https://chystyi.dev" }],
+  creator: "David Chystyi",
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "David Chystyi — AI Cost Optimization & Reliability",
+    title: "David Chystyi — AI Consulting, Cost Optimization & Implementation",
     description:
-      "Cheaper AI that actually behaves. Cost optimization and production reliability for AI systems.",
+      "Cut AI running costs by 80–99% and make AI reliable in production. AI consulting, cost optimization, and implementation for high-volume AI operations.",
     type: "website",
     url: "https://chystyi.dev",
+    siteName: "David Chystyi",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "David Chystyi — AI Consulting & Cost Optimization",
+    description:
+      "Cut AI running costs by 80–99% and make AI reliable in production.",
+  },
+  robots: { index: true, follow: true },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://chystyi.dev/#service",
+  name: "David Chystyi — AI Consulting & Cost Optimization",
+  url: "https://chystyi.dev",
+  description:
+    "AI consulting focused on AI cost optimization and reliable AI implementation for companies running AI at scale.",
+  image: "https://chystyi.dev/opengraph-image",
+  priceRange: "$$",
+  areaServed: "Worldwide",
+  knowsAbout: [
+    "AI consulting",
+    "AI cost optimization",
+    "AI cost reduction",
+    "AI implementation",
+    "Multi-agent AI systems",
+    "LLM orchestration",
+    "Production AI reliability",
+  ],
+  serviceType: [
+    "AI Consulting",
+    "AI Cost Optimization",
+    "AI Implementation",
+    "AI Reliability Engineering",
+  ],
+  founder: {
+    "@type": "Person",
+    name: "David Chystyi",
+    jobTitle: "AI Implementation Consultant",
+    url: "https://chystyi.dev",
+    sameAs: [
+      "https://www.linkedin.com/in/david-chistiy-01a3a2376/",
+      "https://github.com/rtp-agency",
+    ],
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "AI Services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "AI Cost Optimization",
+          description:
+            "Cut AI running costs by 80–99% by replacing overpriced parts of your AI stack with cheaper equivalents at the same quality.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "AI Reliability Engineering",
+          description:
+            "Make AI reliable on complex, multi-step production tasks through multi-agent architecture and verification layers.",
+        },
+      },
+    ],
   },
 };
 
@@ -50,6 +139,10 @@ export default function RootLayout({
       className={`${inter.variable} ${fraunces.variable} ${jetbrains.variable}`}
     >
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <div className="grain" aria-hidden="true" />
         {children}
         <Footer />
