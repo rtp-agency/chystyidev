@@ -47,10 +47,12 @@ export default function OgImage() {
           }}
         >
           <span>Spend far less on AI —</span>
-          <span>
-            and make it{" "}
-            <span style={{ color: "#c9c2b6" }}>actually work.</span>
-          </span>
+          <div style={{ display: "flex" }}>
+            <span>and make it</span>
+            <span style={{ color: "#c9c2b6", marginLeft: 22 }}>
+              actually work.
+            </span>
+          </div>
         </div>
 
         <div
