@@ -123,6 +123,10 @@ a {
   margin: 0 auto;
   padding: 0 28px;
 }
+/* readable, left-aligned content column inside a full-width container */
+.reading-col {
+  max-width: 820px;
+}
 section {
   padding: 130px 0;
   position: relative;
