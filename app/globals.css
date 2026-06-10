@@ -1045,6 +1045,19 @@ footer {
   .hero {
     padding: 110px 0 80px;
   }
+  .hero h1 {
+    max-width: none;
+  }
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-actions .btn {
+    justify-content: center;
+  }
+  .offer {
+    padding: 36px;
+  }
   .stats {
     padding: 64px 0;
   }
@@ -1096,6 +1109,22 @@ footer {
   .container-narrow {
     padding: 0 20px;
   }
+  section {
+    padding: 72px 0;
+  }
+  .hero {
+    padding: 92px 0 60px;
+  }
+  h1 {
+    font-size: 36px;
+    line-height: 1.08;
+  }
+  h2 {
+    font-size: 27px;
+  }
+  .lead {
+    font-size: 18px;
+  }
   .pillar,
   .offer,
   .service,
@@ -1103,11 +1132,41 @@ footer {
   .testimonial {
     padding: 30px 24px;
   }
+  .offer-name {
+    font-size: 24px;
+  }
+  .offer-promise {
+    font-size: 17px;
+  }
   .additional-item {
     padding: 24px;
   }
   .stat-number {
     font-size: 46px;
+  }
+  .testimonial-quote {
+    font-size: 19px;
+  }
+  .testimonial-quote-large {
+    font-size: 21px;
+  }
+  .audit-list {
+    max-width: 100%;
+  }
+  .case-hero {
+    padding: 64px 0 36px;
+  }
+  .case-hero h1 {
+    font-size: 30px;
+  }
+  .case-section {
+    padding: 40px 0;
+  }
+  .case-section h2 {
+    font-size: 25px;
+  }
+  .case-cta {
+    padding: 60px 0;
   }
   .case-stats-grid {
     grid-template-columns: 1fr;
