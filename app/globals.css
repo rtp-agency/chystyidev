@@ -149,6 +149,14 @@ section {
   opacity: 0.55;
 }
 
+/* section rhythm: hairline dividers + depth alternation */
+.section-line {
+  border-top: 1px solid var(--color-line-soft);
+}
+.section-raised {
+  background: var(--color-bg2);
+}
+
 .section-header {
   margin-bottom: 72px;
   max-width: 720px;

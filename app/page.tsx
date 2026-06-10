@@ -54,7 +54,7 @@ export default function Home() {
       </section>
 
       {/* Approach / pillars */}
-      <section id="approach" className="container">
+      <section id="approach" className="container section-line">
         <div className="section-header">
           <Reveal>
             <div className="eyebrow">What I do</div>
@@ -103,7 +103,7 @@ export default function Home() {
       </section>
 
       {/* Services */}
-      <section id="services" className="container">
+      <section id="services" className="container section-line">
         <div className="section-header">
           <Reveal>
             <div className="eyebrow">Services</div>
@@ -125,7 +125,7 @@ export default function Home() {
       </section>
 
       {/* Process */}
-      <section className="container">
+      <section className="container section-line section-raised">
         <div className="section-header">
           <Reveal>
             <div className="eyebrow">How I work</div>
@@ -149,7 +149,7 @@ export default function Home() {
       </section>
 
       {/* Work */}
-      <section id="work" className="container-narrow">
+      <section id="work" className="container-narrow section-line">
         <div className="section-header">
           <Reveal>
             <div className="eyebrow">Selected work</div>
@@ -193,7 +193,7 @@ export default function Home() {
       </section>
 
       {/* Additional */}
-      <section className="container-narrow">
+      <section className="container-narrow section-line section-raised">
         <div className="section-header">
           <Reveal>
             <div className="eyebrow">Also built</div>
@@ -214,7 +214,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section id="testimonials" className="container-narrow">
+      <section id="testimonials" className="container-narrow section-line">
         <div className="section-header">
           <Reveal>
             <div className="eyebrow">Clients</div>
@@ -261,7 +261,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section id="contact" className="cta container-narrow">
+      <section id="contact" className="cta container-narrow section-line">
         <Reveal>
           <h2>Let&apos;s talk.</h2>
         </Reveal>
