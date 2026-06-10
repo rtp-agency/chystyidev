@@ -58,12 +58,27 @@ export default function OgImage() {
         <div
           style={{
             display: "flex",
-            gap: 28,
-            color: "#938b82",
-            fontSize: 28,
+            alignItems: "center",
+            justifyContent: "space-between",
           }}
         >
-          AI Consulting · Cost Optimization · Implementation
+          <div style={{ display: "flex", color: "#938b82", fontSize: 26 }}>
+            AI Consulting · Cost Optimization · Implementation
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              background: "#f0ece8",
+              color: "#121011",
+              fontSize: 28,
+              fontWeight: 600,
+              padding: "18px 34px",
+              borderRadius: 999,
+            }}
+          >
+            Get a free AI cost audit →
+          </div>
         </div>
       </div>
     ),

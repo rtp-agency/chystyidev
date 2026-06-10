@@ -27,10 +27,9 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://chystyi.dev"),
-  title:
-    "David Chystyi — AI Consulting, Cost Optimization & Implementation",
+  title: "David Chystyi — AI Consulting & Cost Optimization",
   description:
-    "AI consulting focused on AI cost optimization and reliable AI implementation. I cut AI running costs by 80–99% and make AI dependable on complex production tasks.",
+    "AI consulting, cost optimization and implementation. I cut AI running costs by 80–99% and make AI reliable on complex production tasks.",
   keywords: [
     "AI consulting",
     "AI cost optimization",
@@ -49,9 +48,9 @@ export const metadata: Metadata = {
   creator: "David Chystyi",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "David Chystyi — AI Consulting, Cost Optimization & Implementation",
+    title: "David Chystyi — AI Consulting & Cost Optimization",
     description:
-      "Cut AI running costs by 80–99% and make AI reliable in production. AI consulting, cost optimization, and implementation for high-volume AI operations.",
+      "Cut AI running costs by 80–99% and make AI reliable in production. AI consulting & cost optimization.",
     type: "website",
     url: "https://chystyi.dev",
     siteName: "David Chystyi",
