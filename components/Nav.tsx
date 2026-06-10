@@ -10,13 +10,13 @@ export function Nav({ variant = "home" }: { variant?: "home" | "case" }) {
         {variant === "home" ? (
           <ul className="nav-links">
             <li>
-              <a href="#approach">Approach</a>
+              <a href="#services">Services</a>
             </li>
             <li>
               <a href="#work">Work</a>
             </li>
             <li>
-              <a href="#services">Services</a>
+              <a href="#testimonials">Clients</a>
             </li>
             <li>
               <a href="#contact">Contact</a>

@@ -1,44 +1,48 @@
-export const pillars = [
-  {
-    num: "01",
-    title: "Cutting the cost of running AI",
-    body: "Most teams overpay for AI by 5–50×. I find where expensive proprietary APIs can be replaced with open-source or self-hosted alternatives that match the quality — and I prove the savings with real numbers before you commit a cent. Embeddings, transcription, generation, vector storage: all of it has a cheaper path that nobody's measuring.",
-    stat: "Up to <strong>99% cost reduction</strong> · <strong>$30K+/yr</strong> eliminated",
-  },
-  {
-    num: "02",
-    title: "Making models reliable on hard tasks",
-    body: "LLMs break on structurally complex, multi-step work — they hallucinate, lose state, and contradict themselves. I design the system around the model: multi-agent architectures with cross-verification, retrieval and embedding strategies, and guardrails that make behavior predictable on tasks the model would otherwise fail. The result is AI you can actually put in production.",
-    stat: "Multi-agent orchestration · <strong>cross-verified</strong> pipelines",
-  },
-];
-
 export const stats = [
-  { number: "99%+", label: "Maximum AI cost reduction vs proprietary services" },
+  { number: "80–99%", label: "Typical reduction in AI running costs" },
   { number: "$30K+", label: "Annual client AI infrastructure costs eliminated" },
   { number: "4", label: "Production AI systems in active commercial use" },
 ];
 
-export const services = [
+export type Offer = {
+  num: string;
+  name: string;
+  promise: string;
+  problem: string;
+  does: string[];
+  result: string;
+};
+
+export const offers: Offer[] = [
   {
     num: "01",
-    title: "AI Strategy Consulting",
-    body: "The right AI opportunities for your business. The right models for your specific tasks. Avoid burning $50K to learn what costs $500 to research first.",
+    name: "AI Cost Optimization",
+    promise: "Slash what you spend running AI — without giving up quality.",
+    problem:
+      "If you use AI at any real volume, you're almost certainly overpaying. Oversized models burn through token budgets on tasks a cheaper one handles just as well. Premium generative services bill at a premium when an equivalent produces the same output for a fraction of the price. Most teams never measure where the money actually leaks.",
+    does: [
+      "Audit your current AI stack and pinpoint exactly where you're overpaying",
+      "Re-engineer the expensive pieces with cheaper equivalents at matching quality",
+      "Prove the savings with real before/after numbers before anything is changed",
+      "Deploy the optimized setup to production and keep it tuned as models evolve",
+    ],
+    result:
+      "Typical outcome: 80–99% lower AI costs — thousands to tens of thousands saved per year.",
   },
   {
     num: "02",
-    title: "AI Implementation",
-    body: "Production-ready AI systems, built end-to-end. Multi-agent architectures, cost-optimized infrastructure, security-first deployment. Solo or leading your team.",
-  },
-  {
-    num: "03",
-    title: "Cost Optimization Audits",
-    body: "Paying premium prices for AI APIs? You're probably overpaying. I find the open-source alternatives that match quality at a fraction of the cost — and prove it.",
-  },
-  {
-    num: "04",
-    title: "CTO as a Service",
-    body: "For early-stage startups: ongoing technical leadership across AI strategy, architecture, and team scaling. Available as monthly retainer.",
+    name: "AI Reliability Engineering",
+    promise: "Make your AI behave on the complex, high-stakes work where it breaks.",
+    problem:
+      "AI looks brilliant in a demo, then falls apart on real, multi-step work — hallucinations, answers that change every run, output you can't trust at scale. The model usually isn't the problem; the system around it is.",
+    does: [
+      "Map where and why your AI currently fails",
+      "Re-architect hard tasks into specialized, focused steps instead of one overloaded prompt",
+      "Add verification layers that catch errors before they ever reach the user",
+      "Build guardrails for consistent, predictable output you can ship to production",
+    ],
+    result:
+      "Typical outcome: far fewer errors, consistent results, and lower cost from using the right model for each step.",
   },
 ];
 
@@ -51,7 +55,7 @@ export const process = [
   {
     num: "STEP 02",
     title: "Architect",
-    body: "I design the cheapest stack that still hits your quality bar: open-source where it wins, proprietary where it's worth it, orchestration that keeps the models reliable.",
+    body: "I design the cheapest stack that still hits your quality bar, and the orchestration that keeps the models reliable on the tasks that matter.",
   },
   {
     num: "STEP 03",
@@ -60,10 +64,50 @@ export const process = [
   },
 ];
 
+// Case studies, ordered cost-first (most relevant proof for the primary visitor first).
 export const work = [
   {
+    slug: "open-source-lipsync",
+    number: "01 — Lipsync System",
+    title: "99%+ cost reduction vs premium video AI",
+    meta: ["Solo Developer", "6+ months in production", "3+ commercial deployments"],
+    summary:
+      "Replaced a premium proprietary video AI service at $3–5 per minute with a custom ComfyUI workflow built on Infinity Talk and Wan 2.1. Per-video costs dropped from dollars to cents.",
+    highlights: [
+      { number: "99%+", label: "Cost reduction vs proprietary API" },
+      { number: "6+ mo", label: "Continuous production use" },
+    ],
+    tech: "ComfyUI · Infinity Talk · Wan 2.1 · Docker",
+  },
+  {
+    slug: "motion-control",
+    number: "02 — Motion Control Workflow",
+    title: "84% cost reduction with capability premium services can't match",
+    meta: ["Solo Developer", "4–5 months active production", "2 commercial clients"],
+    summary:
+      "Replaced premium proprietary motion-control video services with a custom ComfyUI workflow on Wan 2.2. Approximately $12,000 in annual savings at the client's production scale.",
+    highlights: [
+      { number: "84%", label: "Cost reduction at production scale" },
+      { number: "~$12K", label: "Annual savings per client" },
+    ],
+    tech: "ComfyUI · Wan 2.2 · RunningHub · FFmpeg",
+  },
+  {
+    slug: "video-localization",
+    number: "03 — Video Localization Pipeline",
+    title: "Multi-model AI pipeline for video uniqualization",
+    meta: ["Solo Developer", "3 months active production"],
+    summary:
+      "Architected a complex multi-model AI pipeline combining semantic embedding generation, self-hosted speech transcription, LLM-based script rewriting, and multi-language voice synthesis.",
+    highlights: [
+      { number: "< $1", label: "Per 20-minute video produced" },
+      { number: "4+", label: "AI services orchestrated" },
+    ],
+    tech: "Vertex AI · Whisper · Gemini · Qdrant",
+  },
+  {
     slug: "metra-ai",
-    number: "01 — Metra AI",
+    number: "04 — Metra AI",
     title: "Production SaaS for Telegram content automation",
     meta: ["Founding Engineer", "Live in production", "metra-ai.org"],
     summary:
@@ -73,45 +117,6 @@ export const work = [
       { number: "16", label: "Docker containers in production" },
     ],
     tech: "FastAPI · React · PostgreSQL · Multi-agent LLM",
-  },
-  {
-    slug: "open-source-lipsync",
-    number: "02 — Open Source Lipsync",
-    title: "99%+ cost reduction vs premium video AI",
-    meta: ["Solo Developer", "6+ months in production", "3+ commercial deployments"],
-    summary:
-      "Replaced premium proprietary video AI service at $3–5 per minute with open source ComfyUI workflow built on Infinity Talk and Wan 2.1. Per-video costs dropped from dollars to cents.",
-    highlights: [
-      { number: "99%+", label: "Cost reduction vs proprietary API" },
-      { number: "6+ mo", label: "Continuous production use" },
-    ],
-    tech: "ComfyUI · Infinity Talk · Wan 2.1 · Docker",
-  },
-  {
-    slug: "video-localization",
-    number: "03 — Video Localization Pipeline",
-    title: "Multi-model AI pipeline for video uniqualization",
-    meta: ["Solo Developer", "3 months active production"],
-    summary:
-      "Architected complex multi-model AI pipeline combining semantic embedding generation, self-hosted speech transcription, LLM-based script rewriting, and multi-language voice synthesis.",
-    highlights: [
-      { number: "< $1", label: "Per 20-minute video produced" },
-      { number: "4+", label: "AI services orchestrated" },
-    ],
-    tech: "Vertex AI · Whisper · Gemini · Qdrant",
-  },
-  {
-    slug: "motion-control",
-    number: "04 — Motion Control Workflow",
-    title: "84% cost reduction with capability premium services can't match",
-    meta: ["Solo Developer", "4–5 months active production", "2 commercial clients"],
-    summary:
-      "Replaced premium proprietary motion control video services with open source ComfyUI workflow on Wan 2.2. Approximately $12,000 in annual savings at the client's production scale.",
-    highlights: [
-      { number: "84%", label: "Cost reduction at production scale" },
-      { number: "~$12K", label: "Annual savings per client" },
-    ],
-    tech: "ComfyUI · Wan 2.2 · RunningHub · FFmpeg",
   },
 ];
 

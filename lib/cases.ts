@@ -27,7 +27,7 @@ export type CaseStudy = {
 export const cases: CaseStudy[] = [
   {
     slug: "metra-ai",
-    eyebrow: "Case Study 01",
+    eyebrow: "Case Study 04",
     title: "Metra AI — Production SaaS for Telegram Content Automation",
     lead: "Solo-built end-to-end SaaS platform with multi-agent LLM orchestration. From architecture to deployment in 3 months.",
     meta: {
@@ -149,14 +149,14 @@ export const cases: CaseStudy[] = [
         ],
       },
     ],
-    prev: { href: "/#work", label: "← All case studies" },
-    next: { href: "/work/open-source-lipsync", label: "Next: Open Source Lipsync →" },
+    prev: { href: "/work/video-localization", label: "← Previous: Video Localization Pipeline" },
+    next: { href: "/#work", label: "All case studies →" },
   },
 
   {
     slug: "open-source-lipsync",
-    eyebrow: "Case Study 02",
-    title: "Open Source Lipsync System — 99%+ Cost Reduction vs Premium Video AI",
+    eyebrow: "Case Study 01",
+    title: "Lipsync System — 99%+ Cost Reduction vs Premium Video AI",
     lead: "Replaced premium proprietary video AI at $3–5/minute with open source ComfyUI workflow. Same quality, costs in cents.",
     meta: {
       role: "Solo Developer",
@@ -286,8 +286,8 @@ export const cases: CaseStudy[] = [
         ],
       },
     ],
-    prev: { href: "/work/metra-ai", label: "← Previous: Metra AI" },
-    next: { href: "/work/video-localization", label: "Next: Video Localization Pipeline →" },
+    prev: { href: "/#work", label: "← All case studies" },
+    next: { href: "/work/motion-control", label: "Next: Motion Control Workflow →" },
   },
 
   {
@@ -448,14 +448,14 @@ export const cases: CaseStudy[] = [
         ],
       },
     ],
-    prev: { href: "/work/open-source-lipsync", label: "← Previous: Open Source Lipsync" },
-    next: { href: "/work/motion-control", label: "Next: Motion Control Workflow →" },
+    prev: { href: "/work/motion-control", label: "← Previous: Motion Control Workflow" },
+    next: { href: "/work/metra-ai", label: "Next: Metra AI →" },
   },
 
   {
     slug: "motion-control",
-    eyebrow: "Case Study 04",
-    title: "Open Source Motion Control Workflow — 84% Cost Reduction vs Premium Video AI",
+    eyebrow: "Case Study 02",
+    title: "Motion Control Workflow — 84% Cost Reduction vs Premium Video AI",
     lead: "Replaced premium proprietary motion control services with open source ComfyUI workflow. Approximately $12,000 in annual savings per client at production scale — and capability premium services can't match.",
     meta: {
       role: "Solo Developer",
@@ -625,8 +625,8 @@ export const cases: CaseStudy[] = [
         ],
       },
     ],
-    prev: { href: "/work/video-localization", label: "← Previous: Video Localization Pipeline" },
-    next: { href: "/#work", label: "All case studies →" },
+    prev: { href: "/work/open-source-lipsync", label: "← Previous: Lipsync System" },
+    next: { href: "/work/video-localization", label: "Next: Video Localization Pipeline →" },
   },
 ];
 

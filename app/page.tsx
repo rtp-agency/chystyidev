@@ -2,9 +2,8 @@ import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
 import {
-  pillars,
   stats,
-  services,
+  offers,
   process,
   work,
   additional,
@@ -20,21 +19,24 @@ export default function Home() {
       <section className="hero container">
         <Reveal>
           <h1>
-            AI that <em>behaves</em> — at a fraction of the cost.
+            Spend <em>far less</em> on AI — and make it work on the hard problems.
           </h1>
         </Reveal>
         <Reveal delay={0.1}>
           <p className="lead">
-            I help businesses cut what they spend running AI models, and make
-            those models reliable on the structurally complex tasks where they
-            usually break. Shipped to commercial clients, running in production
-            today.
+            I help companies running AI at scale cut what they spend — by
+            replacing the overpriced parts of their setup with equivalents that
+            cost a fraction at the same quality — and re-engineer AI to stay
+            reliable on the complex, multi-step tasks where it usually breaks.
           </p>
         </Reveal>
         <Reveal delay={0.2}>
           <div className="hero-actions">
-            <a href="#contact" className="btn btn-primary">
-              Start a conversation <span className="arrow">→</span>
+            <a
+              href="mailto:david@chystyi.dev?subject=Free%20AI%20Cost%20Audit"
+              className="btn btn-primary"
+            >
+              Get a free AI cost audit <span className="arrow">→</span>
             </a>
             <a href="#work" className="btn btn-secondary">
               See the work
@@ -53,41 +55,6 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* Approach / pillars */}
-      <section id="approach" className="container section-line">
-        <div className="section-header">
-          <Reveal>
-            <div className="eyebrow">What I do</div>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <h2>Two problems I solve better than anyone you&apos;ll hire.</h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="lead">
-              Most AI work fails in one of two places: it costs far too much to
-              run, or it falls apart on anything genuinely complex. I specialize
-              in both.
-            </p>
-          </Reveal>
-        </div>
-
-        <div className="pillars">
-          {pillars.map((p, i) => (
-            <Reveal key={p.num} delay={i * 0.1}>
-              <div className="pillar">
-                <div className="pillar-num">{p.num}</div>
-                <h3>{p.title}</h3>
-                <p>{p.body}</p>
-                <div
-                  className="pillar-stat"
-                  dangerouslySetInnerHTML={{ __html: p.stat }}
-                />
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
       {/* Stats */}
       <section className="stats">
         <div className="container">
@@ -102,24 +69,41 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services */}
+      {/* Offers */}
       <section id="services" className="container section-line">
         <div className="section-header">
           <Reveal>
-            <div className="eyebrow">Services</div>
+            <div className="eyebrow">How I help</div>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2>Four ways I help.</h2>
+            <h2>Two things — done exceptionally well.</h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="lead">
+              Not generic &ldquo;AI consulting.&rdquo; Two focused engagements
+              with a clear outcome: a smaller bill, and AI you can actually rely
+              on.
+            </p>
           </Reveal>
         </div>
 
-        <div className="services-grid">
-          {services.map((s) => (
-            <div className="service" key={s.num}>
-              <div className="service-number">{s.num}</div>
-              <h4>{s.title}</h4>
-              <p>{s.body}</p>
-            </div>
+        <div className="offers">
+          {offers.map((o, i) => (
+            <Reveal key={o.num} delay={i * 0.1}>
+              <div className="offer">
+                <div className="offer-num">{o.num}</div>
+                <h3 className="offer-name">{o.name}</h3>
+                <p className="offer-promise">{o.promise}</p>
+                <p className="offer-problem">{o.problem}</p>
+                <div className="offer-does-label">What I do</div>
+                <ul className="offer-does">
+                  {o.does.map((d) => (
+                    <li key={d}>{d}</li>
+                  ))}
+                </ul>
+                <div className="offer-result">{o.result}</div>
+              </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -260,28 +244,40 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA — Free AI Cost Audit */}
       <section id="contact" className="cta container-narrow section-line">
         <Reveal>
-          <h2>Let&apos;s talk.</h2>
+          <div className="eyebrow" style={{ justifyContent: "center" }}>
+            Free, no commitment
+          </div>
         </Reveal>
         <Reveal delay={0.05}>
-          <p className="lead">
-            Whether you&apos;re starting your AI journey or looking to cut costs
-            on existing systems, I&apos;d love to hear about what you&apos;re
-            building.
-          </p>
+          <h2>A free 30-minute AI cost audit.</h2>
         </Reveal>
         <Reveal delay={0.1}>
+          <p className="lead">
+            Find out exactly how much you could be saving on AI — and how to make
+            it more reliable. No pitch, just a straight diagnostic.
+          </p>
+        </Reveal>
+        <Reveal delay={0.15}>
+          <ul className="audit-list">
+            <li>A review of your current AI tools and where the spend goes</li>
+            <li>The specific places you&apos;re overpaying</li>
+            <li>1–3 concrete, cheaper alternatives for your use case</li>
+            <li>An estimate of your potential annual savings</li>
+          </ul>
+        </Reveal>
+        <Reveal delay={0.2}>
           <div className="contact-options">
-            <a href="mailto:david@chystyi.dev" className="btn btn-primary">
-              david@chystyi.dev <span className="arrow">→</span>
+            <a
+              href="mailto:david@chystyi.dev?subject=Free%20AI%20Cost%20Audit"
+              className="btn btn-primary"
+            >
+              Book your free audit <span className="arrow">→</span>
             </a>
             <a href="https://t.me/haknnde" className="btn btn-secondary">
               Telegram
-            </a>
-            <a href="https://wa.me/380633623775" className="btn btn-secondary">
-              WhatsApp
             </a>
           </div>
         </Reveal>
