@@ -3,7 +3,7 @@ import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
 import { Marquee } from "@/components/Marquee";
-import { Prism } from "@/components/Prism";
+import { Blob } from "@/components/Blob";
 import {
   stats,
   offers,
@@ -21,7 +21,6 @@ export default function Home() {
 
       {/* Hero */}
       <section className="hero">
-        <div className="aurora" aria-hidden="true" />
         <div className="container">
           <div className="hero-grid">
             <div className="hero-copy">
@@ -64,7 +63,7 @@ export default function Home() {
             </div>
 
             <div className="hero-visual">
-              <Prism />
+              <Blob />
             </div>
           </div>
         </div>

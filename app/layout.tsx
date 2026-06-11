@@ -142,6 +142,38 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* SVG displacement filter for real liquid-glass refraction */}
+        <svg
+          aria-hidden="true"
+          width="0"
+          height="0"
+          style={{ position: "absolute" }}
+        >
+          <filter
+            id="liquid-glass"
+            x="-20%"
+            y="-20%"
+            width="140%"
+            height="140%"
+            colorInterpolationFilters="sRGB"
+          >
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.01 0.014"
+              numOctaves={2}
+              seed={7}
+              result="noise"
+            />
+            <feGaussianBlur in="noise" stdDeviation={3} result="blurred" />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="blurred"
+              scale={28}
+              xChannelSelector="R"
+              yChannelSelector="G"
+            />
+          </filter>
+        </svg>
         <div className="grain" aria-hidden="true" />
         {children}
         <Footer />
