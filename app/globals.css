@@ -128,6 +128,12 @@ a {
 .reading-col {
   max-width: 820px;
 }
+/* centered narrower column for reading-heavy sections (work, clients, etc.) */
+.container-read {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
 section {
   padding: 130px 0;
   position: relative;
@@ -1575,6 +1581,58 @@ nav {
 }
 .testimonial-author-link:hover {
   color: var(--color-warm);
+}
+
+/* ===== polish: micro-interactions ===== */
+/* anchored sections shouldn't hide under the floating nav */
+section[id] {
+  scroll-margin-top: 96px;
+}
+/* case card: lift + glow + the headline number nudges up on hover */
+.case-highlight-number {
+  transition: transform 0.4s var(--ease);
+  transform-origin: left center;
+}
+.case-study:hover {
+  box-shadow: 0 18px 50px -24px rgba(0, 0, 0, 0.7),
+    0 0 44px -22px rgba(255, 255, 255, 0.1);
+}
+.case-study:hover .case-highlight-number {
+  transform: scale(1.06);
+}
+/* offer / testimonial hover glow */
+.offer {
+  transition: transform 0.4s var(--ease), border-color 0.4s var(--ease),
+    box-shadow 0.4s var(--ease);
+}
+.offer:hover {
+  box-shadow: 0 18px 50px -28px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.testimonial {
+  transition: transform 0.3s var(--ease), border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.testimonial:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px -26px rgba(0, 0, 0, 0.6);
+}
+/* animated underline on footer links */
+.footer-links a {
+  position: relative;
+}
+.footer-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 1px;
+  background: var(--color-warm);
+  transition: width 0.3s var(--ease);
+}
+.footer-links a:hover::after {
+  width: 100%;
 }
 
 /* footer */

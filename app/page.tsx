@@ -150,7 +150,7 @@ export default function Home() {
 
       {/* Work */}
       <section id="work" className="section-line">
-        <div className="container">
+        <div className="container-read">
           <div className="section-header">
             <Reveal>
               <div className="eyebrow">Selected work</div>
@@ -198,7 +198,7 @@ export default function Home() {
 
       {/* Additional */}
       <section className="section-line section-raised">
-        <div className="container">
+        <div className="container-read">
           <div className="section-header">
             <Reveal>
               <div className="eyebrow">Also built</div>
@@ -221,7 +221,7 @@ export default function Home() {
 
       {/* Testimonials */}
       <section id="testimonials" className="section-line">
-        <div className="container">
+        <div className="container-read">
           <div className="section-header">
             <Reveal>
               <div className="eyebrow">Clients</div>
