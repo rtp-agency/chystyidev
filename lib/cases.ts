@@ -83,8 +83,8 @@ export const cases: CaseStudy[] = [
       {
         heading: "Key technical innovations",
         blocks: [
-          { t: "h3", text: "1. Prompt sanitization layer" },
-          { t: "p", html: `The image generation model initially refused to generate humans due to safety filters. Rather than switching models, I built a sanitization layer that rewrites user prompts to pass filters while preserving generation intent. This avoids the need to host more expensive alternative models.` },
+          { t: "h3", text: "1. Prompt normalization layer" },
+          { t: "p", html: `The image model over-refused legitimate prompts — false positives on ordinary requests like generating people. Rather than switching to a pricier model, I built a prompt-normalization layer that rephrases benign user input so it isn't incorrectly blocked, preserving the original intent. This kept quality high without hosting more expensive alternatives.` },
           { t: "h3", text: "2. Lore compression and translation" },
           { t: "p", html: `User-provided channel lore (often 3000+ tokens of unstructured text) is compressed and translated to the channel's posting language at upload time. The AI receives a structured, language-matched summary instead of raw lore, dramatically improving content relevance while reducing token costs.` },
           { t: "h3", text: "3. Lore as context, not constraint" },
@@ -92,7 +92,7 @@ export const cases: CaseStudy[] = [
           { t: "h3", text: "4. Premium LLM selection strategy" },
           { t: "p", html: `Chose specific LLMs for specific reasons:` },
           { t: "ul", items: [
-            `Lower censorship for legitimate edge cases`,
+            `Fewer false refusals on legitimate edge cases`,
             `Better real-time news integration via Perplexity-style APIs`,
             `Cost optimization at scale`,
           ] },
@@ -244,8 +244,7 @@ export const cases: CaseStudy[] = [
       {
         heading: "Recognition and knowledge sharing",
         blocks: [
-          { t: "p", html: `Published an in-depth technical article on Infinity Talk implementation on a major Russian-language tech forum, receiving editor's recognition (authorship status) and significant positive community response. The article became a primary reference for others entering this space and led to direct client acquisition.` },
-          { t: "p", html: `<a href="https://lolz.live/threads/9439634/">Read the article →</a>` },
+          { t: "p", html: `Published an in-depth technical write-up on the Infinity Talk implementation, which received editor recognition and strong community response. It became a primary reference for others entering this space and led to direct client acquisition.` },
         ],
       },
       {
@@ -304,17 +303,17 @@ export const cases: CaseStudy[] = [
       {
         heading: "The business problem",
         blocks: [
-          { t: "p", html: `A content arbitrage agency wanted to take publicly available English-language videos and create localized variations for different markets — different languages, different audience targeting, different content niches. The constraint: <strong>straight translation creates copyright issues</strong> (you can't just translate someone's content and re-upload), so they needed something that produced derivative content rather than translations.` },
-          { t: "p", html: `The use case was a custom commercial requirement, not a market product — there was no existing tool that could do this. The client wanted to test a content scaling hypothesis: could AI uniqualize source material at sufficient quality and volume to make arbitrage economically viable.` },
+          { t: "p", html: `A media localization agency wanted to adapt source videos into new, market-specific variations — different languages, audiences, and content niches. The requirement: produce genuinely derivative videos (new assembled footage, rewritten scripts, new voiceovers) rather than 1:1 translations, so each output is a distinct asset built for its target market.` },
+          { t: "p", html: `The use case was a custom commercial requirement, not an off-the-shelf product — nothing on the market could do it. The client wanted to test a content-scaling hypothesis: could AI adapt source material into new variations at sufficient quality and volume to make the operation economically viable?` },
         ],
       },
       {
         heading: "What made this hard",
         blocks: [
-          { t: "p", html: `The naive approach — translate + re-voice + re-upload — fails for two reasons:` },
+          { t: "p", html: `A naive approach — translate, re-voice, and republish the same footage — fails for two reasons:` },
           { t: "ul", items: [
-            `<strong>Copyright</strong> — even with translation, you're reusing original footage and structure`,
-            `<strong>Algorithm detection</strong> — platforms identify duplicated content`,
+            `<strong>Originality</strong> — reusing the source footage and structure produces a near-duplicate; the output has to be a genuinely new asset`,
+            `<strong>Distinctness at scale</strong> — every output needs to be visually and structurally distinct, not a copy of the source`,
           ] },
           { t: "p", html: `The system needed to produce videos with:` },
           { t: "ul", items: [
@@ -379,7 +378,7 @@ export const cases: CaseStudy[] = [
             `Processing: electricity only`,
           ] },
           { t: "quote", text: `Total per video: under $1, even for long-form 20-minute content.` },
-          { t: "p", html: `This is the kind of cost structure that makes content arbitrage economically viable at scale — manually localizing a 20-minute video would take a designer/editor 8–15 hours of work.` },
+          { t: "p", html: `This is the kind of cost structure that makes large-scale localization economically viable — manually localizing a 20-minute video would take a designer/editor 8–15 hours of work.` },
         ],
       },
       {
