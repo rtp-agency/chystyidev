@@ -4,6 +4,9 @@ import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
 import { ProcessFlow } from "@/components/ProcessFlow";
 import { Particles } from "@/components/Particles";
+import { ContactForm } from "@/components/ContactForm";
+
+const CAL_URL = "https://cal.com/david-chistiy-lmbu8n";
 import {
   stats,
   offers,
@@ -41,7 +44,9 @@ export default function Home() {
               <Reveal delay={0.2}>
                 <div className="hero-actions">
                   <a
-                    href="mailto:david@chystyi.dev?subject=Free%20AI%20Cost%20Audit"
+                    href={CAL_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="btn btn-primary"
                   >
                     Get a free AI cost audit <span className="arrow">→</span>
@@ -252,7 +257,20 @@ export default function Home() {
                   <div className="testimonial-author">
                     <div className="testimonial-avatar">{t.avatar}</div>
                     <div className="testimonial-author-info">
-                      <span className="testimonial-author-name">{t.name}</span>
+                      <span className="testimonial-author-name">
+                        {t.link ? (
+                          <a
+                            href={t.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="testimonial-author-link"
+                          >
+                            {t.name}
+                          </a>
+                        ) : (
+                          t.name
+                        )}
+                      </span>
                       <span className="testimonial-author-title">{t.title}</span>
                     </div>
                   </div>
@@ -289,15 +307,16 @@ export default function Home() {
           <Reveal delay={0.2}>
             <div className="contact-options">
               <a
-                href="mailto:david@chystyi.dev?subject=Free%20AI%20Cost%20Audit"
+                href={CAL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-primary"
               >
                 Book your free audit <span className="arrow">→</span>
               </a>
-              <a href="https://t.me/haknnde" className="btn btn-secondary">
-                Telegram
-              </a>
             </div>
+            <div className="contact-or">or send a message</div>
+            <ContactForm />
           </Reveal>
         </div>
       </section>

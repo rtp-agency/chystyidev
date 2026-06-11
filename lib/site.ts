@@ -173,12 +173,13 @@ export type Testimonial = {
   large?: boolean;
   list?: string[];
   quote2?: string;
+  link?: string;
 };
 
 export const testimonials: Testimonial[] = [
   {
-    avatar: "G",
-    name: "G.",
+    avatar: "D",
+    name: "Daniel",
     title: "Owner, Digital Media Agency",
     large: true,
     quote:
@@ -186,7 +187,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     avatar: "M",
-    name: "M.",
+    name: "Mark",
     title: "Owner, Content Production Agency",
     quote:
       "Any question about AI or engineering details — solved. David also consistently finds significantly cheaper options for AI tasks as we work. Highly recommend.",
@@ -202,14 +203,8 @@ export const testimonials: Testimonial[] = [
     avatar: "Y",
     name: "Yappi Agency",
     title: "Creative Design Agency",
-    quote: "David helped us solve many automation challenges. What stood out:",
-    list: [
-      "You take initiative without being asked — show a product idea today, see version one the next day",
-      "You assess work honestly and fix issues without extra charges, even long after delivery",
-      "We always get what we expect, and when something doesn't fit, you're flexible and detailed with revisions",
-      "You don't just work for payment — you genuinely solve client pain. There are a lot of people overcharging in this market, and very few specialists who actually care",
-    ],
-    quote2:
-      "You're a great guy. Glad we started working together — even though I was initially against it. What sold me was that you take on any task and the word \"impossible\" doesn't exist for you. Hope we build many more profitable projects together.",
+    link: "https://yappi-agency.com",
+    quote:
+      "David helped us solve a lot of automation challenges. He takes initiative without being asked, assesses the work honestly, and fixes issues long after delivery without extra charges. He genuinely solves the problem instead of just billing for it.",
   },
 ];
