@@ -151,9 +151,9 @@ export default async function CasePage({
           <div className="container-narrow">
             <h2>Got a similar problem?</h2>
             <p>I&apos;d love to hear about what you&apos;re building.</p>
-            <a href="mailto:david@chystyi.dev" className="btn btn-primary">
-              david@chystyi.dev <span className="arrow">→</span>
-            </a>
+            <Link href="/#contact" className="btn btn-primary">
+              Let&apos;s talk <span className="arrow">→</span>
+            </Link>
           </div>
         </section>
 
