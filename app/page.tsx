@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
-import { Blob } from "@/components/Blob";
+import { ProcessFlow } from "@/components/ProcessFlow";
 import { Particles } from "@/components/Particles";
 import {
   stats,
@@ -54,7 +54,7 @@ export default function Home() {
             </div>
 
             <div className="hero-visual">
-              <Blob />
+              <ProcessFlow />
             </div>
           </div>
         </div>

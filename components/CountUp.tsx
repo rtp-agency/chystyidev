@@ -16,21 +16,22 @@ export function CountUp({
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
-  const [n, setN] = useState(0);
+  // Initial/SSR value is the REAL number — so no-JS, crawlers and link previews
+  // see "99%+", not "0%+". The count-up is layered on top only in the browser.
+  const [n, setN] = useState(value);
+  const started = useRef(false);
 
   useEffect(() => {
-    if (!inView) return;
-
-    const reduce =
-      typeof window !== "undefined" &&
-      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
-      setN(value);
-      return;
-    }
+    if (!inView || started.current) return;
+    const reduce = window.matchMedia?.(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (reduce) return;
+    started.current = true;
 
     let raf = 0;
     const start = performance.now();
+    setN(0);
     const tick = (t: number) => {
       const p = Math.min((t - start) / (duration * 1000), 1);
       const eased = 1 - Math.pow(1 - p, 3);
