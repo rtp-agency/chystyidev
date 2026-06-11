@@ -37,7 +37,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
-  scrollbar-gutter: stable;
+  scrollbar-gutter: stable both-edges;
 }
 
 body {
@@ -314,7 +314,10 @@ nav {
 
 /* hero */
 .hero {
-  padding: 150px 0 120px;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: 120px 0 90px;
   background: transparent;
 }
 /* page-top grid layer — sits behind the nav so it reaches the very top edge */
@@ -323,7 +326,7 @@ nav {
   top: 0;
   left: 0;
   right: 0;
-  height: 820px;
+  height: 100vh;
   z-index: 0;
   pointer-events: none;
   background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
@@ -489,10 +492,69 @@ nav {
 
 /* morphing blob (hero visual, test) */
 .blob-wrap {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 440px;
+  min-height: 460px;
+  transform: translate(var(--bx, 0px), var(--by, 0px));
+  will-change: transform;
+}
+/* particles orbiting the blob */
+.blob-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+}
+.blob-orbit span {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.55);
+}
+.blob-orbit-1 {
+  width: 400px;
+  height: 400px;
+  margin: -200px 0 0 -200px;
+  animation: blob-spin 18s linear infinite;
+}
+.blob-orbit-2 {
+  width: 340px;
+  height: 340px;
+  margin: -170px 0 0 -170px;
+  animation: blob-spin 13s linear infinite reverse;
+}
+.blob-orbit-1 span:nth-child(1) {
+  top: -3px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+}
+.blob-orbit-1 span:nth-child(2) {
+  top: 62%;
+  left: 96%;
+  width: 4px;
+  height: 4px;
+  opacity: 0.6;
+}
+.blob-orbit-2 span:nth-child(1) {
+  top: 50%;
+  left: -2px;
+  width: 5px;
+  height: 5px;
+}
+.blob-orbit-2 span:nth-child(2) {
+  top: 8%;
+  left: 22%;
+  width: 3px;
+  height: 3px;
+  opacity: 0.7;
+}
+@keyframes blob-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 .blob {
   position: relative;
@@ -677,6 +739,7 @@ nav {
 .hero > .container {
   position: relative;
   z-index: 1;
+  width: 100%;
 }
 .aurora {
   position: absolute;
@@ -802,7 +865,9 @@ nav {
   .prism-cube,
   .prism-glow,
   .blob,
-  .blob::before {
+  .blob::before,
+  .blob-orbit,
+  .stat-number::before {
     animation: none;
   }
   .hero em {
@@ -980,6 +1045,8 @@ nav {
   gap: 48px;
 }
 .stat-number {
+  position: relative;
+  display: inline-block;
   font-family: var(--font-serif);
   font-size: clamp(48px, 6vw, 68px);
   font-weight: 500;
@@ -987,6 +1054,30 @@ nav {
   letter-spacing: -0.03em;
   color: var(--color-text);
   margin-bottom: 16px;
+  perspective: 500px;
+}
+.stat-number::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 150px;
+  height: 150px;
+  transform: translate(-50%, -50%) rotateX(70deg);
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 16%,
+    transparent 38%
+  );
+  pointer-events: none;
+  animation: stat-disc 11s linear infinite;
+}
+@keyframes stat-disc {
+  to {
+    transform: translate(-50%, -50%) rotateX(70deg) rotate(360deg);
+  }
 }
 .stat-label {
   font-size: 15px;
