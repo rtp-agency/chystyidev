@@ -3,6 +3,7 @@ import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
 import { Marquee } from "@/components/Marquee";
+import { CostCard } from "@/components/CostCard";
 import {
   stats,
   offers,
@@ -22,44 +23,52 @@ export default function Home() {
       <section className="hero">
         <div className="aurora" aria-hidden="true" />
         <div className="container">
-          <Reveal>
-            <h1>
-              Spend <em>far less</em> on AI — and make it work on the hard
-              problems.
-            </h1>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="lead">
-              I help companies running AI at scale cut what they spend — by
-              replacing the overpriced parts of their setup with equivalents
-              that cost a fraction at the same quality — and re-engineer AI to
-              stay reliable on the complex, multi-step tasks where it usually
-              breaks.
-            </p>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="hero-actions">
-              <a
-                href="mailto:david@chystyi.dev?subject=Free%20AI%20Cost%20Audit"
-                className="btn btn-primary"
-              >
-                Get a free AI cost audit <span className="arrow">→</span>
-              </a>
-              <a href="#work" className="btn btn-secondary">
-                See the work
-              </a>
+          <div className="hero-grid">
+            <div className="hero-copy">
+              <Reveal>
+                <h1>
+                  Spend <em>far less</em> on AI — and make it work on the hard
+                  problems.
+                </h1>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <p className="lead">
+                  I help companies running AI at scale cut what they spend — by
+                  replacing the overpriced parts of their setup with equivalents
+                  that cost a fraction at the same quality — and re-engineer AI
+                  to stay reliable on the complex, multi-step tasks where it
+                  usually breaks.
+                </p>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <div className="hero-actions">
+                  <a
+                    href="mailto:david@chystyi.dev?subject=Free%20AI%20Cost%20Audit"
+                    className="btn btn-primary"
+                  >
+                    Get a free AI cost audit <span className="arrow">→</span>
+                  </a>
+                  <a href="#work" className="btn btn-secondary">
+                    See the work
+                  </a>
+                </div>
+              </Reveal>
+              <Reveal delay={0.3}>
+                <div className="hero-meta">
+                  <span className="status">
+                    <span className="dot" />
+                    Available for new projects
+                  </span>
+                  <span>·</span>
+                  <span>AI consulting · cost optimization · implementation</span>
+                </div>
+              </Reveal>
             </div>
-          </Reveal>
-          <Reveal delay={0.3}>
-            <div className="hero-meta">
-              <span className="status">
-                <span className="dot" />
-                Available for new projects
-              </span>
-              <span>·</span>
-              <span>AI consulting · cost optimization · implementation</span>
+
+            <div className="hero-visual">
+              <CostCard />
             </div>
-          </Reveal>
+          </div>
         </div>
       </section>
 
