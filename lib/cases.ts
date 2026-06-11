@@ -8,6 +8,18 @@ export type Block =
 
 export type Section = { heading: string; blocks: Block[] };
 
+export type CaseVisual =
+  | { kind: "pipeline"; stages: { label: string; sub: string }[] }
+  | {
+      kind: "cost";
+      beforeLabel: string;
+      beforeValue: string;
+      afterLabel: string;
+      afterValue: string;
+      afterPct: number;
+      reduction: string;
+    };
+
 export type CaseStudy = {
   slug: string;
   eyebrow: string;
@@ -19,6 +31,7 @@ export type CaseStudy = {
     status: string;
     link?: { href: string; text: string };
   };
+  visual?: CaseVisual;
   sections: Section[];
   prev: { href: string; label: string };
   next: { href: string; label: string };
@@ -35,6 +48,15 @@ export const cases: CaseStudy[] = [
       timeline: "3 months",
       status: "Live with paying users",
       link: { href: "https://metra-ai.org", text: "metra-ai.org →" },
+    },
+    visual: {
+      kind: "pipeline",
+      stages: [
+        { label: "Structure parser", sub: "extract anatomy, preserve links" },
+        { label: "Content rewriter", sub: "per-paragraph, isolated calls" },
+        { label: "Style enhancer", sub: "emoji & channel formatting" },
+        { label: "Auto-rules validator", sub: "channel-specific rules" },
+      ],
     },
     sections: [
       {
@@ -162,6 +184,15 @@ export const cases: CaseStudy[] = [
       role: "Solo Developer",
       timeline: "6+ months in production",
       status: "3+ commercial deployments",
+    },
+    visual: {
+      kind: "cost",
+      beforeLabel: "Premium video AI API",
+      beforeValue: "$3–5 / min",
+      afterLabel: "Custom ComfyUI workflow",
+      afterValue: "cents / min",
+      afterPct: 2,
+      reduction: "99%+",
     },
     sections: [
       {
@@ -298,6 +329,16 @@ export const cases: CaseStudy[] = [
       role: "Solo Developer",
       timeline: "3 months production",
       status: "Active deployment",
+    },
+    visual: {
+      kind: "pipeline",
+      stages: [
+        { label: "Transcribe", sub: "Whisper Large (self-hosted)" },
+        { label: "Rewrite", sub: "Gemini — preserve meaning" },
+        { label: "Voice", sub: "multi-language TTS" },
+        { label: "Match footage", sub: "Vertex AI + Qdrant" },
+        { label: "Assemble", sub: "FFmpeg (GPU-accelerated)" },
+      ],
     },
     sections: [
       {
@@ -460,6 +501,15 @@ export const cases: CaseStudy[] = [
       role: "Solo Developer",
       timeline: "4–5 months production",
       status: "Active with 2 commercial clients",
+    },
+    visual: {
+      kind: "cost",
+      beforeLabel: "Kling 2.6 (premium)",
+      beforeValue: "$1.20 / video",
+      afterLabel: "Custom Wan 2.2 workflow",
+      afterValue: "$0.19 / video",
+      afterPct: 16,
+      reduction: "84%",
     },
     sections: [
       {

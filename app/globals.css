@@ -994,7 +994,10 @@ nav {
   .stat-number::before,
   .flow-beam,
   .flow-node,
-  .flow-label {
+  .flow-label,
+  .vp-beam,
+  .vp-node,
+  .vp-label {
     animation: none;
   }
   .hero em {
@@ -1705,6 +1708,193 @@ footer {
   color: var(--color-text);
   font-weight: 500;
 }
+
+/* ===== case visual (animated diagram per case) ===== */
+.case-visual {
+  position: relative;
+  margin: 40px 0 8px;
+  padding: 38px 34px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  background: var(--color-bg2);
+  overflow: hidden;
+}
+/* vertical pipeline */
+.vp {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+.vp-line {
+  position: absolute;
+  left: 19px;
+  top: 20px;
+  bottom: 20px;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  border-radius: 2px;
+}
+.vp-beam {
+  position: absolute;
+  left: 0;
+  width: 2px;
+  height: 70px;
+  top: -70px;
+  background: linear-gradient(180deg, transparent, #ffffff, transparent);
+  animation-name: vp-travel;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+@keyframes vp-travel {
+  0% {
+    top: -70px;
+  }
+  100% {
+    top: 100%;
+  }
+}
+.vp-step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.vp-node {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(12, 12, 12, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-muted);
+  animation-name: vp-node-pulse;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+.vp-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.vp-label {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--color-text2);
+  animation-name: vp-label-pulse;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+.vp-sub {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-muted);
+  letter-spacing: 0.02em;
+}
+@keyframes vp-node-pulse {
+  0%,
+  55%,
+  100% {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--color-muted);
+    box-shadow: none;
+  }
+  12%,
+  30% {
+    border-color: rgba(255, 255, 255, 0.9);
+    color: #fff;
+    box-shadow: 0 0 22px rgba(255, 255, 255, 0.4);
+  }
+}
+@keyframes vp-label-pulse {
+  0%,
+  55%,
+  100% {
+    color: var(--color-text2);
+  }
+  12%,
+  30% {
+    color: var(--color-text);
+  }
+}
+/* cost bars */
+.cv-cost {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.cv-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cv-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.cv-name {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+}
+.cv-val {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  color: var(--color-text2);
+}
+.cv-val-hi {
+  color: var(--color-text);
+}
+.cv-track {
+  width: 100%;
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+.cv-bar {
+  height: 100%;
+  border-radius: 999px;
+}
+.cv-bar-before {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.32)
+  );
+}
+.cv-bar-after {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.7), #ffffff);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
+}
+.cv-reduction {
+  font-family: var(--font-serif);
+  font-size: 34px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-top: 4px;
+}
+.cv-reduction span {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-left: 6px;
+}
+
 .case-section {
   padding: 56px 0;
   border-top: 1px solid var(--color-line);

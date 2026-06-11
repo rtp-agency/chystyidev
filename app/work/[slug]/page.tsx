@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
+import { CaseVisual } from "@/components/CaseVisual";
 import { cases, getCase, type Block } from "@/lib/cases";
 
 export function generateStaticParams() {
@@ -129,6 +130,12 @@ export default async function CasePage({
               </div>
             </Reveal>
           </section>
+
+          {c.visual && (
+            <Reveal>
+              <CaseVisual visual={c.visual} />
+            </Reveal>
+          )}
 
           {c.sections.map((sec) => (
             <Reveal key={sec.heading} as="section" className="case-section">
