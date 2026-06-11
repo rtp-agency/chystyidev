@@ -3,7 +3,7 @@ import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
 import { Marquee } from "@/components/Marquee";
-import { CostCard } from "@/components/CostCard";
+import { Prism } from "@/components/Prism";
 import {
   stats,
   offers,
@@ -27,17 +27,15 @@ export default function Home() {
             <div className="hero-copy">
               <Reveal>
                 <h1>
-                  Spend <em>far less</em> on AI — and make it work on the hard
-                  problems.
+                  Spend <em>far less</em> on AI.
                 </h1>
               </Reveal>
               <Reveal delay={0.1}>
                 <p className="lead">
-                  I help companies running AI at scale cut what they spend — by
-                  replacing the overpriced parts of their setup with equivalents
-                  that cost a fraction at the same quality — and re-engineer AI
-                  to stay reliable on the complex, multi-step tasks where it
-                  usually breaks.
+                  And make it work on the hard problems. I cut what companies
+                  spend running AI at scale — swapping the overpriced parts of
+                  their stack for equivalents that cost a fraction at the same
+                  quality, and keeping AI reliable where it usually breaks.
                 </p>
               </Reveal>
               <Reveal delay={0.2}>
@@ -66,7 +64,7 @@ export default function Home() {
             </div>
 
             <div className="hero-visual">
-              <CostCard />
+              <Prism />
             </div>
           </div>
         </div>
