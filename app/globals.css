@@ -1638,6 +1638,45 @@ section[id] {
   width: 100%;
 }
 
+/* homepage case-card cost bar */
+.ccb {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 26px;
+}
+.ccb-track {
+  flex: 1;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+.ccb-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+}
+.ccb-label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-warm);
+  white-space: nowrap;
+}
+
+/* 404 */
+.notfound {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 0;
+}
+.notfound h1 {
+  margin: 18px 0;
+}
+
 /* footer */
 footer {
   background: var(--color-bg);

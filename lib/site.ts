@@ -82,8 +82,19 @@ export const process = [
   },
 ];
 
+export type WorkItem = {
+  slug: string;
+  number: string;
+  title: string;
+  meta: string[];
+  summary: string;
+  highlights: { number: string; label: string }[];
+  tech: string;
+  costBar?: { reduction: string; afterPct: number };
+};
+
 // Case studies, ordered cost-first (most relevant proof for the primary visitor first).
-export const work = [
+export const work: WorkItem[] = [
   {
     slug: "open-source-lipsync",
     number: "01 — Lipsync System",
@@ -96,6 +107,7 @@ export const work = [
       { number: "6+ mo", label: "Continuous production use" },
     ],
     tech: "ComfyUI · Infinity Talk · Wan 2.1 · Docker",
+    costBar: { reduction: "99%+", afterPct: 2 },
   },
   {
     slug: "motion-control",
@@ -109,6 +121,7 @@ export const work = [
       { number: "~$12K", label: "Annual savings per client" },
     ],
     tech: "ComfyUI · Wan 2.2 · RunningHub · FFmpeg",
+    costBar: { reduction: "84%", afterPct: 16 },
   },
   {
     slug: "video-localization",

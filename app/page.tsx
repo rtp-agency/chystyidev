@@ -5,6 +5,7 @@ import { CountUp } from "@/components/CountUp";
 import { ProcessFlow } from "@/components/ProcessFlow";
 import { Particles } from "@/components/Particles";
 import { ContactForm } from "@/components/ContactForm";
+import { CardCostBar } from "@/components/CardCostBar";
 
 const CAL_URL = "https://cal.com/david-chistiy-lmbu8n";
 import {
@@ -183,6 +184,7 @@ export default function Home() {
                       </div>
                     ))}
                   </div>
+                  {c.costBar && <CardCostBar {...c.costBar} />}
                   <div className="case-footer">
                     <div className="case-tech-mini">{c.tech}</div>
                     <span className="case-read-more">
