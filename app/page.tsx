@@ -16,6 +16,7 @@ import {
 export default function Home() {
   return (
     <>
+      <div className="bg-grid" aria-hidden="true" />
       <Nav variant="home" />
 
       {/* Hero */}

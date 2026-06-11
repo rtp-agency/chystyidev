@@ -37,6 +37,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -314,19 +315,22 @@ nav {
 /* hero */
 .hero {
   padding: 150px 0 120px;
-  background: var(--color-bg);
+  background: transparent;
 }
-.hero::before {
-  content: "";
+/* page-top grid layer — sits behind the nav so it reaches the very top edge */
+.bg-grid {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 820px;
   z-index: 0;
   pointer-events: none;
   background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 62px 62px;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 92%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 92%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 92%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 92%);
 }
 .particles {
   position: absolute;
@@ -491,40 +495,67 @@ nav {
   min-height: 440px;
 }
 .blob {
+  position: relative;
   width: 300px;
   height: 300px;
   border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
   background: radial-gradient(
-    circle at 35% 28%,
+    circle at 34% 26%,
     #ffffff,
-    #d2d2d2 34%,
-    #6e6e6e 66%,
-    #1a1a1a 100%
+    #d2d2d2 32%,
+    #6e6e6e 64%,
+    #161616 100%
   );
-  box-shadow: inset -26px -26px 60px rgba(0, 0, 0, 0.45),
-    inset 16px 16px 44px rgba(255, 255, 255, 0.22),
-    0 34px 80px rgba(0, 0, 0, 0.5), 0 0 90px rgba(255, 255, 255, 0.05);
-  animation: blob-morph 14s ease-in-out infinite;
-  transition: border-radius 0.9s var(--ease), transform 0.9s var(--ease);
+  box-shadow: inset -26px -26px 64px rgba(0, 0, 0, 0.5),
+    inset 18px 18px 50px rgba(255, 255, 255, 0.25),
+    0 36px 90px rgba(0, 0, 0, 0.55), 0 0 100px rgba(255, 255, 255, 0.06);
+  animation: blob-morph 9s ease-in-out infinite;
+  transition: border-radius 1s var(--ease), transform 1s var(--ease);
   cursor: pointer;
 }
+.blob::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    closest-side at 30% 24%,
+    rgba(255, 255, 255, 0.85),
+    transparent 58%
+  );
+  mix-blend-mode: screen;
+  animation: blob-shine 6s ease-in-out infinite alternate;
+}
 .blob:hover {
-  border-radius: 62% 38% 34% 66% / 58% 33% 67% 42%;
-  transform: scale(1.06) rotate(10deg);
+  border-radius: 68% 32% 28% 72% / 64% 28% 72% 36%;
+  transform: scale(1.08) rotate(-9deg);
 }
 @keyframes blob-morph {
   0%,
   100% {
     border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
   }
-  25% {
-    border-radius: 58% 42% 48% 52% / 55% 50% 50% 45%;
+  20% {
+    border-radius: 64% 36% 45% 55% / 58% 52% 48% 42%;
   }
-  50% {
-    border-radius: 38% 62% 55% 45% / 48% 60% 40% 52%;
+  40% {
+    border-radius: 34% 66% 58% 42% / 46% 64% 36% 54%;
   }
-  75% {
-    border-radius: 50% 50% 38% 62% / 60% 45% 55% 40%;
+  60% {
+    border-radius: 55% 45% 32% 68% / 64% 42% 58% 36%;
+  }
+  80% {
+    border-radius: 48% 52% 67% 33% / 38% 50% 50% 62%;
+  }
+}
+@keyframes blob-shine {
+  from {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: translate(46px, 34px) scale(1.18);
+    opacity: 1;
   }
 }
 
@@ -770,7 +801,8 @@ nav {
   .hero-meta .dot,
   .prism-cube,
   .prism-glow,
-  .blob {
+  .blob,
+  .blob::before {
     animation: none;
   }
   .hero em {
