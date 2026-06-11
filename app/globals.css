@@ -169,67 +169,59 @@ section {
   margin-top: 22px;
 }
 
-/* nav — full-width liquid-glass bar, flush to top */
+/* nav — floating capsule wrapping a real liquid-glass layer */
 nav {
   position: sticky;
-  top: 0;
+  top: 14px;
   z-index: 100;
-  overflow: hidden;
-  background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.06),
-      rgba(255, 255, 255, 0.012)
-    ),
-    rgba(10, 10, 10, 0.26);
-  /* fallback: frosted glass everywhere */
-  backdrop-filter: blur(22px) saturate(180%);
-  -webkit-backdrop-filter: blur(22px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.04), 0 8px 28px rgba(0, 0, 0, 0.3);
+  padding: 0 20px;
 }
-/* progressive: real refraction where SVG backdrop filters are supported */
-@supports (backdrop-filter: url("#liquid-glass")) {
-  nav {
-    backdrop-filter: url("#liquid-glass") blur(7px) saturate(180%);
-    -webkit-backdrop-filter: url("#liquid-glass") blur(7px) saturate(180%);
-  }
-}
-/* specular sheen sweeping across the glass like light */
-nav::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    105deg,
-    transparent 38%,
-    rgba(255, 255, 255, 0.07) 50%,
-    transparent 62%
-  );
-  background-size: 250% 100%;
-  animation: nav-sheen 9s linear infinite;
-}
-@keyframes nav-sheen {
-  from {
-    background-position: 140% 0;
-  }
-  to {
-    background-position: -140% 0;
-  }
-}
-.nav-inner {
-  position: relative;
-  z-index: 1;
-}
-.nav-inner {
+.nav-glass {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 13px 28px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 28px;
+}
+.nav-inner {
+  padding: 11px 16px 11px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+/* ===== LiquidGlass primitive (canvas displacement + specular, Apple-style) ===== */
+.lg {
+  position: relative;
+  isolation: isolate;
+}
+.lg-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.lg-refract {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  /* fallback for browsers without url() backdrop filters (Firefox/Safari) */
+  backdrop-filter: blur(12px) saturate(1.4);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+}
+.lg-tint {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 0 20px -5px rgba(255, 255, 255, 0.45),
+    0 6px 26px rgba(0, 0, 0, 0.22);
+}
+.lg-inner {
+  position: relative;
+  z-index: 2;
 }
 .nav-logo {
   font-family: var(--font-serif);
@@ -778,8 +770,7 @@ nav::after {
   .hero-meta .dot,
   .prism-cube,
   .prism-glow,
-  .blob,
-  nav::after {
+  .blob {
     animation: none;
   }
   .hero em {

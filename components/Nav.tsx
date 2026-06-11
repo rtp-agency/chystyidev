@@ -1,12 +1,14 @@
 import Link from "next/link";
+import { LiquidGlass } from "./LiquidGlass";
 
 export function Nav({ variant = "home" }: { variant?: "home" | "case" }) {
   return (
     <nav>
-      <div className="nav-inner">
-        <Link href="/" className="nav-logo">
-          David Chystyi
-        </Link>
+      <LiquidGlass className="nav-glass" radius={28} bezel={16} thickness={14}>
+        <div className="nav-inner">
+          <Link href="/" className="nav-logo">
+            David Chystyi
+          </Link>
         {variant === "home" ? (
           <ul className="nav-links">
             <li>
@@ -27,7 +29,8 @@ export function Nav({ variant = "home" }: { variant?: "home" | "case" }) {
             ← Back to work
           </Link>
         )}
-      </div>
+        </div>
+      </LiquidGlass>
     </nav>
   );
 }
