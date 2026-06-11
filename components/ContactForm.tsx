@@ -3,9 +3,11 @@
 import { useState } from "react";
 
 // Posts to Web3Forms, which emails the submission to you — no backend needed.
-// Set NEXT_PUBLIC_WEB3FORMS_KEY (free access key from web3forms.com, tied to
-// david@chystyi.dev) in the Vercel project env for delivery to work.
-const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "";
+// Web3Forms access keys are public by design (client-side, with built-in spam
+// protection), so it's fine to ship in the bundle. Env var overrides if set.
+const ACCESS_KEY =
+  process.env.NEXT_PUBLIC_WEB3FORMS_KEY ||
+  "72ef2613-5e6d-486f-921f-7fd614e8c494";
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">(

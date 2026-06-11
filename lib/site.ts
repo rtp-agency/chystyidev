@@ -113,7 +113,7 @@ export const work = [
   {
     slug: "video-localization",
     number: "03 — Video Localization Pipeline",
-    title: "Multi-model AI pipeline for video uniqualization",
+    title: "Multi-model AI pipeline for video localization at scale",
     meta: ["Solo Developer", "3 months active production"],
     summary:
       "Architected a complex multi-model AI pipeline combining semantic embedding generation, self-hosted speech transcription, LLM-based script rewriting, and multi-language voice synthesis.",
@@ -141,23 +141,23 @@ export const work = [
 export const additional = [
   {
     title: "AI Reels Pipeline & Content Generation Bot",
-    body: "Industrial-scale content automation (target 100+ videos/hour) combining motion control workflows with image uniqualization pipelines.",
+    body: "Industrial-scale content automation (target 100+ videos/hour) combining motion-control workflows with automated image variation pipelines.",
   },
   {
-    title: "Anonymous Multi-Bot Platform — Financial Services",
-    body: "Multi-tenant Telegram bot infrastructure with full operator-to-user anonymity, sub-bot creation system, multi-currency transaction tracking.",
+    title: "Multi-Tenant Bot Platform — Financial Services",
+    body: "Multi-tenant Telegram bot infrastructure with strict tenant isolation, a sub-bot provisioning system, and multi-currency transaction tracking.",
   },
   {
     title: "AI-Powered B2B Sales Outreach Pipeline",
-    body: "Automated vacancy aggregator with LLM-based relevance scoring and AI-personalized outreach generation.",
+    body: "Automated lead aggregator with LLM-based relevance scoring and AI-personalized outreach generation.",
   },
   {
     title: "Telegram CRM Infrastructure (YappiGram)",
-    body: "Multi-account CRM with Telethon/MTProto session management, anonymity layer, encrypted message storage.",
+    body: "Multi-account CRM with Telethon/MTProto session management, role-based access controls, and encrypted message storage.",
   },
   {
-    title: "Video Content Repurposing Tool",
-    body: "FFmpeg-based mass uniqualization pipeline supporting 60+ video modifications for platform algorithm anti-detection.",
+    title: "Video Content Processing Tool",
+    body: "FFmpeg-based media processing pipeline supporting 60+ transformation modes for large-scale video variation.",
   },
   {
     title: "Production Payment Processing Integration",
