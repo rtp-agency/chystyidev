@@ -4,6 +4,7 @@ import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
 import { Marquee } from "@/components/Marquee";
 import { Blob } from "@/components/Blob";
+import { Particles } from "@/components/Particles";
 import {
   stats,
   offers,
@@ -21,6 +22,7 @@ export default function Home() {
 
       {/* Hero */}
       <section className="hero">
+        <Particles />
         <div className="container">
           <div className="hero-grid">
             <div className="hero-copy">
