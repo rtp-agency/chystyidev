@@ -4,7 +4,14 @@ import { LiquidGlass } from "./LiquidGlass";
 export function Nav({ variant = "home" }: { variant?: "home" | "case" }) {
   return (
     <nav>
-      <LiquidGlass className="nav-glass" radius={28} bezel={16} thickness={14}>
+      <LiquidGlass
+        className="nav-glass"
+        radius={26}
+        bezel={22}
+        thickness={32}
+        ior={2.1}
+        scaleRatio={1.2}
+      >
         <div className="nav-inner">
           <Link href="/" className="nav-logo">
             David Chystyi

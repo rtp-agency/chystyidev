@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
-import { Marquee } from "@/components/Marquee";
 import { Blob } from "@/components/Blob";
 import { Particles } from "@/components/Particles";
 import {
@@ -12,7 +11,6 @@ import {
   work,
   additional,
   testimonials,
-  marqueeTech,
 } from "@/lib/site";
 
 export default function Home() {
@@ -52,16 +50,6 @@ export default function Home() {
                   </a>
                 </div>
               </Reveal>
-              <Reveal delay={0.3}>
-                <div className="hero-meta">
-                  <span className="status">
-                    <span className="dot" />
-                    Available for new projects
-                  </span>
-                  <span>·</span>
-                  <span>AI consulting · cost optimization · implementation</span>
-                </div>
-              </Reveal>
             </div>
 
             <div className="hero-visual">
@@ -70,9 +58,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Tech marquee */}
-      <Marquee items={marqueeTech} />
 
       {/* Stats */}
       <section className="stats">

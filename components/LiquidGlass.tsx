@@ -278,8 +278,8 @@ export function LiquidGlass({
         style={
           maps
             ? {
-                backdropFilter: `url(#${id}) blur(6px) saturate(1.3)`,
-                WebkitBackdropFilter: `url(#${id}) blur(6px) saturate(1.3)`,
+                backdropFilter: `url(#${id}) saturate(1.2)`,
+                WebkitBackdropFilter: `url(#${id}) saturate(1.2)`,
               }
             : undefined
         }
