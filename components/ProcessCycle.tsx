@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const STEPS = [
@@ -9,7 +9,7 @@ const STEPS = [
   { n: "03", label: "Ship", desc: "Deploy to production, prove it" },
 ];
 
-const DURATION = 3800;
+const DURATION = 4200;
 
 function AuditScene() {
   return (
@@ -62,16 +62,18 @@ function ArchScene() {
 function ShipScene() {
   return (
     <div className="sc sc-ship">
-      <svg viewBox="0 0 200 148" className="sc-plane-wrap" fill="none">
-        <path
-          d="M100,18 L150,128 L100,102 L50,128 Z"
-          className="sc-plane"
-        />
-      </svg>
-      <div className="sc-live">
-        <span className="sc-live-ring" />
-        <span className="sc-live-ring" />
-        <span className="sc-live-dot" />
+      <div className="sc-deploy-track">
+        <span className="sc-deploy-fill" />
+      </div>
+      <div className="sc-deploy-status">
+        <span className="sc-check">
+          <svg viewBox="0 0 32 32" aria-hidden="true">
+            <circle cx="16" cy="16" r="15" className="sc-check-ring" />
+            <path d="M9,16.5 l4.5,4.5 l9.5,-10.5" className="sc-check-path" />
+          </svg>
+          <span className="sc-live-pulse" />
+        </span>
+        <span className="sc-live-text">LIVE</span>
       </div>
     </div>
   );
@@ -91,6 +93,21 @@ export function ProcessCycle() {
 
   return (
     <div className="pc">
+      <div className="pc-head">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="pc-head-label">{STEPS[active].label}</div>
+            <div className="pc-head-desc">{STEPS[active].desc}</div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
       <div className="pc-stage">
         <AnimatePresence mode="wait">
           <motion.div
@@ -108,33 +125,25 @@ export function ProcessCycle() {
         </AnimatePresence>
       </div>
 
-      <div className="pc-steps">
+      <div className="pc-hexes">
         {STEPS.map((s, i) => (
-          <button
-            type="button"
-            key={s.n}
-            className={`pc-step ${active === i ? "on" : ""}`}
-            onClick={() => setActive(i)}
-            aria-label={s.label}
-          >
-            <span className="pc-step-n">{s.n}</span>
-            <span className="pc-step-label">{s.label}</span>
-          </button>
+          <Fragment key={s.n}>
+            {i > 0 && (
+              <span className={`pc-hex-conn ${active >= i ? "on" : ""}`} />
+            )}
+            <button
+              type="button"
+              className={`pc-hex ${active === i ? "on" : ""}`}
+              onClick={() => setActive(i)}
+              aria-label={s.label}
+            >
+              <svg viewBox="0 0 54 60" aria-hidden="true">
+                <polygon points="27,2 52,16 52,44 27,58 2,44 2,16" />
+              </svg>
+              <span className="pc-hex-num">{s.n}</span>
+            </button>
+          </Fragment>
         ))}
-      </div>
-
-      <div className="pc-desc">
-        <AnimatePresence mode="wait">
-          <motion.span
-            key={active}
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.3 }}
-          >
-            {STEPS[active].desc}
-          </motion.span>
-        </AnimatePresence>
       </div>
     </div>
   );
