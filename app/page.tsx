@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
-import { ProcessFlow } from "@/components/ProcessFlow";
+import { ProcessCycle } from "@/components/ProcessCycle";
 import { Particles } from "@/components/Particles";
 import { ContactForm } from "@/components/ContactForm";
 import { CardCostBar } from "@/components/CardCostBar";
@@ -59,7 +59,7 @@ export default function Home() {
             </div>
 
             <div className="hero-visual">
-              <ProcessFlow />
+              <ProcessCycle />
             </div>
           </div>
         </div>
