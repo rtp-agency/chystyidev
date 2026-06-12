@@ -37,10 +37,8 @@ export default function Home() {
               </Reveal>
               <Reveal delay={0.1}>
                 <p className="lead">
-                  And make it work on the hard problems. I cut what companies
-                  spend running AI at scale — swapping the overpriced parts of
-                  their stack for equivalents that cost a fraction at the same
-                  quality, and keeping AI reliable where it usually breaks.
+                  I cut what companies spend running AI at scale — and keep it
+                  reliable on the work that usually breaks.
                 </p>
               </Reveal>
               <Reveal delay={0.2}>
@@ -64,6 +62,11 @@ export default function Home() {
               <ProcessFlow />
             </div>
           </div>
+        </div>
+        <div className="scroll-cue" aria-hidden="true">
+          <span className="scroll-cue-track">
+            <span className="scroll-cue-dot" />
+          </span>
         </div>
       </section>
 
@@ -110,7 +113,6 @@ export default function Home() {
                   <div className="offer-num">{o.num}</div>
                   <h3 className="offer-name">{o.name}</h3>
                   <p className="offer-promise">{o.promise}</p>
-                  <p className="offer-problem">{o.problem}</p>
                   <div className="offer-does-label">What I do</div>
                   <ul className="offer-does">
                     {o.does.map((d) => (
