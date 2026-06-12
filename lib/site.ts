@@ -28,7 +28,9 @@ export type Offer = {
   promise: string;
   problem: string;
   does: string[];
-  result: string;
+  metric: string;
+  metricLabel: string;
+  visual: "cost" | "reliability";
 };
 
 export const offers: Offer[] = [
@@ -36,31 +38,31 @@ export const offers: Offer[] = [
     num: "01",
     name: "AI Cost Optimization",
     promise: "Slash what you spend running AI — without giving up quality.",
-    problem:
-      "If you use AI at any real volume, you're almost certainly overpaying. Oversized models burn through token budgets on tasks a cheaper one handles just as well. Premium generative services bill at a premium when an equivalent produces the same output for a fraction of the price. Most teams never measure where the money actually leaks.",
+    problem: "Most teams overpay for AI by 5–50× and never measure where.",
     does: [
-      "Audit your current AI stack and pinpoint exactly where you're overpaying",
-      "Re-engineer the expensive pieces with cheaper equivalents at matching quality",
-      "Prove the savings with real before/after numbers before anything is changed",
-      "Deploy the optimized setup to production and keep it tuned as models evolve",
+      "Audit your AI stack for waste",
+      "Swap costly pieces for cheaper equals",
+      "Prove the savings in real numbers",
+      "Ship it and keep it tuned",
     ],
-    result:
-      "Typical outcome: 80–99% lower AI costs — thousands to tens of thousands saved per year.",
+    metric: "80–99%",
+    metricLabel: "lower AI cost",
+    visual: "cost",
   },
   {
     num: "02",
     name: "AI Reliability Engineering",
-    promise: "Make your AI behave on the complex, high-stakes work where it breaks.",
-    problem:
-      "AI looks brilliant in a demo, then falls apart on real, multi-step work — hallucinations, answers that change every run, output you can't trust at scale. The model usually isn't the problem; the system around it is.",
+    promise: "Make your AI behave on the complex work where it breaks.",
+    problem: "Brilliant in a demo, then hallucinations and drift at scale.",
     does: [
-      "Map where and why your AI currently fails",
-      "Re-architect hard tasks into specialized, focused steps instead of one overloaded prompt",
-      "Add verification layers that catch errors before they ever reach the user",
-      "Build guardrails for consistent, predictable output you can ship to production",
+      "Map where your AI fails",
+      "Re-architect into focused steps",
+      "Add verification that catches errors",
+      "Build guardrails for consistent output",
     ],
-    result:
-      "Typical outcome: far fewer errors, consistent results, and lower cost from using the right model for each step.",
+    metric: "−90%",
+    metricLabel: "fewer errors",
+    visual: "reliability",
   },
 ];
 

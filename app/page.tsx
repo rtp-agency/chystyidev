@@ -6,6 +6,7 @@ import { ProcessFlow } from "@/components/ProcessFlow";
 import { Particles } from "@/components/Particles";
 import { ContactForm } from "@/components/ContactForm";
 import { CardCostBar } from "@/components/CardCostBar";
+import { OfferVisual } from "@/components/OfferVisual";
 
 const CAL_URL = "https://cal.com/david-chistiy-lmbu8n";
 import {
@@ -105,6 +106,7 @@ export default function Home() {
             {offers.map((o, i) => (
               <Reveal key={o.num} delay={i * 0.1}>
                 <div className="offer">
+                  <OfferVisual kind={o.visual} />
                   <div className="offer-num">{o.num}</div>
                   <h3 className="offer-name">{o.name}</h3>
                   <p className="offer-promise">{o.promise}</p>
@@ -115,7 +117,10 @@ export default function Home() {
                       <li key={d}>{d}</li>
                     ))}
                   </ul>
-                  <div className="offer-result">{o.result}</div>
+                  <div className="offer-metric">
+                    <span className="offer-metric-num">{o.metric}</span>
+                    <span className="offer-metric-label">{o.metricLabel}</span>
+                  </div>
                 </div>
               </Reveal>
             ))}

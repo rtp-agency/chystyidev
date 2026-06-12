@@ -997,8 +997,11 @@ nav {
   .flow-label,
   .vp-beam,
   .vp-node,
-  .vp-label {
+  .vp-label,
+  .ov-bar,
+  .ov-cost::after {
     animation: none;
+    transform: none;
   }
   .hero em {
     -webkit-text-fill-color: var(--color-warm);
@@ -1128,14 +1131,95 @@ nav {
   left: 0;
   color: var(--color-warm);
 }
-.offer-result {
+.offer-metric {
   margin-top: auto;
-  padding-top: 20px;
+  padding-top: 22px;
   border-top: 1px solid var(--color-line);
-  font-size: 14px;
-  color: var(--color-warm);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.offer-metric-num {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: #ffffff;
+}
+.offer-metric-label {
   font-family: var(--font-mono);
-  line-height: 1.5;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* offer visual: animated bars */
+.ov {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 7px;
+  height: 80px;
+  margin-bottom: 30px;
+}
+.ov-bar {
+  flex: 1;
+  border-radius: 5px 5px 0 0;
+  transform-origin: bottom;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.55),
+    rgba(255, 255, 255, 0.1)
+  );
+}
+/* cost: bars grow once + descending staircase + sweeping sheen */
+.ov-cost .ov-bar {
+  animation: ov-grow 0.8s var(--ease) both;
+}
+@keyframes ov-grow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+.ov-cost::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.14) 50%,
+    transparent 60%
+  );
+  background-size: 250% 100%;
+  animation: ov-sheen 4s linear infinite;
+}
+@keyframes ov-sheen {
+  from {
+    background-position: 140% 0;
+  }
+  to {
+    background-position: -140% 0;
+  }
+}
+/* reliability: level equalizer wave */
+.ov-reliability .ov-bar {
+  animation: ov-wave 1.9s ease-in-out infinite;
+}
+@keyframes ov-wave {
+  0%,
+  100% {
+    transform: scaleY(0.82);
+  }
+  50% {
+    transform: scaleY(1.12);
+  }
 }
 
 /* free audit list in CTA */
