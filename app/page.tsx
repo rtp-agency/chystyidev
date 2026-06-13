@@ -27,6 +27,14 @@ export default function Home() {
       {/* Hero */}
       <section className="hero">
         <Particles />
+        <div className="hero-deco" aria-hidden="true">
+          <svg className="hero-deco-1" viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="98" />
+          </svg>
+          <svg className="hero-deco-2" viewBox="0 0 200 200">
+            <polygon points="100,5 182,52 182,148 100,195 18,148 18,52" />
+          </svg>
+        </div>
         <div className="container">
           <div className="hero-grid">
             <div className="hero-copy">

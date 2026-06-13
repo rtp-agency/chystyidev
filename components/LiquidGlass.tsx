@@ -183,6 +183,12 @@ export function LiquidGlass({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // Real-time SVG refraction is GPU-heavy on every scroll frame — only enable
+    // it on capable desktops. Touch / small / reduced-motion get frosted glass.
+    const capable =
+      !!window.matchMedia?.("(min-width: 900px) and (pointer: fine)").matches &&
+      !window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (!capable) return;
     const build = () => {
       const w = Math.round(el.offsetWidth);
       const h = Math.round(el.offsetHeight);

@@ -138,6 +138,11 @@ section {
   padding: 130px 0;
   position: relative;
 }
+/* perf: skip rendering offscreen sections (also pauses their animations) */
+.section-line {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 760px;
+}
 
 /* eyebrow label */
 .eyebrow {
@@ -348,6 +353,44 @@ nav {
   height: 100%;
   z-index: 0;
   pointer-events: none;
+}
+/* faint rotating geometry filling the hero's side voids */
+.hero-deco {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero-deco svg {
+  position: absolute;
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.06);
+  stroke-width: 1;
+}
+.hero-deco-1 {
+  width: 540px;
+  height: 540px;
+  left: -210px;
+  top: 16%;
+  animation: deco-rot 64s linear infinite;
+}
+.hero-deco-2 {
+  width: 440px;
+  height: 440px;
+  right: -150px;
+  bottom: -80px;
+  animation: deco-rot 84s linear infinite reverse;
+}
+@keyframes deco-rot {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 900px) {
+  .hero-deco {
+    display: none;
+  }
 }
 .hero-grid {
   display: grid;
@@ -632,9 +675,9 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 26px;
+  gap: 28px;
   width: 100%;
-  max-width: 440px;
+  max-width: 500px;
   margin-left: auto;
 }
 
@@ -662,7 +705,7 @@ nav {
 .pc-stage {
   position: relative;
   width: 100%;
-  height: 300px;
+  height: 340px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -678,8 +721,8 @@ nav {
 /* --- audit: scanning bars --- */
 .sc-audit {
   position: relative;
-  width: 280px;
-  height: 190px;
+  width: 330px;
+  height: 230px;
 }
 .sc-bars {
   position: absolute;
@@ -687,10 +730,10 @@ nav {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 22px;
+  gap: 26px;
 }
 .sc-bars span {
-  width: 30px;
+  width: 36px;
   border-radius: 6px 6px 0 0;
   background: linear-gradient(
     180deg,
@@ -745,8 +788,8 @@ nav {
 
 /* --- architect: assembling graph --- */
 .sc-arch svg {
-  width: 310px;
-  height: 220px;
+  width: 360px;
+  height: 252px;
 }
 .sc-arch .ln {
   stroke: rgba(255, 255, 255, 0.45);
@@ -793,8 +836,8 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
-  width: 260px;
+  gap: 36px;
+  width: 300px;
 }
 .sc-deploy-track {
   width: 100%;
@@ -1312,7 +1355,8 @@ nav {
   .or-ring,
   .scroll-cue-dot,
   .sc-scan,
-  .sc-bars span.flag::after {
+  .sc-bars span.flag::after,
+  .hero-deco svg {
     animation: none;
   }
   .hero em {

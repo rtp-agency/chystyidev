@@ -11,24 +11,26 @@ export function Particles() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     const reduce = window.matchMedia?.(
       "(prefers-reduced-motion: reduce)"
     ).matches;
+    const mobile = window.innerWidth < 768;
+    const N = mobile ? 26 : 44;
 
     let w = 0;
     let h = 0;
     let raf = 0;
+    let visible = true;
 
-    const N = 56;
     const parts = Array.from({ length: N }, () => ({
       x: Math.random(),
       y: Math.random(),
-      r: Math.random() * 1.7 + 0.4,
+      r: Math.random() * 1.6 + 0.4,
       vx: (Math.random() - 0.5) * 0.0005,
       vy: (Math.random() - 0.5) * 0.0005,
       a: Math.random() * 0.4 + 0.12,
-      g: 200 + Math.floor(Math.random() * 55), // 200–255 = white → light grey
+      g: 200 + Math.floor(Math.random() * 55),
     }));
 
     const resize = () => {
@@ -59,19 +61,34 @@ export function Particles() {
     };
 
     const frame = () => {
+      if (!visible) {
+        raf = 0;
+        return;
+      }
       draw();
       raf = requestAnimationFrame(frame);
     };
 
     if (reduce) {
       draw();
-    } else {
-      raf = requestAnimationFrame(frame);
+      return () => window.removeEventListener("resize", resize);
     }
+
+    // Pause the loop whenever the hero scrolls out of view.
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        if (visible && !raf) raf = requestAnimationFrame(frame);
+      },
+      { threshold: 0 }
+    );
+    io.observe(canvas);
+    raf = requestAnimationFrame(frame);
 
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
+      io.disconnect();
     };
   }, []);
 
