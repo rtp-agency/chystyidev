@@ -68,19 +68,22 @@ export const offers: Offer[] = [
 
 export const process = [
   {
-    num: "STEP 01",
+    num: "01",
     title: "Audit",
-    body: "I map exactly where your AI spend goes and where the models fail — with real numbers, not guesses. You see the problem before you pay to fix it.",
+    icon: "scan" as const,
+    body: "I map where your AI spend goes and where models fail — with real numbers. You see the problem before you pay to fix it.",
   },
   {
-    num: "STEP 02",
+    num: "02",
     title: "Architect",
-    body: "I design the cheapest stack that still hits your quality bar, and the orchestration that keeps the models reliable on the tasks that matter.",
+    icon: "graph" as const,
+    body: "I design the cheapest stack that still hits your quality bar, with orchestration that keeps models reliable.",
   },
   {
-    num: "STEP 03",
+    num: "03",
     title: "Ship & prove",
-    body: "I build it end-to-end, deploy to production, and show the before/after on both cost and reliability. No hand-waving — measured results.",
+    icon: "check" as const,
+    body: "I build it end-to-end, deploy to production, and prove the before/after on cost and reliability.",
   },
 ];
 

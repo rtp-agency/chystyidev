@@ -7,16 +7,10 @@ import { Particles } from "@/components/Particles";
 import { ContactForm } from "@/components/ContactForm";
 import { CardCostBar } from "@/components/CardCostBar";
 import { OfferVisual } from "@/components/OfferVisual";
+import { ProcessSteps } from "@/components/ProcessSteps";
+import { stats, offers, work, additional, testimonials } from "@/lib/site";
 
 const CAL_URL = "https://cal.com/david-chistiy-lmbu8n";
-import {
-  stats,
-  offers,
-  process,
-  work,
-  additional,
-  testimonials,
-} from "@/lib/site";
 
 export default function Home() {
   return (
@@ -150,17 +144,7 @@ export default function Home() {
             </Reveal>
           </div>
 
-          <div className="process-grid">
-            {process.map((p, i) => (
-              <Reveal key={p.num} delay={i * 0.1}>
-                <div className="process-step">
-                  <div className="step-num">{p.num}</div>
-                  <h4>{p.title}</h4>
-                  <p>{p.body}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <ProcessSteps />
         </div>
       </section>
 
