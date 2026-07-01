@@ -2847,3 +2847,24 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* /agencies — additive only, reuses existing tokens */
+.stats-grid.proof-bar {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+.automate-list {
+  max-width: 760px;
+  margin-top: 8px;
+}
+@media (max-width: 880px) {
+  .stats-grid.proof-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 32px;
+  }
+}
+@media (max-width: 768px) {
+  .stats-grid.proof-bar {
+    grid-template-columns: 1fr;
+  }
+}

@@ -34,7 +34,7 @@ function Icon({ kind }: { kind: "scan" | "graph" | "check" }) {
   );
 }
 
-export function ProcessSteps() {
+export function ProcessSteps({ steps = process }: { steps?: typeof process }) {
   return (
     <div className="ps">
       <div className="ps-connector">
@@ -48,7 +48,7 @@ export function ProcessSteps() {
       </div>
 
       <div className="ps-grid">
-        {process.map((p, i) => (
+        {steps.map((p, i) => (
           <motion.div
             className="ps-step"
             key={p.num}

@@ -20,6 +20,9 @@
 # vercel
 .vercel
 
+# internal briefs — do not publish
+agencies-landing-brief.md
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

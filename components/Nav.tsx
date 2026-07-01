@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { LiquidGlass } from "./LiquidGlass";
 
-export function Nav({ variant = "home" }: { variant?: "home" | "case" }) {
+export function Nav({
+  variant = "home",
+}: {
+  variant?: "home" | "case" | "agencies";
+}) {
   return (
     <nav>
       <LiquidGlass
@@ -28,7 +32,25 @@ export function Nav({ variant = "home" }: { variant?: "home" | "case" }) {
               <a href="#testimonials">Clients</a>
             </li>
             <li>
+              <Link href="/agencies">For agencies</Link>
+            </li>
+            <li>
               <a href="#contact">Contact</a>
+            </li>
+          </ul>
+        ) : variant === "agencies" ? (
+          <ul className="nav-links">
+            <li>
+              <a href="#automate">What I automate</a>
+            </li>
+            <li>
+              <a href="#how">How it works</a>
+            </li>
+            <li>
+              <a href="#work">Work</a>
+            </li>
+            <li>
+              <a href="#contact">Book an audit</a>
             </li>
           </ul>
         ) : (

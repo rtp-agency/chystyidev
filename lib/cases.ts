@@ -39,8 +39,121 @@ export type CaseStudy = {
 
 export const cases: CaseStudy[] = [
   {
+    slug: "black-camel",
+    eyebrow: "Case Study 01",
+    title:
+      "Automating a Manual Video-Editing Workflow for Educational Content at Scale",
+    lead: "A slow, editor-by-editor Premiere Pro process turned into an automated pipeline that cleans, reframes, and AI-edits recorded lesson videos in minutes — built to run hundreds of videos at volume.",
+    meta: {
+      role: "Managed service",
+      timeline: "Ongoing production",
+      status: "25+ videos processed",
+      link: { href: "https://blackcamel.productions", text: "blackcamel.productions →" },
+    },
+    visual: {
+      kind: "pipeline",
+      stages: [
+        { label: "Ingest", sub: "raw lesson recordings in bulk" },
+        { label: "Visual cleanup", sub: "toolbars, masks, re-framing" },
+        { label: "Adaptive reframe", sub: "content-aware, no collisions" },
+        { label: "AI content cleanup", sub: "silence / filler / repeats" },
+        { label: "Render + deliver", sub: "brand-consistent finished video" },
+      ],
+    },
+    sections: [
+      {
+        heading: "The challenge",
+        blocks: [
+          { t: "p", html: `Black Camel Productions produces a high volume of recorded lesson videos for an educational content client — screen-and-webcam recordings of a teacher walking through slides. Every video went through the same repetitive manual edit in Premiere Pro:` },
+          { t: "ul", items: [
+            `Cropping recording toolbars and UI clutter`,
+            `Scaling and re-framing the screen content`,
+            `Enlarging and repositioning the presenter's webcam bubble`,
+            `Masking grey page-breaks and margins`,
+            `Exporting to a fixed broadcast spec`,
+          ] },
+          { t: "p", html: `On top of that, an editor had to listen through each video to remove silences, filler words, coughs, and repeated or stumbled lines — the most time-consuming part of all.` },
+          { t: "p", html: `The problem wasn't quality — it was throughput. Each video cost an editor roughly <strong>an hour of hands-on time</strong>, the process didn't scale, and quality drifted between editors. At volume, the manual content-cleanup pass became the bottleneck.` },
+        ],
+      },
+      {
+        heading: "The solution",
+        blocks: [
+          { t: "p", html: `I built an automated video-production pipeline that reproduces the manual editing standard programmatically — plus an AI-assisted content-cleanup layer the manual process couldn't do efficiently.` },
+          { t: "p", html: `It runs as a managed service: Black Camel sends the raw recordings, the pipeline processes them, and a finished, brand-consistent video comes back — ready for their team to drop into final assembly.` },
+          { t: "h3", text: "1. Pixel-accurate brand reproduction" },
+          { t: "p", html: `I reverse-engineered the client's exact editing standard from their original Premiere presets and reference videos, so output matches their spec to the pixel — webcam framing, spacing, and scale measured and locked (for example, a 42px webcam margin matched against a reference video, not guessed).` },
+          { t: "h3", text: "2. Automated visual cleanup" },
+          { t: "p", html: `Toolbar and UI removal, page-break masking, screen re-framing, and presenter-bubble enlargement happen automatically — no manual masking or keyframing.` },
+          { t: "h3", text: "3. Adaptive, content-aware framing" },
+          { t: "p", html: `The system inspects each slide and adjusts automatically so on-screen images and tables are never cut off and never collide with the presenter overlay — solving real client feedback without per-video manual work.` },
+          { t: "h3", text: "4. AI-powered content cleanup" },
+          { t: "ul", items: [
+            `Silence and dead-air removal using voice-activity detection`,
+            `Filler-word, cough, and breath cleanup via speech AI, with safeguards that protect actual speech from being clipped`,
+            `Repeated-line and stumble detection using AI transcription plus a text-analysis layer — it finds where the presenter repeated themselves and proposes a tight, word-level cut, leaving a human to approve`,
+          ] },
+        ],
+      },
+      {
+        heading: "Technical highlights",
+        blocks: [
+          { t: "h3", text: "Reference-driven accuracy" },
+          { t: "p", html: `Brand geometry was decoded from the client's own design assets and measured against a reference video, not estimated — so output is consistent and on-spec every time, eliminating editor-to-editor drift.` },
+          { t: "h3", text: "Deterministic repeat detection" },
+          { t: "p", html: `For finding repeated lines, the pipeline pairs Whisper transcription (with word-level timestamps) with a text-matching layer tuned for the task — locating duplicated speech precisely and proposing a clean cut, with a human approving the final call.` },
+          { t: "h3", text: "Optimised rendering" },
+          { t: "p", html: `I tuned the render engine for Apple Silicon with smart frame-reuse, roughly halving render time — from about 6 minutes down to ~3 minutes for a typical 15-minute lesson.` },
+          { t: "h3", text: "Resilient at volume" },
+          { t: "p", html: `Batch processing with automatic retries on network hiccups, persisted results, and visible warnings so nothing fails silently across a large batch.` },
+        ],
+      },
+      {
+        heading: "Results & impact",
+        blocks: [
+          { t: "stats", items: [
+            { number: "~3 min", label: "Automated processing per video (was ~1 hr manual)" },
+            { number: "25+", label: "Videos processed across batches" },
+            { number: "~2×", label: "Faster rendering after Apple Silicon tuning" },
+            { number: "100s", label: "Built to run at volume" },
+          ] },
+          { t: "ul", items: [
+            `From ~1 hour of manual editing per video to ~3 minutes of automated processing — freeing editors from repetitive work`,
+            `Brand-consistent output — webcam, layout, and framing matched to the client's reference standard, eliminating editor-to-editor drift`,
+            `The hardest manual task — listening for silences, fillers, and repeated lines — is now an automated first pass with human approval, instead of a from-scratch manual job`,
+          ] },
+        ],
+      },
+      {
+        heading: "The outcome",
+        blocks: [
+          { t: "p", html: `Black Camel moved from a labour-bound, one-editor-per-video process to a scalable production line: send the recordings in bulk, let the pipeline do the heavy, repetitive work, and apply human judgement only where it adds value.` },
+          { t: "p", html: `The result is <strong>lower cost per video, faster turnaround, and consistent brand quality at volume</strong> — turning video production from a bottleneck into a throughput advantage.` },
+          { t: "p", html: `Delivered for <a href="https://blackcamel.productions">Black Camel Productions</a>; the educational end-client is kept anonymous by agreement.` },
+        ],
+      },
+      {
+        heading: "Tech stack",
+        blocks: [
+          { t: "table", rows: [
+            ["Language", "Python"],
+            ["Video Processing", "FFmpeg · OpenCV"],
+            ["API / Orchestration", "FastAPI"],
+            ["Transcription", "Whisper (word-level timestamps)"],
+            ["Speech Cleanup", "Cleanvoice"],
+            ["LLM / Text Analysis", "Gemini"],
+            ["Optimisation", "Apple Silicon render tuning"],
+          ] },
+        ],
+      },
+    ],
+    prev: { href: "/agencies", label: "← Back to agencies" },
+    next: { href: "/work/open-source-lipsync", label: "Next: Lipsync System →" },
+  },
+
+  {
     slug: "metra-ai",
-    eyebrow: "Case Study 04",
+    eyebrow: "Case Study 05",
     title: "Metra AI — Production SaaS for Telegram Content Automation",
     lead: "Solo-built end-to-end SaaS platform with multi-agent LLM orchestration. From architecture to deployment in 3 months.",
     meta: {
@@ -177,7 +290,7 @@ export const cases: CaseStudy[] = [
 
   {
     slug: "open-source-lipsync",
-    eyebrow: "Case Study 01",
+    eyebrow: "Case Study 02",
     title: "Lipsync System — 99%+ Cost Reduction vs Premium Video AI",
     lead: "Replaced premium proprietary video AI at $3–5/minute with open source ComfyUI workflow. Same quality, costs in cents.",
     meta: {
@@ -316,13 +429,13 @@ export const cases: CaseStudy[] = [
         ],
       },
     ],
-    prev: { href: "/#work", label: "← All case studies" },
+    prev: { href: "/work/black-camel", label: "← Previous: Black Camel Productions" },
     next: { href: "/work/motion-control", label: "Next: Motion Control Workflow →" },
   },
 
   {
     slug: "video-localization",
-    eyebrow: "Case Study 03",
+    eyebrow: "Case Study 04",
     title: "Multi-Model AI Video Localization Pipeline",
     lead: "Four AI services orchestrated into one coherent pipeline. Source video in, localized derivative video out — for under $1.",
     meta: {
@@ -494,7 +607,7 @@ export const cases: CaseStudy[] = [
 
   {
     slug: "motion-control",
-    eyebrow: "Case Study 02",
+    eyebrow: "Case Study 03",
     title: "Motion Control Workflow — 84% Cost Reduction vs Premium Video AI",
     lead: "Replaced premium proprietary motion control services with open source ComfyUI workflow. Approximately $12,000 in annual savings per client at production scale — and capability premium services can't match.",
     meta: {

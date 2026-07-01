@@ -87,6 +87,47 @@ export const process = [
   },
 ];
 
+// /agencies — the productized service presented as a three-step process.
+export const agencyProcess = [
+  {
+    num: "01",
+    title: "Audit",
+    icon: "scan" as const,
+    body: "Free, 30 minutes. I map your current production process and show exactly which steps can be automated — with the projected per-video savings. No commitment.",
+  },
+  {
+    num: "02",
+    title: "Build",
+    icon: "graph" as const,
+    body: "Typically 2–4 weeks. A fixed-scope pipeline built for your workflow on open-source models — so there's no premium API markup.",
+  },
+  {
+    num: "03",
+    title: "Run",
+    icon: "check" as const,
+    body: "Managed service. The pipeline runs on my infrastructure. You don't hire anyone and you don't manage servers — you send source files and receive finished videos.",
+  },
+];
+
+// /agencies proof bar — every figure is backed by a published case study.
+export const agencyStats = [
+  { number: "~3 min", label: "Automated processing per video — down from ~1 hour of manual editing" },
+  { number: "99%+", label: "Max cost reduction vs proprietary video AI" },
+  { number: "<$1", label: "Per 20-minute localized video" },
+  { number: "5", label: "Production systems in commercial use" },
+];
+
+// /agencies — repetitive agency workflows, framed input → output.
+export const agencyAutomations = [
+  "Raw per-video edits → export-ready cuts — crop UI clutter, reframe, reposition the presenter bubble, export to your spec.",
+  "Messy recordings → clean takes — silences, filler words, coughs and stumbled or repeated lines removed with word-level cuts and human approval.",
+  "One source video → N languages — lipsync and localization into multiple languages from a single recording.",
+  "Templated footage → finished batches — bulk editing of course lessons, UGC ads and repeatable formats at volume.",
+  "Bare video → captioned video — subtitle generation and on-brand styling, automatically.",
+  "One asset → many variants — video variation and uniqualization at scale across 60+ transformation modes.",
+  "Finished timeline → delivered files — render and delivery automation with batch resilience for large jobs.",
+];
+
 export type WorkItem = {
   slug: string;
   number: string;
@@ -98,11 +139,27 @@ export type WorkItem = {
   costBar?: { reduction: string; afterPct: number };
 };
 
+// Flagship agency case — leads the grids. No pricing figures (managed service).
+export const blackCamelCard: WorkItem = {
+  slug: "black-camel",
+  number: "01 — Black Camel Productions",
+  title: "~1 hour of manual editing per video → ~3 minutes automated",
+  meta: ["Managed service", "London video production agency", "25+ videos processed"],
+  summary:
+    "A managed pipeline that cleans, reframes and AI-edits raw lesson recordings — silence, filler and repeated-line removal with human approval, pixel-accurate brand reproduction that eliminates editor-to-editor drift, and ~2× faster rendering after Apple Silicon optimisation. They send raw recordings; finished, brand-consistent videos come back.",
+  highlights: [
+    { number: "~3 min", label: "Automated processing (was ~1 hr manual)" },
+    { number: "25+", label: "Videos processed, built for hundreds" },
+  ],
+  tech: "Python · FFmpeg · OpenCV · Whisper · Gemini",
+};
+
 // Case studies, ordered cost-first (most relevant proof for the primary visitor first).
 export const work: WorkItem[] = [
+  blackCamelCard,
   {
     slug: "open-source-lipsync",
-    number: "01 — Lipsync System",
+    number: "02 — Lipsync System",
     title: "99%+ cost reduction vs premium video AI",
     meta: ["Solo Developer", "6+ months in production", "3+ commercial deployments"],
     summary:
@@ -116,7 +173,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "motion-control",
-    number: "02 — Motion Control Workflow",
+    number: "03 — Motion Control Workflow",
     title: "84% cost reduction with capability premium services can't match",
     meta: ["Solo Developer", "4–5 months active production", "2 commercial clients"],
     summary:
@@ -130,7 +187,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "video-localization",
-    number: "03 — Video Localization Pipeline",
+    number: "04 — Video Localization Pipeline",
     title: "Multi-model AI pipeline for video localization at scale",
     meta: ["Solo Developer", "3 months active production"],
     summary:
@@ -143,7 +200,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "metra-ai",
-    number: "04 — Metra AI",
+    number: "05 — Metra AI",
     title: "Production SaaS for Telegram content automation",
     meta: ["Founding Engineer", "Live in production", "metra-ai.org"],
     summary:
@@ -155,6 +212,10 @@ export const work: WorkItem[] = [
     tech: "FastAPI · React · PostgreSQL · Multi-agent LLM",
   },
 ];
+
+// /agencies case list — Black Camel leads, followed by the three video cases
+// (Metra AI is not a video pipeline, so it's excluded from this ICP page).
+export const agencyWork: WorkItem[] = work.slice(0, 4);
 
 export const additional = [
   {
