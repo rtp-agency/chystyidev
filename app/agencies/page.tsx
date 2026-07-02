@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
-import { ProcessCycle } from "@/components/ProcessCycle";
+import { VideoAutoEdit } from "@/components/VideoAutoEdit";
 import { Particles } from "@/components/Particles";
 import { ContactForm } from "@/components/ContactForm";
 import { CardCostBar } from "@/components/CardCostBar";
@@ -10,7 +10,6 @@ import { ProcessSteps } from "@/components/ProcessSteps";
 import {
   agencyStats,
   agencyAutomations,
-  agencyCycle,
   agencyProcess,
   agencyWork,
   agencyFaq,
@@ -136,6 +135,56 @@ export const metadata: Metadata = {
   },
 };
 
+// One icon per "What I automate" card, in order.
+const AUTOMATE_ICONS = ["scissors", "wave", "globe", "layers", "send"] as const;
+
+function AutomateIcon({ kind }: { kind: (typeof AUTOMATE_ICONS)[number] }) {
+  switch (kind) {
+    case "scissors":
+      return (
+        <svg viewBox="0 0 24 24">
+          <circle cx="6" cy="6" r="2.6" />
+          <circle cx="6" cy="18" r="2.6" />
+          <line x1="8.1" y1="7.6" x2="20" y2="18" />
+          <line x1="8.1" y1="16.4" x2="20" y2="6" />
+          <line x1="8.1" y1="7.6" x2="14" y2="12" />
+        </svg>
+      );
+    case "wave":
+      return (
+        <svg viewBox="0 0 24 24">
+          <line x1="4" y1="9" x2="4" y2="15" />
+          <line x1="8" y1="6" x2="8" y2="18" />
+          <line x1="12" y1="4" x2="12" y2="20" />
+          <line x1="16" y1="7" x2="16" y2="17" />
+          <line x1="20" y1="10" x2="20" y2="14" />
+        </svg>
+      );
+    case "globe":
+      return (
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <ellipse cx="12" cy="12" rx="4" ry="9" />
+        </svg>
+      );
+    case "layers":
+      return (
+        <svg viewBox="0 0 24 24">
+          <rect x="8" y="8" width="12" height="12" rx="2" />
+          <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" />
+        </svg>
+      );
+    case "send":
+      return (
+        <svg viewBox="0 0 24 24">
+          <path d="M22 2 11 13" />
+          <path d="M22 2 15 22 11 13 2 9 22 2Z" />
+        </svg>
+      );
+  }
+}
+
 export default function Agencies() {
   return (
     <>
@@ -191,7 +240,7 @@ export default function Agencies() {
             </div>
 
             <div className="hero-visual">
-              <ProcessCycle steps={agencyCycle} />
+              <VideoAutoEdit />
             </div>
           </div>
         </div>
@@ -226,12 +275,6 @@ export default function Agencies() {
             <Reveal delay={0.05}>
               <h2>The repetitive work, handled end to end.</h2>
             </Reveal>
-            <Reveal delay={0.1}>
-              <p className="lead">
-                The recurring editing your team does by hand, rebuilt as
-                pipelines — input in, finished output back.
-              </p>
-            </Reveal>
           </div>
 
           <div className="automate-grid">
@@ -240,11 +283,16 @@ export default function Agencies() {
               return (
                 <Reveal key={a} delay={i * 0.06}>
                   <div className="automate-card">
-                    <span className="automate-from">{from}</span>
-                    <span className="automate-arrow" aria-hidden="true">
-                      →
+                    <span className="automate-ico">
+                      <AutomateIcon kind={AUTOMATE_ICONS[i]} />
                     </span>
-                    <span className="automate-to">{to}</span>
+                    <div className="automate-text">
+                      <span className="automate-from">{from}</span>
+                      <span className="automate-arrow" aria-hidden="true">
+                        →
+                      </span>
+                      <span className="automate-to">{to}</span>
+                    </div>
                   </div>
                 </Reveal>
               );

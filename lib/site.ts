@@ -93,27 +93,20 @@ export const agencyProcess = [
     num: "01",
     title: "Audit",
     icon: "scan" as const,
-    body: "Free, 30 minutes. I map your current production process and show exactly which steps can be automated — with the projected per-video savings. No commitment.",
+    body: "Free, 30 minutes. I map your process and show what's automatable and the projected savings.",
   },
   {
     num: "02",
     title: "Build",
     icon: "graph" as const,
-    body: "Typically 2–4 weeks. A fixed-scope pipeline built for your workflow on open-source models — so there's no premium API markup.",
+    body: "Fixed-scope, typically 2–4 weeks. Built on open-source models — no premium API markup.",
   },
   {
     num: "03",
     title: "Run",
     icon: "check" as const,
-    body: "Managed service. The pipeline runs on my infrastructure. You don't hire anyone and you don't manage servers — you send source files and receive finished videos.",
+    body: "Managed service on my infrastructure. You send source files, you get finished videos back.",
   },
-];
-
-// /agencies hero — the animated ProcessCycle relabeled for video (not AI cost).
-export const agencyCycle = [
-  { n: "01", label: "Ingest", desc: "Raw recordings in, queued at volume" },
-  { n: "02", label: "Process", desc: "Clean, reframe, and AI-edit automatically" },
-  { n: "03", label: "Deliver", desc: "Finished, brand-consistent videos back" },
 ];
 
 // /agencies proof bar — every figure is backed by a published case study.
