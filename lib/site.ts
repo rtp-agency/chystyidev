@@ -124,6 +124,41 @@ export const agencyStats = [
   { number: "5", label: "Systems in production" },
 ];
 
+// /agencies FAQ — answers long-tail agency queries for organic search, and
+// feeds FAQPage structured data. Plain text only (reused verbatim in JSON-LD).
+// Every claim maps to a published case number; no invented metrics, no pricing
+// beyond figures already public on the site.
+export const agencyFaq = [
+  {
+    q: "What kind of video editing can actually be automated?",
+    a: "The repetitive, per-video work: cleanup (removing silences, filler words, coughs and repeated or stumbled lines, with human approval), cropping and reframing, presenter-bubble repositioning, subtitle generation, lipsync and localization into other languages, bulk editing of templated formats, and render plus delivery. Anything that follows a consistent spec across many videos is a candidate.",
+  },
+  {
+    q: "How much editing time does automation actually save?",
+    a: "For Black Camel Productions, a London video agency, roughly an hour of hands-on Premiere Pro editing per lesson video became about three minutes of automated processing, with rendering roughly 2× faster after Apple Silicon optimisation. The exact saving depends on your workflow — the free audit estimates it for your content.",
+  },
+  {
+    q: "Is this cheaper than the AI video tools we already pay for?",
+    a: "Usually, yes. The pipelines are built on open-source models running on my own infrastructure, so there's no premium API markup. In production cases this has meant 84–99%+ lower cost than proprietary video AI, and localized video produced for under $1 per 20-minute output.",
+  },
+  {
+    q: "Do we have to hire anyone or manage servers?",
+    a: "No. On the Run tier it's a managed service: the pipeline runs on my infrastructure, you send source files in bulk and receive finished, brand-consistent videos back. No hiring, no GPUs, no ops on your side.",
+  },
+  {
+    q: "Will automated edits match our brand and quality standard?",
+    a: "Yes. Brand geometry — framing, spacing, layout and the presenter overlay — is reproduced to the pixel from your own presets and reference videos, which removes the editor-to-editor drift you get with manual editing. Content cuts like silence, filler and repeated-line removal are proposed automatically but approved by a human before anything is delivered.",
+  },
+  {
+    q: "How long does it take to set up, and how do we start?",
+    a: "It starts with a free 30-minute workflow audit that maps your current process and shows exactly what can be automated and the projected savings. If it's a fit, the Build stage is fixed-scope and typically takes 2–4 weeks before the pipeline goes into production.",
+  },
+  {
+    q: "What kinds of agencies is this for?",
+    a: "Creative, video and content production agencies with repetitive, high-volume editing — for example course and lesson content, UGC ads, and other templated video formats. If your editors spend hours on the same kind of edit again and again, it's a good fit.",
+  },
+];
+
 // /agencies — repetitive agency workflows, framed input → output (X → Y).
 export const agencyAutomations = [
   "Raw recordings → export-ready cuts",

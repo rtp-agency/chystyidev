@@ -13,10 +13,97 @@ import {
   agencyCycle,
   agencyProcess,
   agencyWork,
+  agencyFaq,
   testimonials,
 } from "@/lib/site";
 
 const CAL_URL = "https://cal.com/david-chistiy-lmbu8n";
+
+// Page-specific structured data for organic search: a Service describing the
+// productized offer, an FAQPage (rich-result eligible), and a breadcrumb.
+const agencyJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://chystyi.dev/agencies#service",
+      name: "Video Production Automation for Agencies",
+      serviceType: "Video production automation",
+      description:
+        "Custom AI video pipelines for agencies — automated editing, cleanup, reframing, lipsync and localization at scale, built on open-source models.",
+      url: "https://chystyi.dev/agencies",
+      areaServed: "Worldwide",
+      provider: {
+        "@type": "Person",
+        name: "David Chystyi",
+        url: "https://chystyi.dev",
+      },
+      audience: {
+        "@type": "BusinessAudience",
+        audienceType: "Creative, video and content production agencies",
+      },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Video automation engagement",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Workflow Audit",
+              description:
+                "Free 30-minute audit mapping which editing steps can be automated and the projected per-video savings.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Build",
+              description:
+                "Fixed-scope pipeline implementation, typically 2–4 weeks, built on open-source models with no premium API markup.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Run",
+              description:
+                "Managed service — the pipeline runs on my infrastructure; you send source files and receive finished, brand-consistent videos.",
+            },
+          },
+        ],
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://chystyi.dev/agencies#faq",
+      mainEntity: agencyFaq.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://chystyi.dev",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "For agencies",
+          item: "https://chystyi.dev/agencies",
+        },
+      ],
+    },
+  ],
+};
 
 export const metadata: Metadata = {
   title: "Video Production Automation for Agencies — David Chystyi",
@@ -52,6 +139,10 @@ export const metadata: Metadata = {
 export default function Agencies() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(agencyJsonLd) }}
+      />
       <div className="bg-grid" aria-hidden="true" />
       <Nav variant="agencies" />
 
@@ -283,6 +374,36 @@ export default function Agencies() {
                     </div>
                   </div>
                 </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="section-line">
+        <div className="container-read">
+          <div className="section-header">
+            <Reveal>
+              <div className="eyebrow">FAQ</div>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2>Questions agency owners ask.</h2>
+            </Reveal>
+          </div>
+
+          <div className="faq reading-col">
+            {agencyFaq.map((f, i) => (
+              <Reveal key={f.q} delay={Math.min(i * 0.05, 0.2)}>
+                <details className="faq-item">
+                  <summary className="faq-q">
+                    <span>{f.q}</span>
+                    <span className="faq-icon" aria-hidden="true" />
+                  </summary>
+                  <div className="faq-a">
+                    <p>{f.a}</p>
+                  </div>
+                </details>
               </Reveal>
             ))}
           </div>

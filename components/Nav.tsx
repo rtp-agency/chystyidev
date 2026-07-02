@@ -50,6 +50,9 @@ export function Nav({
               <a href="#work">Work</a>
             </li>
             <li>
+              <a href="#faq">FAQ</a>
+            </li>
+            <li>
               <a href="#contact">Book an audit</a>
             </li>
           </ul>
