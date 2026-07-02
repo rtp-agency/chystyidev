@@ -79,7 +79,7 @@ function ShipScene() {
   );
 }
 
-export function ProcessCycle() {
+export function ProcessCycle({ steps = STEPS }: { steps?: typeof STEPS }) {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
@@ -87,9 +87,12 @@ export function ProcessCycle() {
       "(prefers-reduced-motion: reduce)"
     ).matches;
     if (reduce) return;
-    const id = setInterval(() => setActive((a) => (a + 1) % 3), DURATION);
+    const id = setInterval(
+      () => setActive((a) => (a + 1) % steps.length),
+      DURATION
+    );
     return () => clearInterval(id);
-  }, []);
+  }, [steps.length]);
 
   return (
     <div className="pc">
@@ -102,8 +105,8 @@ export function ProcessCycle() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="pc-head-label">{STEPS[active].label}</div>
-            <div className="pc-head-desc">{STEPS[active].desc}</div>
+            <div className="pc-head-label">{steps[active].label}</div>
+            <div className="pc-head-desc">{steps[active].desc}</div>
           </motion.div>
         </AnimatePresence>
       </div>
@@ -126,7 +129,7 @@ export function ProcessCycle() {
       </div>
 
       <div className="pc-hexes">
-        {STEPS.map((s, i) => (
+        {steps.map((s, i) => (
           <Fragment key={s.n}>
             {i > 0 && (
               <span className={`pc-hex-conn ${active >= i ? "on" : ""}`} />

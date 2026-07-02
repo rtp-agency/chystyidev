@@ -109,23 +109,28 @@ export const agencyProcess = [
   },
 ];
 
-// /agencies proof bar — every figure is backed by a published case study.
-export const agencyStats = [
-  { number: "~3 min", label: "Automated processing per video — down from ~1 hour of manual editing" },
-  { number: "99%+", label: "Max cost reduction vs proprietary video AI" },
-  { number: "<$1", label: "Per 20-minute localized video" },
-  { number: "5", label: "Production systems in commercial use" },
+// /agencies hero — the animated ProcessCycle relabeled for video (not AI cost).
+export const agencyCycle = [
+  { n: "01", label: "Ingest", desc: "Raw recordings in, queued at volume" },
+  { n: "02", label: "Process", desc: "Clean, reframe, and AI-edit automatically" },
+  { n: "03", label: "Deliver", desc: "Finished, brand-consistent videos back" },
 ];
 
-// /agencies — repetitive agency workflows, framed input → output.
+// /agencies proof bar — every figure is backed by a published case study.
+export const agencyStats = [
+  { number: "~3 min", label: "Per video — was ~1 hour" },
+  { number: "99%+", label: "Cost cut vs proprietary AI" },
+  { number: "<$1", label: "Per localized video" },
+  { number: "5", label: "Systems in production" },
+];
+
+// /agencies — repetitive agency workflows, framed input → output (X → Y).
 export const agencyAutomations = [
-  "Raw per-video edits → export-ready cuts — crop UI clutter, reframe, reposition the presenter bubble, export to your spec.",
-  "Messy recordings → clean takes — silences, filler words, coughs and stumbled or repeated lines removed with word-level cuts and human approval.",
-  "One source video → N languages — lipsync and localization into multiple languages from a single recording.",
-  "Templated footage → finished batches — bulk editing of course lessons, UGC ads and repeatable formats at volume.",
-  "Bare video → captioned video — subtitle generation and on-brand styling, automatically.",
-  "One asset → many variants — video variation and uniqualization at scale across 60+ transformation modes.",
-  "Finished timeline → delivered files — render and delivery automation with batch resilience for large jobs.",
+  "Raw recordings → export-ready cuts",
+  "Messy takes → clean audio (silences, fillers, stumbles removed)",
+  "One video → N languages, lip-synced",
+  "One asset → dozens of variants",
+  "Finished edits → rendered & delivered, at batch scale",
 ];
 
 export type WorkItem = {
@@ -146,7 +151,7 @@ export const blackCamelCard: WorkItem = {
   title: "~1 hour of manual editing per video → ~3 minutes automated",
   meta: ["Managed service", "London video production agency", "25+ videos processed"],
   summary:
-    "A managed pipeline that cleans, reframes and AI-edits raw lesson recordings — silence, filler and repeated-line removal with human approval, pixel-accurate brand reproduction that eliminates editor-to-editor drift, and ~2× faster rendering after Apple Silicon optimisation. They send raw recordings; finished, brand-consistent videos come back.",
+    "A managed pipeline for a London video agency: raw lesson recordings in, finished brand-consistent videos out. AI cleanup, pixel-accurate reframing, human approval on cuts.",
   highlights: [
     { number: "~3 min", label: "Automated processing (was ~1 hr manual)" },
     { number: "25+", label: "Videos processed, built for hundreds" },
@@ -213,9 +218,20 @@ export const work: WorkItem[] = [
   },
 ];
 
-// /agencies case list — Black Camel leads, followed by the three video cases
-// (Metra AI is not a video pipeline, so it's excluded from this ICP page).
-export const agencyWork: WorkItem[] = work.slice(0, 4);
+// /agencies case list — a tight, on-ICP trio: the flagship editing-automation
+// case, then lipsync and localization (editing → localization → scale). Motion
+// Control and Metra AI are less relevant here and stay on the homepage only.
+// Renumbered 01–03 for this page, independent of the homepage grid numbers.
+export const agencyWork: WorkItem[] = [
+  blackCamelCard,
+  work.find((w) => w.slug === "open-source-lipsync")!,
+  work.find((w) => w.slug === "video-localization")!,
+].map((c, i) => ({
+  ...c,
+  number: `${String(i + 1).padStart(2, "0")}${c.number.slice(
+    c.number.indexOf(" — ")
+  )}`,
+}));
 
 export const additional = [
   {

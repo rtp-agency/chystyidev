@@ -10,6 +10,7 @@ import { ProcessSteps } from "@/components/ProcessSteps";
 import {
   agencyStats,
   agencyAutomations,
+  agencyCycle,
   agencyProcess,
   agencyWork,
   testimonials,
@@ -99,7 +100,7 @@ export default function Agencies() {
             </div>
 
             <div className="hero-visual">
-              <ProcessCycle />
+              <ProcessCycle steps={agencyCycle} />
             </div>
           </div>
         </div>
@@ -142,13 +143,22 @@ export default function Agencies() {
             </Reveal>
           </div>
 
-          <Reveal delay={0.1}>
-            <ul className="audit-list automate-list">
-              {agencyAutomations.map((a) => (
-                <li key={a}>{a}</li>
-              ))}
-            </ul>
-          </Reveal>
+          <div className="automate-grid">
+            {agencyAutomations.map((a, i) => {
+              const [from, to] = a.split(" → ");
+              return (
+                <Reveal key={a} delay={i * 0.06}>
+                  <div className="automate-card">
+                    <span className="automate-from">{from}</span>
+                    <span className="automate-arrow" aria-hidden="true">
+                      →
+                    </span>
+                    <span className="automate-to">{to}</span>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
         </div>
       </section>
 
