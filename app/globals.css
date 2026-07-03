@@ -3145,3 +3145,217 @@ footer {
     font-size: 18px;
   }
 }
+
+/* /agencies — animated section decorations (faint vector motifs) */
+.sd-host {
+  position: relative;
+  overflow: hidden;
+}
+.sd-host > .container,
+.sd-host > .container-read {
+  position: relative;
+  z-index: 1;
+}
+.sd {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  color: rgba(180, 180, 180, 0.11);
+}
+.sd :is(circle, line, rect, polyline, path) {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+}
+.sd .sd-dot,
+.sd .sd-core,
+.sd-grid circle {
+  fill: currentColor;
+  stroke: none;
+}
+/* placements */
+.sd-tr {
+  top: -40px;
+  right: -40px;
+  width: 340px;
+  height: 340px;
+}
+.sd-bl {
+  bottom: -50px;
+  left: -40px;
+  width: 320px;
+  height: 320px;
+}
+.sd-r {
+  top: 6%;
+  right: -70px;
+  width: 300px;
+  height: 300px;
+}
+.sd-bc {
+  bottom: -16px;
+  left: 6%;
+  width: 88%;
+  height: 150px;
+}
+/* motions */
+.sd-grid-g {
+  animation: sd-drift 24s ease-in-out infinite;
+}
+@keyframes sd-drift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-16px, 12px);
+  }
+}
+.sd-orbit-g,
+.sd-orbit-g2 {
+  transform-box: view-box;
+  transform-origin: 100px 100px;
+}
+.sd-orbit-g {
+  animation: sd-spin 16s linear infinite;
+}
+.sd-orbit-g2 {
+  animation: sd-spin 24s linear infinite reverse;
+}
+@keyframes sd-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.sd-film-g {
+  transform-box: fill-box;
+  animation: sd-scroll 26s linear infinite;
+}
+@keyframes sd-scroll {
+  to {
+    transform: translateY(-50%);
+  }
+}
+.sd-wave-g {
+  transform-box: fill-box;
+  animation: sd-wavemove 18s linear infinite;
+}
+@keyframes sd-wavemove {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.sd-rings .sd-ring {
+  transform-box: view-box;
+  transform-origin: 100px 100px;
+  opacity: 0;
+  animation: sd-ringpulse 4.5s ease-out infinite;
+}
+.sd-rings .sd-ring:nth-child(2) {
+  animation-delay: 1.5s;
+}
+.sd-rings .sd-ring:nth-child(3) {
+  animation-delay: 3s;
+}
+@keyframes sd-ringpulse {
+  0% {
+    transform: scale(0.3);
+    opacity: 0.6;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+/* /agencies — proof-bar animated stat icons */
+.proof-ico {
+  display: block;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 14px;
+}
+.proof-ico svg {
+  width: 100%;
+  height: 100%;
+}
+.proof-ico :is(circle, line, rect, polyline, path) {
+  fill: none;
+  stroke: var(--color-warm);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.pf-hand,
+.pf-hand2 {
+  transform-box: view-box;
+  transform-origin: 16px 16px;
+}
+.pf-hand {
+  animation: sd-spin 6s linear infinite;
+}
+.pf-hand2 {
+  animation: sd-spin 24s linear infinite;
+}
+.pf-bar {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: pf-bars 2.2s ease-in-out infinite;
+}
+@keyframes pf-bars {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.4);
+  }
+}
+.pf-coin {
+  transform-box: view-box;
+  transform-origin: 16px 16px;
+  animation: pf-flip 5s ease-in-out infinite;
+}
+@keyframes pf-flip {
+  0%,
+  100% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0.16);
+  }
+}
+.pf-stack-top {
+  animation: pf-lift 3s ease-in-out infinite;
+}
+@keyframes pf-lift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sd-grid-g,
+  .sd-orbit-g,
+  .sd-orbit-g2,
+  .sd-film-g,
+  .sd-wave-g,
+  .sd-rings .sd-ring,
+  .pf-hand,
+  .pf-hand2,
+  .pf-bar,
+  .pf-coin,
+  .pf-stack-top {
+    animation: none !important;
+  }
+  .sd-rings .sd-ring {
+    opacity: 0.25;
+  }
+}

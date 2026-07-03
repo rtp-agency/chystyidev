@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
 import { VideoAutoEdit } from "@/components/VideoAutoEdit";
+import { SectionDeco } from "@/components/SectionDeco";
 import { Particles } from "@/components/Particles";
 import { ContactForm } from "@/components/ContactForm";
 import { CardCostBar } from "@/components/CardCostBar";
@@ -185,6 +186,75 @@ function AutomateIcon({ kind }: { kind: (typeof AUTOMATE_ICONS)[number] }) {
   }
 }
 
+// One animated vector icon per proof-bar stat, in order.
+const PROOF_ICONS = ["clock", "bars", "coin", "stack"] as const;
+
+function ProofIcon({ kind }: { kind: (typeof PROOF_ICONS)[number] }) {
+  switch (kind) {
+    case "clock":
+      return (
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="12" />
+          <g className="pf-hand">
+            <line x1="16" y1="16" x2="16" y2="8" />
+          </g>
+          <line className="pf-hand2" x1="16" y1="16" x2="21" y2="19" />
+        </svg>
+      );
+    case "bars":
+      return (
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <rect className="pf-bar" x="4" y="9" width="4" height="18" rx="1" />
+          <rect
+            className="pf-bar"
+            x="11"
+            y="9"
+            width="4"
+            height="18"
+            rx="1"
+            style={{ animationDelay: "0.2s" }}
+          />
+          <rect
+            className="pf-bar"
+            x="18"
+            y="9"
+            width="4"
+            height="18"
+            rx="1"
+            style={{ animationDelay: "0.4s" }}
+          />
+          <rect
+            className="pf-bar"
+            x="25"
+            y="9"
+            width="4"
+            height="18"
+            rx="1"
+            style={{ animationDelay: "0.6s" }}
+          />
+        </svg>
+      );
+    case "coin":
+      return (
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <g className="pf-coin">
+            <circle cx="16" cy="16" r="11" />
+            <line x1="16" y1="8" x2="16" y2="24" />
+            <path d="M20 12 Q16 9.5 13 12 Q10.5 14 14 16 Q19 18 15.5 20.5 Q13 22.5 11 20.5" />
+          </g>
+        </svg>
+      );
+    case "stack":
+      return (
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="6" y="19" width="20" height="6" rx="1.5" />
+          <rect x="6" y="12" width="20" height="6" rx="1.5" />
+          <rect className="pf-stack-top" x="6" y="5" width="20" height="6" rx="1.5" />
+        </svg>
+      );
+  }
+}
+
 export default function Agencies() {
   return (
     <>
@@ -257,6 +327,9 @@ export default function Agencies() {
           <div className="stats-grid proof-bar">
             {agencyStats.map((s, i) => (
               <Reveal key={s.label} delay={i * 0.1} className="stat">
+                <span className="proof-ico">
+                  <ProofIcon kind={PROOF_ICONS[i]} />
+                </span>
                 <div className="stat-number">{s.number}</div>
                 <div className="stat-label">{s.label}</div>
               </Reveal>
@@ -266,7 +339,8 @@ export default function Agencies() {
       </section>
 
       {/* What I automate */}
-      <section id="automate" className="section-line">
+      <section id="automate" className="section-line sd-host">
+        <SectionDeco kind="grid" className="sd-tr" />
         <div className="container">
           <div className="section-header">
             <Reveal>
@@ -302,7 +376,8 @@ export default function Agencies() {
       </section>
 
       {/* How it works */}
-      <section id="how" className="section-line section-raised">
+      <section id="how" className="section-line section-raised sd-host">
+        <SectionDeco kind="orbit" className="sd-r" />
         <div className="container">
           <div className="section-header">
             <Reveal>
@@ -318,7 +393,8 @@ export default function Agencies() {
       </section>
 
       {/* Work */}
-      <section id="work" className="section-line">
+      <section id="work" className="section-line sd-host">
+        <SectionDeco kind="film" className="sd-r" />
         <div className="container-read">
           <div className="section-header">
             <Reveal>
@@ -367,7 +443,8 @@ export default function Agencies() {
       </section>
 
       {/* Testimonials */}
-      <section id="testimonials" className="section-line section-raised">
+      <section id="testimonials" className="section-line section-raised sd-host">
+        <SectionDeco kind="rings" className="sd-tr" />
         <div className="container-read">
           <div className="section-header">
             <Reveal>
@@ -429,7 +506,8 @@ export default function Agencies() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="section-line">
+      <section id="faq" className="section-line sd-host">
+        <SectionDeco kind="grid" className="sd-bl" />
         <div className="container-read">
           <div className="section-header">
             <Reveal>
@@ -459,7 +537,8 @@ export default function Agencies() {
       </section>
 
       {/* CTA — Free production workflow audit */}
-      <section id="contact" className="cta section-line">
+      <section id="contact" className="cta section-line sd-host">
+        <SectionDeco kind="wave" className="sd-bc" />
         <div className="container">
           <Reveal>
             <div className="eyebrow">Free, no commitment</div>
