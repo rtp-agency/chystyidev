@@ -10,14 +10,15 @@ const LOOP = 4.6; // seconds
 
 // width in px, and whether the auto-editor removes it (silence / filler / repeat)
 const SEGMENTS = [
-  { w: 70, cut: false },
-  { w: 34, cut: true },
-  { w: 90, cut: false },
+  { w: 64, cut: false },
   { w: 30, cut: true },
-  { w: 60, cut: false },
-  { w: 36, cut: true },
   { w: 80, cut: false },
+  { w: 28, cut: true },
+  { w: 54, cut: false },
+  { w: 32, cut: true },
+  { w: 72, cut: false },
 ];
+const GAP = 6; // px between segments; collapses with the segment it precedes
 
 // each cut collapses just after the playhead reaches it
 const CUT_TIMES: Record<number, number[]> = {
@@ -46,13 +47,18 @@ export function VideoAutoEdit() {
             repeat: Infinity,
           }}
         />
-        {SEGMENTS.map((s, i) =>
-          s.cut ? (
+        {SEGMENTS.map((s, i) => {
+          const mr = i === SEGMENTS.length - 1 ? 0 : GAP;
+          return s.cut ? (
             <motion.span
               key={i}
               className="vt-seg vt-seg-cut"
-              style={{ width: s.w }}
-              animate={{ width: [s.w, s.w, 0, 0, s.w], opacity: [1, 1, 0, 0, 1] }}
+              style={{ width: s.w, marginRight: mr }}
+              animate={{
+                width: [s.w, s.w, 0, 0, s.w],
+                marginRight: [mr, mr, 0, 0, mr],
+                opacity: [1, 1, 0, 0, 1],
+              }}
               transition={{
                 duration: LOOP,
                 times: CUT_TIMES[i],
@@ -61,9 +67,13 @@ export function VideoAutoEdit() {
               }}
             />
           ) : (
-            <span key={i} className="vt-seg" style={{ width: s.w }} />
-          )
-        )}
+            <span
+              key={i}
+              className="vt-seg"
+              style={{ width: s.w, marginRight: mr }}
+            />
+          );
+        })}
       </div>
 
       <div className="vt-result">

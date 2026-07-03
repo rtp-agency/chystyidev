@@ -281,15 +281,13 @@ export default function Agencies() {
             <div className="hero-copy">
               <Reveal>
                 <h1>
-                  Your editors spend an hour per video. My pipelines do it in{" "}
-                  <em>3 minutes</em>.
+                  An hour of editing, done in <em>3 minutes</em>.
                 </h1>
               </Reveal>
               <Reveal delay={0.1}>
                 <p className="lead">
-                  Custom AI video pipelines for agencies — automated cleanup,
-                  reframing, and AI editing at volume, running in production for
-                  real clients.
+                  Custom AI pipelines that automate your team&apos;s repetitive
+                  video editing — at production scale.
                 </p>
               </Reveal>
               <Reveal delay={0.2}>
