@@ -2957,6 +2957,11 @@ footer {
   display: flex;
   align-items: center;
   height: 64px;
+  /* keep the animating segment widths from driving intrinsic sizing —
+     otherwise the hero grid column resizes each frame and rewraps the
+     headline, bobbing the whole (vertically-centered) hero up and down */
+  min-width: 0;
+  overflow: hidden;
   border-top: 1px dashed var(--color-line);
   border-bottom: 1px dashed var(--color-line);
 }
