@@ -2912,6 +2912,16 @@ footer {
   color: var(--color-text);
 }
 
+/* /agencies hero — lock the grid columns to fixed fractions so the animating
+   timeline can never resize a column and rewrap/bob the headline. minmax(0,…)
+   removes the default `auto` (min-content) minimum. Desktop only; the mobile
+   single-column rule (max-width: 880px) still applies below. */
+@media (min-width: 881px) {
+  .hero-grid.hero-grid-agencies {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  }
+}
+
 /* /agencies hero — auto-edit timeline animation */
 .vt {
   width: 100%;

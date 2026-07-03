@@ -277,7 +277,7 @@ export default function Agencies() {
           </svg>
         </div>
         <div className="container">
-          <div className="hero-grid">
+          <div className="hero-grid hero-grid-agencies">
             <div className="hero-copy">
               <Reveal>
                 <h1>
