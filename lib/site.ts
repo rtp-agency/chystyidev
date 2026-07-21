@@ -161,6 +161,9 @@ export const agencyAutomations = [
   "Finished edits → rendered & delivered, at batch scale",
 ];
 
+// `kind` drives the case card's category accent + motif + tag label.
+export type WorkKind = "video" | "cost" | "pipeline" | "saas";
+
 export type WorkItem = {
   slug: string;
   number: string;
@@ -170,6 +173,7 @@ export type WorkItem = {
   highlights: { number: string; label: string }[];
   tech: string;
   costBar?: { reduction: string; afterPct: number };
+  kind: WorkKind;
 };
 
 // Flagship agency case — leads the grids. No pricing figures (managed service).
@@ -185,6 +189,7 @@ export const blackCamelCard: WorkItem = {
     { number: "25+", label: "Videos processed, built for hundreds" },
   ],
   tech: "Python · FFmpeg · OpenCV · Whisper · Gemini",
+  kind: "video",
 };
 
 // Case studies, ordered cost-first (most relevant proof for the primary visitor first).
@@ -203,6 +208,7 @@ export const work: WorkItem[] = [
     ],
     tech: "ComfyUI · Infinity Talk · Wan 2.1 · Docker",
     costBar: { reduction: "99%+", afterPct: 2 },
+    kind: "cost",
   },
   {
     slug: "motion-control",
@@ -217,6 +223,7 @@ export const work: WorkItem[] = [
     ],
     tech: "ComfyUI · Wan 2.2 · RunningHub · FFmpeg",
     costBar: { reduction: "84%", afterPct: 16 },
+    kind: "cost",
   },
   {
     slug: "video-localization",
@@ -230,6 +237,7 @@ export const work: WorkItem[] = [
       { number: "4+", label: "AI services orchestrated" },
     ],
     tech: "Vertex AI · Whisper · Gemini · Qdrant",
+    kind: "pipeline",
   },
   {
     slug: "metra-ai",
@@ -243,6 +251,7 @@ export const work: WorkItem[] = [
       { number: "16", label: "Docker containers in production" },
     ],
     tech: "FastAPI · React · PostgreSQL · Multi-agent LLM",
+    kind: "saas",
   },
 ];
 

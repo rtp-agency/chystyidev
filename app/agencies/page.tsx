@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
 import { VideoAutoEdit } from "@/components/VideoAutoEdit";
 import { SectionDeco } from "@/components/SectionDeco";
 import { Particles } from "@/components/Particles";
 import { ContactForm } from "@/components/ContactForm";
-import { CardCostBar } from "@/components/CardCostBar";
+import { CaseCard } from "@/components/CaseCard";
 import { ProcessSteps } from "@/components/ProcessSteps";
 import {
   agencyStats,
@@ -403,34 +402,7 @@ export default function Agencies() {
           <div className="reading-col">
             {agencyWork.map((c) => (
               <Reveal key={c.slug}>
-                <Link href={`/work/${c.slug}`} className="case-study">
-                  <div className="case-number">{c.number}</div>
-                  <h3>{c.title}</h3>
-                  <div className="case-meta">
-                    {c.meta.map((m, i) => (
-                      <span key={m} style={{ display: "contents" }}>
-                        {i > 0 && <span className="case-meta-divider">·</span>}
-                        <span>{m}</span>
-                      </span>
-                    ))}
-                  </div>
-                  <div className="case-summary">{c.summary}</div>
-                  <div className="case-highlights">
-                    {c.highlights.map((h) => (
-                      <div key={h.label}>
-                        <div className="case-highlight-number">{h.number}</div>
-                        <div className="case-highlight-label">{h.label}</div>
-                      </div>
-                    ))}
-                  </div>
-                  {c.costBar && <CardCostBar {...c.costBar} />}
-                  <div className="case-footer">
-                    <div className="case-tech-mini">{c.tech}</div>
-                    <span className="case-read-more">
-                      Read case study <span className="arrow">→</span>
-                    </span>
-                  </div>
-                </Link>
+                <CaseCard c={c} />
               </Reveal>
             ))}
           </div>

@@ -3547,3 +3547,119 @@ footer {
     border-color: var(--color-text2);
   }
 }
+
+/* ── Case cards · Direction B — category accent + motif + spotlight ─────── */
+.case-study.cc {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 34px 34px 28px 38px; /* extra left room for the spine */
+}
+.case-study.cc::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease);
+  background: radial-gradient(
+    360px circle at var(--mx, 50%) var(--my, 0%),
+    rgba(255, 255, 255, 0.05),
+    transparent 60%
+  );
+}
+.case-study.cc:hover::before { opacity: 1; }
+.case-study.cc:hover {
+  border-color: color-mix(in oklab, var(--accent) 42%, var(--color-line));
+}
+.case-study.cc > * { position: relative; z-index: 1; }
+
+.cc-spine {
+  position: absolute;
+  left: 0;
+  top: 26px;
+  bottom: 26px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--accent);
+  opacity: 0.85;
+}
+.cc-motif {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  color: var(--accent);
+  opacity: 0.9;
+}
+.cc-tagrow { display: flex; align-items: center; gap: 9px; margin-bottom: 22px; }
+.cc-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px 0 color-mix(in oklab, var(--accent) 70%, transparent);
+}
+.cc-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--accent) 75%, var(--color-text2));
+}
+.cc-metric {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(44px, 6vw, 60px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--color-text);
+}
+.cc-metric-sub {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.05em;
+  color: var(--color-muted);
+  margin-top: 11px;
+}
+.case-study.cc h3 {
+  font-size: 22px;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+.case-study.cc .case-summary { margin-bottom: 22px; }
+/* tint the cost bar with the category accent inside a cc card */
+.case-study.cc .ccb-fill { background: var(--accent); }
+.case-study.cc .ccb-label {
+  color: color-mix(in oklab, var(--accent) 80%, var(--color-text2));
+}
+.cc-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-line-soft);
+}
+.cc-tech { font-family: var(--font-mono); font-size: 12.5px; color: var(--color-muted); }
+.cc-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.cc-more .arw { transition: transform 0.3s var(--ease); }
+.case-study.cc:hover .cc-more .arw { transform: translateX(4px); }
+@media (prefers-reduced-motion: reduce) {
+  .case-study.cc::before,
+  .cc-more .arw { transition: none; }
+}
+@media (max-width: 560px) {
+  .case-study.cc { padding: 26px 22px 22px 26px; }
+  .cc-motif { display: none; }
+  .cc-foot { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
