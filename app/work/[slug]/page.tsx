@@ -92,8 +92,32 @@ export default async function CasePage({
   const c = getCase(slug);
   if (!c) notFound();
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://chystyi.dev" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Selected work",
+        item: "https://chystyi.dev/#work",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: c.title,
+        item: `https://chystyi.dev/work/${c.slug}`,
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Nav variant="case" />
 
       <div className="case-detail">
