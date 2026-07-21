@@ -3524,3 +3524,26 @@ footer {
 .case-related-card {
   box-shadow: 0 20px 44px -30px rgba(0, 0, 0, 0.82);
 }
+
+/* §14 material accessibility — frost/solidify glass when the viewer asks for
+   less transparency, and firm up borders under increased contrast. */
+@media (prefers-reduced-transparency: reduce) {
+  .btn-secondary {
+    background: var(--color-bg3);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: inset 0 0 0 1px var(--color-line);
+  }
+}
+@media (prefers-contrast: more) {
+  .btn-secondary {
+    box-shadow: inset 0 0 0 1px var(--color-text2);
+  }
+  .offer,
+  .case-study,
+  .testimonial,
+  .automate-card,
+  .case-related-card {
+    border-color: var(--color-text2);
+  }
+}
