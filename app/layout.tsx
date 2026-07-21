@@ -76,6 +76,11 @@ const jsonLd = {
       "@id": "https://chystyi.dev/#david",
       name: "David Chystyi",
       jobTitle: "AI Implementation Consultant",
+      hasOccupation: {
+        "@type": "Occupation",
+        name: "AI Consultant",
+        occupationalCategory: "15-1299 Computer Occupations",
+      },
       url: "https://chystyi.dev",
       image: "https://chystyi.dev/opengraph-image",
       description:
