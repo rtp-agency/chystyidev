@@ -65,66 +65,110 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+// Entity graph for search + generative engines. A single Person entity is the
+// citable authority behind the site; the WebSite and ProfessionalService link
+// back to it by @id so engines resolve one consistent identity for David.
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "@id": "https://chystyi.dev/#service",
-  name: "David Chystyi — AI Consulting & Cost Optimization",
-  url: "https://chystyi.dev",
-  description:
-    "AI consulting focused on AI cost optimization and reliable AI implementation for companies running AI at scale.",
-  image: "https://chystyi.dev/opengraph-image",
-  priceRange: "$$",
-  areaServed: "Worldwide",
-  knowsAbout: [
-    "AI consulting",
-    "AI cost optimization",
-    "AI cost reduction",
-    "AI implementation",
-    "Multi-agent AI systems",
-    "LLM orchestration",
-    "Production AI reliability",
-  ],
-  serviceType: [
-    "AI Consulting",
-    "AI Cost Optimization",
-    "AI Implementation",
-    "AI Reliability Engineering",
-  ],
-  founder: {
-    "@type": "Person",
-    name: "David Chystyi",
-    jobTitle: "AI Implementation Consultant",
-    url: "https://chystyi.dev",
-    sameAs: [
-      "https://www.linkedin.com/in/david-chistiy-01a3a2376/",
-      "https://github.com/rtp-agency",
-    ],
-  },
-  hasOfferCatalog: {
-    "@type": "OfferCatalog",
-    name: "AI Services",
-    itemListElement: [
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "AI Cost Optimization",
-          description:
-            "Cut AI running costs by 80–99% by replacing overpriced parts of your AI stack with cheaper equivalents at the same quality.",
-        },
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://chystyi.dev/#david",
+      name: "David Chystyi",
+      jobTitle: "AI Implementation Consultant",
+      url: "https://chystyi.dev",
+      image: "https://chystyi.dev/opengraph-image",
+      description:
+        "David Chystyi is a solo AI engineer and consultant. He replaces expensive proprietary AI services with custom open-source pipelines (typically 80–99% lower running cost) and builds production video-automation pipelines for creative and content agencies.",
+      knowsAbout: [
+        "AI cost optimization",
+        "AI reliability engineering",
+        "Open-source AI pipelines",
+        "Video production automation",
+        "Automated video editing",
+        "AI video localization",
+        "Multi-agent LLM orchestration",
+        "ComfyUI",
+        "FFmpeg",
+        "Whisper",
+      ],
+      sameAs: [
+        "https://www.linkedin.com/in/david-chistiy-01a3a2376/",
+        "https://github.com/rtp-agency",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://chystyi.dev/#website",
+      url: "https://chystyi.dev",
+      name: "David Chystyi",
+      inLanguage: "en",
+      publisher: { "@id": "https://chystyi.dev/#david" },
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://chystyi.dev/#service",
+      name: "David Chystyi — AI Consulting & Cost Optimization",
+      url: "https://chystyi.dev",
+      description:
+        "AI consulting focused on AI cost optimization and reliable AI implementation for companies running AI at scale, plus video-production automation pipelines for agencies.",
+      image: "https://chystyi.dev/opengraph-image",
+      priceRange: "$$",
+      areaServed: "Worldwide",
+      knowsAbout: [
+        "AI consulting",
+        "AI cost optimization",
+        "AI cost reduction",
+        "AI implementation",
+        "Multi-agent AI systems",
+        "LLM orchestration",
+        "Production AI reliability",
+        "Video production automation",
+      ],
+      serviceType: [
+        "AI Consulting",
+        "AI Cost Optimization",
+        "AI Implementation",
+        "AI Reliability Engineering",
+        "Video Production Automation",
+      ],
+      founder: { "@id": "https://chystyi.dev/#david" },
+      provider: { "@id": "https://chystyi.dev/#david" },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "AI Services",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "AI Cost Optimization",
+              description:
+                "Cut AI running costs by 80–99% by replacing overpriced parts of your AI stack with cheaper equivalents at the same quality.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "AI Reliability Engineering",
+              description:
+                "Make AI reliable on complex, multi-step production tasks through multi-agent architecture and verification layers.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Video Production Automation",
+              description:
+                "Custom AI video pipelines for agencies — automated editing, cleanup, reframing, lipsync and localization at scale, built on open-source models.",
+            },
+          },
+        ],
       },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "AI Reliability Engineering",
-          description:
-            "Make AI reliable on complex, multi-step production tasks through multi-agent architecture and verification layers.",
-        },
-      },
-    ],
-  },
+    },
+  ],
 };
 
 export default function RootLayout({

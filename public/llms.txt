@@ -1,0 +1,33 @@
+# David Chystyi — AI Consulting & Video Automation
+
+> David Chystyi is a solo AI engineer and consultant (chystyi.dev). He specializes in two things: (1) cutting the cost of running AI in production by replacing expensive proprietary AI services with custom open-source pipelines — typically 80–99% lower cost at the same quality; and (2) building production video-automation pipelines for creative, video and content agencies, where repetitive editing that takes an hour per video is done in about three minutes.
+
+## What David does
+
+- **AI cost optimization** — Audit an AI stack, replace overpriced parts (proprietary APIs, managed services) with cheaper open-source equivalents at the same quality, and prove the before/after savings. Documented reductions of 80–99%+ in production.
+- **AI reliability engineering** — Make AI behave on complex, multi-step production work by re-architecting single large prompts into focused, verified stages (multi-agent orchestration with cross-verification).
+- **Video production automation for agencies** — Custom AI pipelines that automate repetitive per-video editing at scale: cleanup (removing silence, filler words and repeated lines with human approval), reframing and cropping, subtitle generation, lipsync and localization into multiple languages, bulk editing of templated formats, and render + delivery. Offered as a productized service: Audit (free, 30 min) → Build (fixed scope, ~2–4 weeks) → Run (managed service on David's infrastructure — the agency sends source files and receives finished videos).
+
+## Key pages
+
+- [Homepage](https://chystyi.dev): AI cost optimization and reliability engineering, with proof and case studies.
+- [For agencies](https://chystyi.dev/agencies): video production automation for agencies — the productized service, "what I automate", Audit → Build → Run, case studies, and an FAQ.
+- [Case study: Black Camel Productions](https://chystyi.dev/work/black-camel): automating a manual video-editing workflow for educational content — ~1 hour of manual Premiere Pro editing per video reduced to ~3 minutes of automated processing; delivered as a managed service; 25+ videos processed, built to run hundreds. Stack: Python, FFmpeg, OpenCV, FastAPI, Whisper, Cleanvoice, Gemini.
+- [Case study: Lipsync System](https://chystyi.dev/work/open-source-lipsync): replaced a premium proprietary video-AI API ($3–5/min) with a custom ComfyUI workflow on Infinity Talk / Wan 2.1 — 99%+ cost reduction, 6+ months in production.
+- [Case study: Motion Control Workflow](https://chystyi.dev/work/motion-control): replaced premium motion-control video services with a custom Wan 2.2 ComfyUI workflow — 84% cost reduction, ~$12K/year saved per client, no 30-second duration cap.
+- [Case study: Video Localization Pipeline](https://chystyi.dev/work/video-localization): a multi-model pipeline (Whisper, Gemini, Vertex AI, Qdrant, multi-language TTS) that produces localized derivative videos for under $1 per 20-minute output.
+- [Case study: Metra AI](https://chystyi.dev/work/metra-ai): a solo-built production SaaS automating Telegram content with multi-agent LLM orchestration.
+
+## Key facts
+
+- Role: independent AI consultant and engineer (solo).
+- Specialty: open-source AI pipelines that replace premium proprietary services at 80–99% lower cost, and production video-automation for agencies.
+- Proof points (all from published case studies): 99%+ max cost reduction vs proprietary video AI; ~1 hour of manual editing per video reduced to ~3 minutes; under $1 per 20-minute localized video; 5 production systems in commercial use.
+- Ideal clients: creative, video and content production agencies (10–60 people) with repetitive, high-volume editing; and companies overpaying to run AI at scale.
+
+## Contact
+
+- Book a free audit: https://cal.com/david-chistiy-lmbu8n
+- Email: david@chystyi.dev
+- LinkedIn: https://www.linkedin.com/in/david-chistiy-01a3a2376/
+- GitHub: https://github.com/rtp-agency

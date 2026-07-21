@@ -33,11 +33,7 @@ const agencyJsonLd = {
         "Custom AI video pipelines for agencies — automated editing, cleanup, reframing, lipsync and localization at scale, built on open-source models.",
       url: "https://chystyi.dev/agencies",
       areaServed: "Worldwide",
-      provider: {
-        "@type": "Person",
-        name: "David Chystyi",
-        url: "https://chystyi.dev",
-      },
+      provider: { "@id": "https://chystyi.dev/#david" },
       audience: {
         "@type": "BusinessAudience",
         audienceType: "Creative, video and content production agencies",
