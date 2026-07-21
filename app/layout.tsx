@@ -58,6 +58,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@chystyidev",
+    creator: "@chystyidev",
     title: "David Chystyi — AI Consulting & Cost Optimization",
     description:
       "Cut AI running costs by 80–99% and make AI reliable in production.",
@@ -99,6 +101,7 @@ const jsonLd = {
       ],
       sameAs: [
         "https://www.linkedin.com/in/david-chistiy-01a3a2376/",
+        "https://x.com/chystyidev",
         "https://github.com/rtp-agency",
       ],
     },
