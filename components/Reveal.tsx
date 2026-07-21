@@ -1,9 +1,7 @@
 "use client";
 
-import { motion, type HTMLMotionProps } from "framer-motion";
+import { motion, useReducedMotion, type HTMLMotionProps } from "framer-motion";
 import type { ReactNode } from "react";
-
-const EASE = [0.16, 1, 0.3, 1] as const;
 
 type RevealProps = {
   children: ReactNode;
@@ -22,13 +20,22 @@ export function Reveal({
   ...rest
 }: RevealProps) {
   const MotionTag = motion[as] as typeof motion.div;
+  const reduce = useReducedMotion();
+
+  // Reduced motion: a gentle cross-fade, no travel (Apple §14).
+  // Otherwise a critically-damped spring — the value settles at the target
+  // with no overshoot, the calm Apple default (§4).
   return (
     <MotionTag
       className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={reduce ? { opacity: 0 } : { opacity: 0, y }}
+      whileInView={reduce ? { opacity: 1 } : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.7, ease: EASE, delay }}
+      transition={
+        reduce
+          ? { duration: 0.3, delay }
+          : { type: "spring", bounce: 0, duration: 0.65, delay }
+      }
       {...rest}
     >
       {children}
