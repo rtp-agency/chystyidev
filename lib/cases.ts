@@ -25,6 +25,8 @@ export type CaseStudy = {
   eyebrow: string;
   title: string;
   lead: string;
+  // ≤155-char, outcome-first meta description (falls back to lead if absent)
+  metaDescription?: string;
   meta: {
     role: string;
     timeline: string;
@@ -44,6 +46,8 @@ export const cases: CaseStudy[] = [
     title:
       "Automating a Manual Video-Editing Workflow for Educational Content at Scale",
     lead: "A slow, editor-by-editor Premiere Pro process turned into an automated pipeline that cleans, reframes, and AI-edits recorded lesson videos in minutes — built to run hundreds of videos at volume.",
+    metaDescription:
+      "Automating a London agency's manual video editing — ~1 hour of Premiere Pro work per lesson video cut to ~3 minutes of automated processing.",
     meta: {
       role: "Managed service",
       timeline: "Ongoing production",
@@ -156,6 +160,8 @@ export const cases: CaseStudy[] = [
     eyebrow: "Case Study 05",
     title: "Metra AI — Production SaaS for Telegram Content Automation",
     lead: "Solo-built end-to-end SaaS platform with multi-agent LLM orchestration. From architecture to deployment in 3 months.",
+    metaDescription:
+      "A solo-built production SaaS automating Telegram content with multi-agent LLM orchestration and cross-verification — architected and shipped in 3 months.",
     meta: {
       role: "Founding Engineer",
       timeline: "3 months",
@@ -293,6 +299,8 @@ export const cases: CaseStudy[] = [
     eyebrow: "Case Study 02",
     title: "Lipsync System — 99%+ Cost Reduction vs Premium Video AI",
     lead: "Replaced premium proprietary video AI at $3–5/minute with open source ComfyUI workflow. Same quality, costs in cents.",
+    metaDescription:
+      "Replaced a $3–5/min proprietary video-AI API with an open-source ComfyUI lipsync pipeline — same quality, cost in cents. AI cost-optimization case study.",
     meta: {
       role: "Solo Developer",
       timeline: "6+ months in production",
@@ -438,6 +446,8 @@ export const cases: CaseStudy[] = [
     eyebrow: "Case Study 04",
     title: "Multi-Model AI Video Localization Pipeline",
     lead: "Four AI services orchestrated into one coherent pipeline. Source video in, localized derivative video out — for under $1.",
+    metaDescription:
+      "A multi-model AI pipeline (Whisper, Gemini, Vertex AI, Qdrant) that produces localized derivative videos for under $1 per 20-minute output.",
     meta: {
       role: "Solo Developer",
       timeline: "3 months production",
@@ -610,6 +620,8 @@ export const cases: CaseStudy[] = [
     eyebrow: "Case Study 03",
     title: "Motion Control Workflow — 84% Cost Reduction vs Premium Video AI",
     lead: "Replaced premium proprietary motion control services with open source ComfyUI workflow. Approximately $12,000 in annual savings per client at production scale — and capability premium services can't match.",
+    metaDescription:
+      "Replaced premium motion-control video AI with a custom Wan 2.2 ComfyUI workflow — 84% cheaper, ~$12K/yr saved per client, and no 30-second duration cap.",
     meta: {
       role: "Solo Developer",
       timeline: "4–5 months production",

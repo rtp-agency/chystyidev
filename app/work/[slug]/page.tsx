@@ -18,24 +18,49 @@ export async function generateMetadata({
   const { slug } = await params;
   const c = getCase(slug);
   if (!c) return {};
+  const description = c.metaDescription ?? c.lead;
   return {
-    title: `${c.title} — Case Study · David Chystyi`,
-    description: c.lead,
-    keywords: [
-      "AI cost optimization",
-      "AI cost reduction",
-      "AI implementation",
-      "AI consulting case study",
-      "production AI",
-    ],
+    title: `${c.title} · David Chystyi`,
+    description,
+    keywords: caseKeywords(c.slug),
     alternates: { canonical: `/work/${c.slug}` },
     openGraph: {
       title: c.title,
-      description: c.lead,
+      description,
       type: "article",
       url: `https://chystyi.dev/work/${c.slug}`,
     },
+    twitter: {
+      card: "summary_large_image",
+      title: c.title,
+      description,
+    },
   };
+}
+
+// Video-pipeline cases vs. the AI-platform case get different topic keywords.
+const VIDEO_SLUGS = new Set([
+  "black-camel",
+  "open-source-lipsync",
+  "motion-control",
+  "video-localization",
+]);
+
+function caseKeywords(slug: string): string[] {
+  return VIDEO_SLUGS.has(slug)
+    ? [
+        "video production automation",
+        "automated video editing",
+        "AI video pipeline",
+        "AI cost optimization",
+        "AI consulting case study",
+      ]
+    : [
+        "AI implementation",
+        "multi-agent AI systems",
+        "production AI reliability",
+        "AI consulting case study",
+      ];
 }
 
 function BlockView({ block }: { block: Block }) {
@@ -92,22 +117,41 @@ export default async function CasePage({
   const c = getCase(slug);
   if (!c) notFound();
 
-  const breadcrumbJsonLd = {
+  const url = `https://chystyi.dev/work/${c.slug}`;
+  const isVideo = VIDEO_SLUGS.has(c.slug);
+  const about = (
+    isVideo
+      ? ["Video production automation", "Automated video editing", "AI cost optimization"]
+      : ["AI implementation", "Multi-agent AI systems", "Production AI reliability"]
+  ).map((name) => ({ "@type": "Thing", name }));
+
+  // Two sibling cases for internal linking (descriptive anchors below).
+  const related = cases.filter((x) => x.slug !== c.slug).slice(0, 2);
+
+  const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://chystyi.dev" },
+    "@graph": [
       {
-        "@type": "ListItem",
-        position: 2,
-        name: "Selected work",
-        item: "https://chystyi.dev/#work",
+        "@type": "Article",
+        "@id": `${url}#article`,
+        headline: c.title,
+        description: c.metaDescription ?? c.lead,
+        url,
+        mainEntityOfPage: url,
+        inLanguage: "en",
+        image: `${url}/opengraph-image`,
+        author: { "@id": "https://chystyi.dev/#david" },
+        publisher: { "@id": "https://chystyi.dev/#david" },
+        isPartOf: { "@id": "https://chystyi.dev/#website" },
+        about,
       },
       {
-        "@type": "ListItem",
-        position: 3,
-        name: c.title,
-        item: `https://chystyi.dev/work/${c.slug}`,
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://chystyi.dev" },
+          { "@type": "ListItem", position: 2, name: "Work", item: "https://chystyi.dev/work" },
+          { "@type": "ListItem", position: 3, name: c.title, item: url },
+        ],
       },
     ],
   };
@@ -116,13 +160,20 @@ export default async function CasePage({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Nav variant="case" />
 
       <div className="case-detail">
         <div className="container">
           <section className="case-hero">
+            <nav className="case-crumbs" aria-label="Breadcrumb">
+              <Link href="/">Home</Link>
+              <span aria-hidden="true">/</span>
+              <Link href="/work">Work</Link>
+              <span aria-hidden="true">/</span>
+              <span aria-current="page">{c.title}</span>
+            </nav>
             <Reveal>
               <div className="case-eyebrow">{c.eyebrow}</div>
             </Reveal>
@@ -170,6 +221,31 @@ export default async function CasePage({
             </Reveal>
           ))}
         </div>
+
+        <section className="case-related container">
+          <h2>Related work</h2>
+          <div className="case-related-grid">
+            {related.map((r) => (
+              <Link
+                key={r.slug}
+                href={`/work/${r.slug}`}
+                className="case-related-card"
+              >
+                <span className="case-related-eyebrow">{r.eyebrow}</span>
+                <span className="case-related-title">{r.title}</span>
+              </Link>
+            ))}
+          </div>
+          {isVideo && (
+            <p className="case-related-note">
+              Running a video or content agency?{" "}
+              <Link href="/agencies">
+                See video production automation for agencies
+              </Link>
+              .
+            </p>
+          )}
+        </section>
 
         <section className="case-cta">
           <div className="container-narrow">

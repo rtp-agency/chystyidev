@@ -12,6 +12,7 @@
 
 - [Homepage](https://chystyi.dev): AI cost optimization and reliability engineering, with proof and case studies.
 - [For agencies](https://chystyi.dev/agencies): video production automation for agencies — the productized service, "what I automate", Audit → Build → Run, case studies, and an FAQ.
+- [Case studies](https://chystyi.dev/work): index of all production AI and video-automation case studies, each with the numbers.
 - [Case study: Black Camel Productions](https://chystyi.dev/work/black-camel): automating a manual video-editing workflow for educational content — ~1 hour of manual Premiere Pro editing per video reduced to ~3 minutes of automated processing; delivered as a managed service; 25+ videos processed, built to run hundreds. Stack: Python, FFmpeg, OpenCV, FastAPI, Whisper, Cleanvoice, Gemini.
 - [Case study: Lipsync System](https://chystyi.dev/work/open-source-lipsync): replaced a premium proprietary video-AI API ($3–5/min) with a custom ComfyUI workflow on Infinity Talk / Wan 2.1 — 99%+ cost reduction, 6+ months in production.
 - [Case study: Motion Control Workflow](https://chystyi.dev/work/motion-control): replaced premium motion-control video services with a custom Wan 2.2 ComfyUI workflow — 84% cost reduction, ~$12K/year saved per client, no 30-second duration cap.
