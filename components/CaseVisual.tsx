@@ -1,9 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { CaseVisual as CaseVisualData } from "@/lib/cases";
 
-const EASE = [0.16, 1, 0.3, 1] as const;
 const CYCLE = 5; // seconds
 
 function Pipeline({ stages }: { stages: { label: string; sub: string }[] }) {
@@ -50,6 +49,7 @@ function CostBars({
   afterPct,
   reduction,
 }: Extract<CaseVisualData, { kind: "cost" }>) {
+  const reduce = useReducedMotion();
   return (
     <div className="cv-cost">
       <div className="cv-row">
@@ -60,10 +60,12 @@ function CostBars({
         <div className="cv-track">
           <motion.div
             className="cv-bar cv-bar-before"
-            initial={{ width: 0 }}
+            initial={reduce ? false : { width: 0 }}
             whileInView={{ width: "100%" }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 1, ease: EASE }}
+            transition={
+              reduce ? { duration: 0 } : { type: "spring", bounce: 0, duration: 1 }
+            }
           />
         </div>
       </div>
@@ -75,19 +77,27 @@ function CostBars({
         <div className="cv-track">
           <motion.div
             className="cv-bar cv-bar-after"
-            initial={{ width: 0 }}
+            initial={reduce ? false : { width: 0 }}
             whileInView={{ width: `${afterPct}%` }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 1.1, ease: EASE, delay: 0.25 }}
+            transition={
+              reduce
+                ? { duration: 0 }
+                : { type: "spring", bounce: 0, duration: 1.1, delay: 0.25 }
+            }
           />
         </div>
       </div>
       <motion.div
         className="cv-reduction"
-        initial={{ opacity: 0, y: 10 }}
+        initial={reduce ? { opacity: 0 } : { opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: EASE, delay: 0.7 }}
+        transition={
+          reduce
+            ? { duration: 0.3 }
+            : { type: "spring", bounce: 0, duration: 0.6, delay: 0.7 }
+        }
       >
         −{reduction}
         <span> cost</span>

@@ -1,9 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { process } from "@/lib/site";
-
-const EASE = [0.16, 1, 0.3, 1] as const;
 
 function Icon({ kind }: { kind: "scan" | "graph" | "check" }) {
   if (kind === "scan") {
@@ -35,15 +33,20 @@ function Icon({ kind }: { kind: "scan" | "graph" | "check" }) {
 }
 
 export function ProcessSteps({ steps = process }: { steps?: typeof process }) {
+  const reduce = useReducedMotion();
   return (
     <div className="ps">
       <div className="ps-connector">
         <motion.div
           className="ps-connector-fill"
-          initial={{ scaleX: 0 }}
+          initial={reduce ? false : { scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 1.3, ease: EASE, delay: 0.2 }}
+          transition={
+            reduce
+              ? { duration: 0 }
+              : { type: "spring", bounce: 0, duration: 1.1, delay: 0.2 }
+          }
         />
       </div>
 
@@ -52,10 +55,19 @@ export function ProcessSteps({ steps = process }: { steps?: typeof process }) {
           <motion.div
             className="ps-step"
             key={p.num}
-            initial={{ opacity: 0, y: 16 }}
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, ease: EASE, delay: 0.3 + i * 0.35 }}
+            transition={
+              reduce
+                ? { duration: 0.3 }
+                : {
+                    type: "spring",
+                    bounce: 0,
+                    duration: 0.6,
+                    delay: 0.3 + i * 0.35,
+                  }
+            }
           >
             <div className="ps-node">
               <Icon kind={p.icon} />
