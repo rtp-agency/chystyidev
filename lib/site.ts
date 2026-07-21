@@ -288,6 +288,40 @@ export const additional = [
   },
 ];
 
+// Homepage FAQ — answer-first, definitional Q&As mapped to the prompts buyers
+// actually type into search and AI assistants. Feeds both a visible FAQ section
+// and FAQPage structured data. Every number traces to a published case study.
+export const homeFaq = [
+  {
+    q: "Who is David Chystyi?",
+    a: "David Chystyi is a solo AI engineer and consultant who cuts the cost of running AI in production by 80–99% and builds production video-automation pipelines for agencies. He works by replacing expensive proprietary AI services with custom open-source pipelines at the same quality.",
+  },
+  {
+    q: "How do you cut AI running costs by 80–99%?",
+    a: "I audit your AI stack, find where the spend goes, and replace the overpriced parts — usually proprietary APIs or managed services — with custom open-source pipelines that hit the same quality bar. In one case a premium video-AI API at $3–5 per minute was replaced by a self-hosted ComfyUI workflow, cutting cost by 99%+.",
+  },
+  {
+    q: "What is AI reliability engineering?",
+    a: "AI reliability engineering makes AI behave on complex, multi-step production work. Instead of one large prompt that hallucinates and drifts, I re-architect the task into focused, verified stages with cross-verification, so the output stays consistent at scale.",
+  },
+  {
+    q: "What does the free AI cost audit include?",
+    a: "The audit is a free 30-minute diagnostic: a review of your current AI tools and where the spend goes, the specific places you're overpaying, one to three cheaper alternatives for your use case, and an estimate of your potential annual savings. No pitch, no commitment.",
+  },
+  {
+    q: "Can you automate video editing for an agency at scale?",
+    a: "Yes. I build custom AI pipelines that automate repetitive per-video editing at volume — cleanup, reframing, subtitles, and lipsync or localization. For one video agency, roughly an hour of manual editing per video became about three minutes of automated processing.",
+  },
+  {
+    q: "Do you use open-source models or proprietary APIs?",
+    a: "Primarily open-source models, self-hosted on cost-optimized infrastructure — that's what removes the premium API markup. Proprietary APIs are used only where they're genuinely the best value for a specific step.",
+  },
+  {
+    q: "Who do you work with?",
+    a: "Two kinds of client: companies running AI at scale that want lower costs and higher reliability, and creative, video and content production agencies with repetitive, high-volume editing.",
+  },
+];
+
 export type Testimonial = {
   avatar: string;
   name: string;

@@ -20,7 +20,8 @@ import {
 const CAL_URL = "https://cal.com/david-chistiy-lmbu8n";
 
 // Page-specific structured data for organic search: a Service describing the
-// productized offer, an FAQPage (rich-result eligible), and a breadcrumb.
+// productized offer, an FAQPage (GEO/entity signal — Google dropped FAQ rich
+// results in May 2026, but LLM answer engines still lift Q&A), and a breadcrumb.
 const agencyJsonLd = {
   "@context": "https://schema.org",
   "@graph": [

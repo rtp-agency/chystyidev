@@ -8,13 +8,38 @@ import { ContactForm } from "@/components/ContactForm";
 import { CardCostBar } from "@/components/CardCostBar";
 import { OfferVisual } from "@/components/OfferVisual";
 import { ProcessSteps } from "@/components/ProcessSteps";
-import { stats, offers, work, additional, testimonials } from "@/lib/site";
+import {
+  stats,
+  offers,
+  work,
+  additional,
+  testimonials,
+  homeFaq,
+} from "@/lib/site";
 
 const CAL_URL = "https://cal.com/david-chistiy-lmbu8n";
+
+// FAQ structured data. Note: Google removed FAQ *rich results* in May 2026, so
+// this is no longer a SERP feature — it stays for entity understanding and as
+// extractable Q&A for AI answer engines (GEO).
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://chystyi.dev/#faq",
+  mainEntity: homeFaq.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
 
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="bg-grid" aria-hidden="true" />
       <Nav variant="home" />
 
@@ -276,6 +301,36 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="section-line section-raised">
+        <div className="container-read">
+          <div className="section-header">
+            <Reveal>
+              <div className="eyebrow">FAQ</div>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2>Common questions.</h2>
+            </Reveal>
+          </div>
+
+          <div className="faq reading-col">
+            {homeFaq.map((f, i) => (
+              <Reveal key={f.q} delay={Math.min(i * 0.05, 0.2)}>
+                <details className="faq-item">
+                  <summary className="faq-q">
+                    <span>{f.q}</span>
+                    <span className="faq-icon" aria-hidden="true" />
+                  </summary>
+                  <div className="faq-a">
+                    <p>{f.a}</p>
+                  </div>
+                </details>
               </Reveal>
             ))}
           </div>
