@@ -6,7 +6,7 @@ import { SectionDeco } from "@/components/SectionDeco";
 import { Particles } from "@/components/Particles";
 import { ContactForm } from "@/components/ContactForm";
 import { CaseScrolly } from "@/components/CaseScrolly";
-import { TestimonialsMarquee } from "@/components/TestimonialsMarquee";
+import { TestimonialsScrolly } from "@/components/TestimonialsScrolly";
 import { ProcessSteps } from "@/components/ProcessSteps";
 import {
   agencyStats,
@@ -400,18 +400,11 @@ export default function Agencies() {
       </section>
 
       {/* Testimonials */}
-      <section id="testimonials" className="section-line section-raised amb">
-        <div className="container-read">
-          <div className="section-header">
-            <Reveal>
-              <div className="eyebrow">Clients</div>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h2>What clients say.</h2>
-            </Reveal>
-          </div>
-        </div>
-        <TestimonialsMarquee items={testimonials} />
+      <section id="testimonials" className="section-line cases-section">
+        <TestimonialsScrolly
+          items={testimonials}
+          intro={{ eyebrow: "Clients", heading: "What clients say." }}
+        />
       </section>
 
       {/* FAQ */}

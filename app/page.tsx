@@ -5,8 +5,8 @@ import { ProcessCycle } from "@/components/ProcessCycle";
 import { Particles } from "@/components/Particles";
 import { ContactForm } from "@/components/ContactForm";
 import { CaseScrolly } from "@/components/CaseScrolly";
-import { AdditionalMarquee } from "@/components/AdditionalMarquee";
-import { TestimonialsMarquee } from "@/components/TestimonialsMarquee";
+import { AdditionalScrolly } from "@/components/AdditionalScrolly";
+import { TestimonialsScrolly } from "@/components/TestimonialsScrolly";
 import { OfferVisual } from "@/components/OfferVisual";
 import { ProcessSteps } from "@/components/ProcessSteps";
 import {
@@ -187,36 +187,19 @@ export default function Home() {
       </section>
 
       {/* Additional */}
-      <section className="section-line section-raised amb">
-        <div className="container-read">
-          <div className="section-header">
-            <Reveal>
-              <div className="eyebrow">Also built</div>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h2>Additional engineering work.</h2>
-            </Reveal>
-          </div>
-
-          <div className="reading-col">
-            <AdditionalMarquee items={additional} />
-          </div>
-        </div>
+      <section className="section-line cases-section">
+        <AdditionalScrolly
+          items={additional}
+          intro={{ eyebrow: "Also built", heading: "Additional engineering work." }}
+        />
       </section>
 
       {/* Testimonials */}
-      <section id="testimonials" className="section-line amb">
-        <div className="container-read">
-          <div className="section-header">
-            <Reveal>
-              <div className="eyebrow">Clients</div>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h2>What clients say.</h2>
-            </Reveal>
-          </div>
-        </div>
-        <TestimonialsMarquee items={testimonials} />
+      <section id="testimonials" className="section-line cases-section">
+        <TestimonialsScrolly
+          items={testimonials}
+          intro={{ eyebrow: "Clients", heading: "What clients say." }}
+        />
       </section>
 
       {/* FAQ */}
