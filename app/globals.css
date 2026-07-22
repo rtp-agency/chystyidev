@@ -3961,7 +3961,7 @@ footer {
   -webkit-mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
   mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
 }
-.vsc-col { display: flex; flex-direction: column; gap: 18px; padding: 8px 2px; will-change: transform; }
+.vsc-col { position: relative; display: flex; flex-direction: column; gap: 18px; padding: 8px 2px; will-change: transform; }
 .vsc-card {
   position: relative;
   overflow: hidden;
@@ -4009,6 +4009,7 @@ footer {
   mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
 }
 .hsc-row {
+  position: relative;
   display: flex;
   align-items: stretch;
   gap: 22px;

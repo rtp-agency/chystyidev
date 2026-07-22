@@ -30,12 +30,21 @@ export function AdditionalScrolly({
     const viewport = root.querySelector<HTMLElement>(".vsc-viewport");
     if (!col || !viewport) return;
     const cards = Array.from(col.querySelectorAll<HTMLElement>(".vsc-card"));
+    if (!cards.length) return;
     const MULT = 1.5; // scroll length per px of travel (higher = slower/longer)
     const clamp = (t: number) => (t < 0 ? 0 : t > 1 ? 1 : t);
 
-    const range = () => Math.max(1, col.scrollHeight - viewport.clientHeight);
+    // translate so the FIRST card is centred at p=0 and the LAST at p=1
+    const ends = () => {
+      const first = cards[0];
+      const last = cards[cards.length - 1];
+      const vpH = viewport.clientHeight;
+      const y0 = vpH / 2 - (first.offsetTop + first.offsetHeight / 2);
+      const y1 = vpH / 2 - (last.offsetTop + last.offsetHeight / 2);
+      return { y0, y1, travel: Math.max(1, y0 - y1) };
+    };
     const measure = () => {
-      root.style.height = `${window.innerHeight + range() * MULT}px`;
+      root.style.height = `${window.innerHeight + ends().travel * MULT}px`;
     };
 
     let ticking = false;
@@ -44,8 +53,8 @@ export function AdditionalScrolly({
       const total = root.offsetHeight - window.innerHeight;
       if (total <= 0) return;
       const p = clamp(-root.getBoundingClientRect().top / total);
-      const rng = range();
-      col.style.transform = `translateY(${-p * rng}px)`;
+      const { y0, y1 } = ends();
+      col.style.transform = `translateY(${y0 + p * (y1 - y0)}px)`;
 
       const vp = viewport.getBoundingClientRect();
       const center = vp.top + vp.height / 2;

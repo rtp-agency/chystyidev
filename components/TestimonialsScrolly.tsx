@@ -55,12 +55,21 @@ export function TestimonialsScrolly({
     const viewport = root.querySelector<HTMLElement>(".hsc-viewport");
     if (!row || !viewport) return;
     const cards = Array.from(row.querySelectorAll<HTMLElement>(".hsc-card"));
+    if (!cards.length) return;
     const MULT = 1.2;
     const clamp = (t: number) => (t < 0 ? 0 : t > 1 ? 1 : t);
 
-    const range = () => Math.max(1, row.scrollWidth - viewport.clientWidth);
+    // translate so the FIRST card is centred at p=0 and the LAST at p=1
+    const ends = () => {
+      const first = cards[0];
+      const last = cards[cards.length - 1];
+      const vpW = viewport.clientWidth;
+      const x0 = vpW / 2 - (first.offsetLeft + first.offsetWidth / 2);
+      const x1 = vpW / 2 - (last.offsetLeft + last.offsetWidth / 2);
+      return { x0, x1, travel: Math.max(1, x0 - x1) };
+    };
     const measure = () => {
-      root.style.height = `${window.innerHeight + range() * MULT}px`;
+      root.style.height = `${window.innerHeight + ends().travel * MULT}px`;
     };
 
     let ticking = false;
@@ -69,8 +78,8 @@ export function TestimonialsScrolly({
       const total = root.offsetHeight - window.innerHeight;
       if (total <= 0) return;
       const p = clamp(-root.getBoundingClientRect().top / total);
-      const rng = range();
-      row.style.transform = `translateX(${-p * rng}px)`;
+      const { x0, x1 } = ends();
+      row.style.transform = `translateX(${x0 + p * (x1 - x0)}px)`;
 
       const vp = viewport.getBoundingClientRect();
       const center = vp.left + vp.width / 2;
