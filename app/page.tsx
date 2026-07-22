@@ -5,6 +5,8 @@ import { ProcessCycle } from "@/components/ProcessCycle";
 import { Particles } from "@/components/Particles";
 import { ContactForm } from "@/components/ContactForm";
 import { CaseScrolly } from "@/components/CaseScrolly";
+import { AdditionalMarquee } from "@/components/AdditionalMarquee";
+import { TestimonialsMarquee } from "@/components/TestimonialsMarquee";
 import { OfferVisual } from "@/components/OfferVisual";
 import { ProcessSteps } from "@/components/ProcessSteps";
 import {
@@ -185,7 +187,7 @@ export default function Home() {
       </section>
 
       {/* Additional */}
-      <section className="section-line section-raised">
+      <section className="section-line section-raised amb">
         <div className="container-read">
           <div className="section-header">
             <Reveal>
@@ -196,19 +198,14 @@ export default function Home() {
             </Reveal>
           </div>
 
-          <div className="additional-grid reading-col">
-            {additional.map((a) => (
-              <div className="additional-item" key={a.title}>
-                <h4>{a.title}</h4>
-                <p>{a.body}</p>
-              </div>
-            ))}
+          <div className="reading-col">
+            <AdditionalMarquee items={additional} />
           </div>
         </div>
       </section>
 
       {/* Testimonials */}
-      <section id="testimonials" className="section-line">
+      <section id="testimonials" className="section-line amb">
         <div className="container-read">
           <div className="section-header">
             <Reveal>
@@ -218,55 +215,8 @@ export default function Home() {
               <h2>What clients say.</h2>
             </Reveal>
           </div>
-
-          <div className="testimonials-grid reading-col">
-            {testimonials.map((t) => (
-              <Reveal key={t.name}>
-                <div className="testimonial">
-                  <p
-                    className={`testimonial-quote${
-                      t.large ? " testimonial-quote-large" : ""
-                    }`}
-                  >
-                    {t.quote}
-                  </p>
-                  {t.list && (
-                    <ul className="testimonial-list">
-                      {t.list.map((li) => (
-                        <li key={li}>{li}</li>
-                      ))}
-                    </ul>
-                  )}
-                  {t.quote2 && (
-                    <p className="testimonial-quote" style={{ marginTop: 24 }}>
-                      {t.quote2}
-                    </p>
-                  )}
-                  <div className="testimonial-author">
-                    <div className="testimonial-avatar">{t.avatar}</div>
-                    <div className="testimonial-author-info">
-                      <span className="testimonial-author-name">
-                        {t.link ? (
-                          <a
-                            href={t.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="testimonial-author-link"
-                          >
-                            {t.name}
-                          </a>
-                        ) : (
-                          t.name
-                        )}
-                      </span>
-                      <span className="testimonial-author-title">{t.title}</span>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </div>
+        <TestimonialsMarquee items={testimonials} />
       </section>
 
       {/* FAQ */}

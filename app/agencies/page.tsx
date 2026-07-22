@@ -6,6 +6,7 @@ import { SectionDeco } from "@/components/SectionDeco";
 import { Particles } from "@/components/Particles";
 import { ContactForm } from "@/components/ContactForm";
 import { CaseScrolly } from "@/components/CaseScrolly";
+import { TestimonialsMarquee } from "@/components/TestimonialsMarquee";
 import { ProcessSteps } from "@/components/ProcessSteps";
 import {
   agencyStats,
@@ -399,8 +400,7 @@ export default function Agencies() {
       </section>
 
       {/* Testimonials */}
-      <section id="testimonials" className="section-line section-raised sd-host">
-        <SectionDeco kind="rings" className="sd-tr" />
+      <section id="testimonials" className="section-line section-raised amb">
         <div className="container-read">
           <div className="section-header">
             <Reveal>
@@ -410,55 +410,8 @@ export default function Agencies() {
               <h2>What clients say.</h2>
             </Reveal>
           </div>
-
-          <div className="testimonials-grid reading-col">
-            {testimonials.map((t) => (
-              <Reveal key={t.name}>
-                <div className="testimonial">
-                  <p
-                    className={`testimonial-quote${
-                      t.large ? " testimonial-quote-large" : ""
-                    }`}
-                  >
-                    {t.quote}
-                  </p>
-                  {t.list && (
-                    <ul className="testimonial-list">
-                      {t.list.map((li) => (
-                        <li key={li}>{li}</li>
-                      ))}
-                    </ul>
-                  )}
-                  {t.quote2 && (
-                    <p className="testimonial-quote" style={{ marginTop: 24 }}>
-                      {t.quote2}
-                    </p>
-                  )}
-                  <div className="testimonial-author">
-                    <div className="testimonial-avatar">{t.avatar}</div>
-                    <div className="testimonial-author-info">
-                      <span className="testimonial-author-name">
-                        {t.link ? (
-                          <a
-                            href={t.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="testimonial-author-link"
-                          >
-                            {t.name}
-                          </a>
-                        ) : (
-                          t.name
-                        )}
-                      </span>
-                      <span className="testimonial-author-title">{t.title}</span>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </div>
+        <TestimonialsMarquee items={testimonials} />
       </section>
 
       {/* FAQ */}

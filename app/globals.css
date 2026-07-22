@@ -3773,3 +3773,169 @@ footer {
   .case-scrolly.scrolly-live { height: calc((var(--n) + 1) * 76vh); }
   .cs-foot { flex-direction: column; align-items: flex-start; gap: 10px; }
 }
+
+/* case-scrolly background grid */
+.cs-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(78% 68% at 50% 45%, #000 28%, transparent 78%);
+  mask-image: radial-gradient(78% 68% at 50% 45%, #000 28%, transparent 78%);
+}
+
+/* ── ambient wash for the additional + testimonials sections (a whisper of
+   the case accents; the glow on cards stays monochrome) ────────────────── */
+.amb { position: relative; }
+.amb::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 50% at 12% 0%, rgba(82, 182, 174, 0.05), transparent 60%),
+    radial-gradient(55% 50% at 90% 100%, rgba(139, 147, 223, 0.05), transparent 60%);
+}
+.amb > * { position: relative; z-index: 1; }
+
+/* ── vertical carousel · Additional engineering work (bottom → top) ─────── */
+.vmarq {
+  position: relative;
+  height: 470px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
+}
+.vmarq-track { display: flex; flex-direction: column; animation: vscroll 34s linear infinite; }
+.vmarq:hover .vmarq-track { animation-play-state: paused; }
+@keyframes vscroll { to { transform: translateY(-50%); } }
+.vmarq-card {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 16px;
+  padding: 26px 30px;
+  border: 1px solid var(--color-line);
+  border-radius: 16px;
+  background: var(--color-bg2);
+  box-shadow: 0 20px 44px -30px rgba(0, 0, 0, 0.82),
+    0 0 42px -20px rgba(255, 255, 255, 0.06);
+}
+.vmarq-glow {
+  position: absolute;
+  left: -18%;
+  top: -60%;
+  width: 320px;
+  height: 320px;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.07), transparent 62%);
+}
+.vmarq-card > *:not(.vmarq-glow) { position: relative; z-index: 1; }
+.vmarq-card h4 { font-size: 18px; margin-bottom: 8px; }
+.vmarq-card p { font-size: 15px; color: var(--color-text2); line-height: 1.6; margin: 0; }
+
+/* ── horizontal carousel · Testimonials (left → right) ──────────────────── */
+.hmarq {
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.hmarq-track { display: flex; width: max-content; animation: hscroll 52s linear infinite; }
+.hmarq:hover .hmarq-track { animation-play-state: paused; }
+@keyframes hscroll { to { transform: translateX(-50%); } }
+.hmarq-card {
+  position: relative;
+  overflow: hidden;
+  flex: 0 0 auto;
+  width: 380px;
+  margin: 0 11px;
+  padding: 34px;
+  border: 1px solid var(--color-line);
+  border-radius: 18px;
+  background: var(--color-bg2);
+  box-shadow: 0 24px 50px -34px rgba(0, 0, 0, 0.85),
+    0 0 48px -22px rgba(255, 255, 255, 0.06);
+}
+.hmarq-glow {
+  position: absolute;
+  right: -16%;
+  top: -55%;
+  width: 340px;
+  height: 340px;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.065), transparent 62%);
+}
+.hmarq-card > *:not(.hmarq-glow) { position: relative; z-index: 1; }
+.hmarq-quote {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--color-text);
+  margin: 0 0 22px;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── floating "book an audit" button ────────────────────────────────────── */
+.fab {
+  position: fixed;
+  z-index: 60;
+  right: 26px;
+  bottom: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 14px 22px;
+  border-radius: 14px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #0a0a0a;
+  background: var(--color-warm);
+  box-shadow: 0 16px 40px -14px rgba(0, 0, 0, 0.7);
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(20px) scale(0.96);
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease),
+    background 0.25s ease;
+}
+.fab-on { opacity: 1; transform: none; pointer-events: auto; }
+.fab:hover { background: #ffffff; }
+.fab:active { transform: scale(0.965); }
+.fab .arrow { transition: transform 0.3s var(--ease); }
+.fab:hover .arrow { transform: translateX(4px); }
+.fab-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0a0a0a;
+  opacity: 0.55;
+}
+@media (max-width: 640px) {
+  .fab { left: 16px; right: 16px; bottom: 16px; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vmarq-track, .hmarq-track { animation: none; }
+  .vmarq { height: auto; -webkit-mask-image: none; mask-image: none; }
+  .hmarq { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+  .hmarq-track { width: auto; flex-wrap: wrap; gap: 16px; }
+  .vmarq-card[aria-hidden="true"], .hmarq-card[aria-hidden="true"] { display: none; }
+  .fab { transition: opacity 0.3s ease; transform: none; }
+  .fab-on { transform: none; }
+}
+
+@media (max-width: 640px) {
+  .hmarq-card { width: 300px; padding: 28px; }
+}

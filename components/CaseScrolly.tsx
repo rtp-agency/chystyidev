@@ -186,6 +186,7 @@ export function CaseScrolly({
     >
       <div className="cs-stage">
         <div className="cs-glow" aria-hidden="true" />
+        <div className="cs-grid" aria-hidden="true" />
 
         <div className="cs-intro">
           <div className="eyebrow">{intro.eyebrow}</div>

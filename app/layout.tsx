@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
+import { FloatingCTA } from "@/components/FloatingCTA";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -197,6 +198,7 @@ export default function RootLayout({
         <div className="grain" aria-hidden="true" />
         {children}
         <Footer />
+        <FloatingCTA />
       </body>
     </html>
   );
