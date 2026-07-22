@@ -5,7 +5,7 @@ import { VideoAutoEdit } from "@/components/VideoAutoEdit";
 import { SectionDeco } from "@/components/SectionDeco";
 import { Particles } from "@/components/Particles";
 import { ContactForm } from "@/components/ContactForm";
-import { CaseCard } from "@/components/CaseCard";
+import { CaseScrolly } from "@/components/CaseScrolly";
 import { ProcessSteps } from "@/components/ProcessSteps";
 import {
   agencyStats,
@@ -387,26 +387,15 @@ export default function Agencies() {
       </section>
 
       {/* Work */}
-      <section id="work" className="section-line sd-host">
-        <SectionDeco kind="film" className="sd-r" />
-        <div className="container-read">
-          <div className="section-header">
-            <Reveal>
-              <div className="eyebrow">Selected work</div>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h2>Production video pipelines that shipped.</h2>
-            </Reveal>
-          </div>
-
-          <div className="reading-col">
-            {agencyWork.map((c) => (
-              <Reveal key={c.slug}>
-                <CaseCard c={c} />
-              </Reveal>
-            ))}
-          </div>
-        </div>
+      <section id="work" className="section-line cases-section">
+        <CaseScrolly
+          items={agencyWork}
+          intro={{
+            eyebrow: "Selected work",
+            heading: "Production video pipelines that shipped.",
+            sub: "The flagship case leads, then the video systems behind it — each with the numbers.",
+          }}
+        />
       </section>
 
       {/* Testimonials */}

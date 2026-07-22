@@ -4,7 +4,7 @@ import { CountUp } from "@/components/CountUp";
 import { ProcessCycle } from "@/components/ProcessCycle";
 import { Particles } from "@/components/Particles";
 import { ContactForm } from "@/components/ContactForm";
-import { CaseCard } from "@/components/CaseCard";
+import { CaseScrolly } from "@/components/CaseScrolly";
 import { OfferVisual } from "@/components/OfferVisual";
 import { ProcessSteps } from "@/components/ProcessSteps";
 import {
@@ -173,25 +173,15 @@ export default function Home() {
       </section>
 
       {/* Work */}
-      <section id="work" className="section-line">
-        <div className="container-read">
-          <div className="section-header">
-            <Reveal>
-              <div className="eyebrow">Selected work</div>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h2>Production AI systems that shipped.</h2>
-            </Reveal>
-          </div>
-
-          <div className="reading-col">
-            {work.map((c) => (
-              <Reveal key={c.slug}>
-                <CaseCard c={c} />
-              </Reveal>
-            ))}
-          </div>
-        </div>
+      <section id="work" className="section-line cases-section">
+        <CaseScrolly
+          items={work}
+          intro={{
+            eyebrow: "Selected work",
+            heading: "Production AI systems that shipped.",
+            sub: "Not demos — real pipelines running in production, each one with the numbers.",
+          }}
+        />
       </section>
 
       {/* Additional */}
