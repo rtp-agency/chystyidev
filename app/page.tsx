@@ -109,31 +109,17 @@ export default function Home() {
               <div className="eyebrow">How I help</div>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2>Two things — done exceptionally well.</h2>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <p className="lead">
-                Not generic &ldquo;AI consulting.&rdquo; Two focused engagements
-                with a clear outcome: a smaller bill, and AI you can actually
-                rely on.
-              </p>
+              <h2>Two things, done exceptionally well.</h2>
             </Reveal>
           </div>
 
           <div className="offers">
             {offers.map((o, i) => (
               <Reveal key={o.num} delay={i * 0.1}>
-                <div className="offer">
+                <div className="offer offer-min">
                   <OfferVisual kind={o.visual} />
-                  <div className="offer-num">{o.num}</div>
                   <h3 className="offer-name">{o.name}</h3>
                   <p className="offer-promise">{o.promise}</p>
-                  <div className="offer-does-label">What I do</div>
-                  <ul className="offer-does">
-                    {o.does.map((d) => (
-                      <li key={d}>{d}</li>
-                    ))}
-                  </ul>
                   <div className="offer-metric">
                     <span className="offer-metric-num">{o.metric}</span>
                     <span className="offer-metric-label">{o.metricLabel}</span>

@@ -71,19 +71,19 @@ export const process = [
     num: "01",
     title: "Audit",
     icon: "scan" as const,
-    body: "I map where your AI spend goes and where models fail — with real numbers. You see the problem before you pay to fix it.",
+    body: "I map where your AI fails and overspends — with real numbers.",
   },
   {
     num: "02",
     title: "Architect",
     icon: "graph" as const,
-    body: "I design the cheapest stack that still hits your quality bar, with orchestration that keeps models reliable.",
+    body: "I design a leaner, reliable stack that hits your quality bar.",
   },
   {
     num: "03",
     title: "Ship & prove",
     icon: "check" as const,
-    body: "I build it end-to-end, deploy to production, and prove the before/after on cost and reliability.",
+    body: "I build it, ship to production, and prove the before/after.",
   },
 ];
 

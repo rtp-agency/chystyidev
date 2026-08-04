@@ -4074,3 +4074,6 @@ footer {
 .hero-copy-center h1 { max-width: 15ch; }
 .hero-copy-center .lead { max-width: 56ch; margin: 0 auto; }
 .hero-copy-center .hero-actions { justify-content: center; margin-top: 6px; }
+
+/* trimmed offer cards (max-minimalism): breathing room before the metric */
+.offer-min .offer-promise { margin-bottom: 30px; }
