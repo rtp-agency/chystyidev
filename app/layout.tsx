@@ -3,6 +3,7 @@ import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { FloatingCTA } from "@/components/FloatingCTA";
+import { NebulaBackground } from "@/components/NebulaBackground";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -196,6 +197,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <div className="grain" aria-hidden="true" />
+        <NebulaBackground />
         {children}
         <Footer />
         <FloatingCTA />

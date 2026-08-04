@@ -1,8 +1,6 @@
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
-import { ProcessCycle } from "@/components/ProcessCycle";
-import { Particles } from "@/components/Particles";
 import { ContactForm } from "@/components/ContactForm";
 import { CaseScrolly } from "@/components/CaseScrolly";
 import { AdditionalScrolly } from "@/components/AdditionalScrolly";
@@ -41,54 +39,43 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <div className="bg-grid" aria-hidden="true" />
       <Nav variant="home" />
 
       {/* Hero */}
-      <section className="hero">
-        <Particles />
-        <div className="hero-deco" aria-hidden="true">
-          <svg className="hero-deco-1" viewBox="0 0 200 200">
-            <circle cx="100" cy="100" r="98" />
-          </svg>
-          <svg className="hero-deco-2" viewBox="0 0 200 200">
-            <polygon points="100,5 182,52 182,148 100,195 18,148 18,52" />
-          </svg>
-        </div>
+      <section className="hero hero-center">
         <div className="container">
-          <div className="hero-grid">
-            <div className="hero-copy">
-              <Reveal>
-                <h1>
-                  Spend <em>far less</em> on AI.
-                </h1>
-              </Reveal>
-              <Reveal delay={0.1}>
-                <p className="lead">
-                  I cut what companies spend running AI at scale — and keep it
-                  reliable on the work that usually breaks.
-                </p>
-              </Reveal>
-              <Reveal delay={0.2}>
-                <div className="hero-actions">
-                  <a
-                    href={CAL_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-primary"
-                  >
-                    Get a free AI cost audit <span className="arrow">→</span>
-                  </a>
-                  <a href="#work" className="btn btn-secondary">
-                    See the work
-                  </a>
-                </div>
-              </Reveal>
-            </div>
-
-            <div className="hero-visual">
-              <ProcessCycle />
-            </div>
+          <div className="hero-copy-center">
+            <Reveal>
+              <div className="eyebrow eyebrow-center">
+                Reliable · Safe · Automated
+              </div>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h1>
+                AI that&apos;s reliable, safe, and <em>does the work</em>.
+              </h1>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <p className="lead">
+                I make production AI dependable and secure — and automate the
+                high-volume processes behind your business.
+              </p>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <div className="hero-actions">
+                <a
+                  href={CAL_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary"
+                >
+                  Book a free audit <span className="arrow">→</span>
+                </a>
+                <a href="#work" className="btn btn-secondary">
+                  See the work
+                </a>
+              </div>
+            </Reveal>
           </div>
         </div>
         <div className="scroll-cue" aria-hidden="true">
