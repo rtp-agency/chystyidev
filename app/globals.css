@@ -4077,3 +4077,34 @@ footer {
 
 /* trimmed offer cards (max-minimalism): breathing room before the metric */
 .offer-min .offer-promise { margin-bottom: 30px; }
+
+/* ── floating "islands" — pre-cases blocks float over the nebula ────────── */
+.floating-section { border: none; background: transparent; }
+.island {
+  position: relative;
+  border-radius: 26px;
+  background: linear-gradient(180deg, rgba(24, 24, 24, 0.6), rgba(13, 13, 13, 0.62));
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 44px 90px -46px rgba(0, 0, 0, 0.92),
+    0 0 70px -34px rgba(255, 255, 255, 0.05);
+}
+.island-float { animation: float-island 7.5s ease-in-out infinite; }
+.island-float.d2 { animation-duration: 9.5s; animation-delay: -2.5s; }
+@keyframes float-island {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.stats-island { padding: 46px 52px; }
+.process-island { padding: 48px 44px 42px; }
+@media (max-width: 640px) {
+  .island { border-radius: 22px; }
+  .stats-island { padding: 32px 22px; }
+  .process-island { padding: 32px 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .island-float { animation: none; }
+}

@@ -86,23 +86,29 @@ export default function Home() {
       </section>
 
       {/* Stats */}
-      <section className="stats">
+      <section className="stats floating-section">
         <div className="container">
-          <div className="stats-grid">
-            {stats.map((s, i) => (
-              <Reveal key={s.label} delay={i * 0.1} className="stat">
-                <div className="stat-number">
-                  <CountUp value={s.value} prefix={s.prefix} suffix={s.suffix} />
-                </div>
-                <div className="stat-label">{s.label}</div>
-              </Reveal>
-            ))}
+          <div className="island island-float stats-island">
+            <div className="stats-grid">
+              {stats.map((s, i) => (
+                <Reveal key={s.label} delay={i * 0.1} className="stat">
+                  <div className="stat-number">
+                    <CountUp
+                      value={s.value}
+                      prefix={s.prefix}
+                      suffix={s.suffix}
+                    />
+                  </div>
+                  <div className="stat-label">{s.label}</div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Offers */}
-      <section id="services" className="section-line">
+      <section id="services" className="section-line floating-section">
         <div className="container">
           <div className="section-header">
             <Reveal>
@@ -116,7 +122,7 @@ export default function Home() {
           <div className="offers">
             {offers.map((o, i) => (
               <Reveal key={o.num} delay={i * 0.1}>
-                <div className="offer offer-min">
+                <div className="offer offer-min island">
                   <OfferVisual kind={o.visual} />
                   <h3 className="offer-name">{o.name}</h3>
                   <p className="offer-promise">{o.promise}</p>
@@ -132,7 +138,7 @@ export default function Home() {
       </section>
 
       {/* Process */}
-      <section className="section-line section-raised">
+      <section className="section-line floating-section">
         <div className="container">
           <div className="section-header">
             <Reveal>
@@ -143,7 +149,9 @@ export default function Home() {
             </Reveal>
           </div>
 
-          <ProcessSteps />
+          <div className="island island-float d2 process-island">
+            <ProcessSteps />
+          </div>
         </div>
       </section>
 
