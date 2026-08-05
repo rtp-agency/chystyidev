@@ -183,50 +183,42 @@
   #featured .scrim {
     /* Offset left, tracking the left-aligned copy block. */
     background: radial-gradient(
-      ellipse 58% 62% at 36% 50%,
-      rgba(10, 10, 10, 0.9) 0%,
-      rgba(10, 10, 10, 0.6) 50%,
+      ellipse 68% 72% at 40% 50%,
+      rgba(10, 10, 10, 0.92) 0%,
+      rgba(10, 10, 10, 0.66) 50%,
       transparent 100%
     );
   }
+  /* Everything here is sized for the thumbnail, not for this file. LinkedIn
+     renders a Featured item at roughly a quarter of these dimensions, so any
+     type under ~30px collapses into noise. Hence: four elements, all large. */
   #featured .content {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 34px 84px 0;
+    padding: 0 84px;
   }
-  #featured .eyebrow { font-size: 13px; margin-bottom: 26px; }
-  #featured h1 { font-size: 60px; max-width: 900px; }
-  #featured .lead { font-size: 21px; margin-top: 22px; max-width: 760px; line-height: 1.5; }
-  #featured ul { list-style: none; display: flex; gap: 34px; margin-top: 34px; }
-  #featured li {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    font-size: 16px;
-    color: var(--color-warm);
-    letter-spacing: -0.01em;
-  }
-  #featured li svg { flex: none; }
-  #featured .cta-row { display: flex; align-items: center; gap: 26px; margin-top: 44px; }
-  #featured .btn-primary { font-size: 18px; padding: 18px 34px; }
-  #featured .cta-note {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-muted);
+  #featured .eyebrow { font-size: 22px; gap: 18px; margin-bottom: 30px; }
+  #featured .eyebrow::before { width: 44px; }
+  #featured h1 { font-size: 92px; }
+  #featured .lead { font-size: 33px; margin-top: 30px; letter-spacing: -0.015em; }
+  #featured .btn-primary {
+    font-size: 31px;
+    padding: 24px 44px;
+    border-radius: 18px;
+    margin-top: 46px;
+    align-self: flex-start;
   }
   #featured .domain {
     position: absolute;
-    top: 46px;
+    top: 44px;
     right: 84px;
     z-index: 2;
     font-family: var(--font-mono);
-    font-size: 14px;
-    letter-spacing: 0.1em;
+    font-size: 26px;
+    letter-spacing: 0.08em;
     color: var(--color-warm);
-    opacity: 0.75;
+    opacity: 0.8;
   }
 </style>
 
@@ -259,35 +251,9 @@
   <div class="domain">chystyi.dev</div>
   <div class="content">
     <div class="eyebrow">Free · 30 minutes · No pitch</div>
-    <h1>Book a free audit<br />of your <em>AI system</em>.</h1>
-    <p class="lead">
-      In 30 minutes I map where your AI overspends and where it breaks — in real
-      numbers. You leave with a plan, whether or not we work together.
-    </p>
-    <ul>
-      <li>
-        <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
-          <path d="M3.5 9L6.8 12.2L13.5 5" stroke="#fafafa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Where your AI budget leaks
-      </li>
-      <li>
-        <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
-          <path d="M3.5 9L6.8 12.2L13.5 5" stroke="#fafafa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Why it fails at scale
-      </li>
-      <li>
-        <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
-          <path d="M3.5 9L6.8 12.2L13.5 5" stroke="#fafafa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        What to fix first
-      </li>
-    </ul>
-    <div class="cta-row">
-      <div class="btn-primary">Book a free audit <span>&rarr;</span></div>
-      <div class="cta-note">Limited slots each week</div>
-    </div>
+    <h1>Free audit of<br />your <em>AI system</em>.</h1>
+    <p class="lead">I find where your AI overspends and where it breaks.</p>
+    <div class="btn-primary">Book a free audit <span>&rarr;</span></div>
   </div>
 </div>
 
