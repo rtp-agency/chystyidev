@@ -2794,6 +2794,11 @@ footer {
   }
   .nav-links {
     gap: 22px;
+    /* Seven links do not fit on one line on a phone — and did not quite fit
+       at six either. Wrap instead of letting the pill overflow its own edge. */
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 9px;
   }
   .nav-links a {
     font-size: 13px;
@@ -4107,4 +4112,237 @@ footer {
 }
 @media (prefers-reduced-motion: reduce) {
   .island-float { animation: none; }
+}
+
+.offers-price-note {
+  margin: 34px auto 0;
+  max-width: 620px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-muted);
+  text-wrap: pretty;
+}
+.offers-price-note b {
+  color: var(--color-text);
+  font-weight: 500;
+}
+.offers-price-link {
+  color: var(--color-warm);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--warm-dim);
+  transition: text-decoration-color 0.25s ease;
+}
+.offers-price-link:hover { text-decoration-color: var(--color-warm); }
+
+/* Logo avatars sit edge to edge; the initial variant keeps its inset look. */
+.testimonial-avatar-img {
+  padding: 0;
+  overflow: hidden;
+  background: var(--color-bg2);
+}
+.testimonial-avatar-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---------------------------------------------------------------------------
+ * /audit — AI Systems Audit
+ *
+ * Note the prefix: .audit-list is already taken by the homepage CTA, where it
+ * is a centred 460px column with its own tick glyph. Everything here uses
+ * .audit-points so the two never collide.
+ * ------------------------------------------------------------------------- */
+
+.audit-problem {
+  padding: 44px 48px;
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+.audit-problem p {
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--color-text2);
+  text-wrap: pretty;
+}
+
+.audit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.audit-card {
+  padding: 40px;
+  height: 100%;
+}
+.audit-card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding-bottom: 22px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--color-line-soft);
+}
+.audit-num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  padding-top: 4px;
+}
+.audit-tagline {
+  display: block;
+  margin-top: 5px;
+  font-size: 14px;
+  color: var(--color-muted);
+  letter-spacing: -0.005em;
+}
+
+.audit-points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.audit-points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--color-text2);
+  text-wrap: pretty;
+}
+.audit-point-ico {
+  flex: none;
+  width: 19px;
+  height: 19px;
+  margin-top: 2px;
+}
+.audit-point-ico svg { width: 100%; height: 100%; display: block; }
+.audit-point-ico-check { color: var(--color-warm); }
+.audit-point-ico-cross { color: var(--color-muted); }
+
+.audit-deliverables {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.audit-deliverable { padding: 32px 34px; height: 100%; }
+.audit-deliverable p {
+  margin-top: 10px;
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: var(--color-text2);
+}
+.audit-kicker {
+  margin-top: 34px;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 19px;
+  color: var(--color-warm);
+  text-wrap: balance;
+}
+
+.audit-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+.audit-step {
+  padding-top: 22px;
+  border-top: 1px solid var(--color-line);
+}
+.audit-step-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--color-muted);
+}
+.audit-step h3 { margin: 14px 0 9px; }
+.audit-step p {
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: var(--color-text2);
+}
+
+.audit-fit {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.audit-fit-col { padding: 38px 40px; height: 100%; }
+.audit-fit-head {
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--color-line-soft);
+}
+/* The disqualifying column is deliberately quieter — it should read as an
+   honest filter, not as a second sales pitch. */
+.audit-fit-col-no { opacity: 0.82; }
+.audit-fit-col-no .audit-points li { color: var(--color-muted); }
+
+.audit-price {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.audit-price-col { flex: 1; padding: 42px 44px; }
+.audit-price-divider {
+  width: 1px;
+  background: var(--color-line);
+  flex: none;
+}
+.audit-price-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.audit-price-value {
+  display: block;
+  margin: 14px 0 12px;
+  font-family: var(--font-serif);
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+.audit-price-col p {
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: var(--color-text2);
+}
+
+@media (max-width: 880px) {
+  .audit-grid,
+  .audit-deliverables,
+  .audit-fit { grid-template-columns: 1fr; }
+  .audit-steps { grid-template-columns: 1fr; gap: 24px; }
+  .audit-price { flex-direction: column; }
+  .audit-price-divider { width: auto; height: 1px; }
+}
+@media (max-width: 560px) {
+  .audit-problem { padding: 30px 24px; }
+  .audit-problem p { font-size: 18px; }
+  .audit-card,
+  .audit-fit-col { padding: 28px 24px; }
+  .audit-deliverable { padding: 26px 24px; }
+  .audit-price-col { padding: 30px 24px; }
+  .audit-price-value { font-size: 34px; }
 }

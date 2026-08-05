@@ -197,10 +197,10 @@ export default function AuditPage() {
                       <span className="audit-tagline">{s.tagline}</span>
                     </div>
                   </div>
-                  <ul className="audit-list">
+                  <ul className="audit-points">
                     {s.items.map((item) => (
                       <li key={item}>
-                        <span className="audit-ico audit-ico-check">
+                        <span className="audit-point-ico audit-point-ico-check">
                           <Check />
                         </span>
                         {item}
@@ -288,10 +288,10 @@ export default function AuditPage() {
             <Reveal>
               <div className="island audit-fit-col">
                 <h3 className="audit-fit-head">This is for you if</h3>
-                <ul className="audit-list">
+                <ul className="audit-points">
                   {auditFitFor.map((f) => (
                     <li key={f}>
-                      <span className="audit-ico audit-ico-check">
+                      <span className="audit-point-ico audit-point-ico-check">
                         <Check />
                       </span>
                       {f}
@@ -303,10 +303,10 @@ export default function AuditPage() {
             <Reveal delay={0.1}>
               <div className="island audit-fit-col audit-fit-col-no">
                 <h3 className="audit-fit-head">This is not for you if</h3>
-                <ul className="audit-list">
+                <ul className="audit-points">
                   {auditNotFor.map((f) => (
                     <li key={f}>
-                      <span className="audit-ico audit-ico-cross">
+                      <span className="audit-point-ico audit-point-ico-cross">
                         <Cross />
                       </span>
                       {f}
@@ -349,37 +349,38 @@ export default function AuditPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section id="contact" className="section-line floating-section">
+      {/* CTA — mirrors the homepage contact section */}
+      <section id="contact" className="cta section-line">
         <div className="container">
-          <div className="section-header">
-            <Reveal>
-              <div className="eyebrow">Next step</div>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h2>
-                Find out what your AI is <em>really</em> costing you.
-              </h2>
-            </Reveal>
-          </div>
-
-          <div className="contact-grid">
-            <Reveal>
-              <div className="contact-cta">
-                <a
-                  href={CAL_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-primary"
-                >
-                  Book the audit <span className="arrow">→</span>
-                </a>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <ContactForm />
-            </Reveal>
-          </div>
+          <Reveal>
+            <div className="eyebrow">Free, no commitment</div>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h2>
+              Find out what your AI is <em>really</em> costing you.
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="lead">
+              Book the audit, or tell me about your setup and I&apos;ll come
+              back to you.
+            </p>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <div className="contact-options">
+              <a
+                href={CAL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+              >
+                Book the audit <span className="arrow">→</span>
+              </a>
+            </div>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <ContactForm />
+          </Reveal>
         </div>
       </section>
     </>

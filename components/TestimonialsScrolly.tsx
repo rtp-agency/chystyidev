@@ -10,7 +10,19 @@ type Intro = { eyebrow: string; heading: string };
 function Author({ t }: { t: Testimonial }) {
   return (
     <div className="testimonial-author">
-      <div className="testimonial-avatar">{t.avatar}</div>
+      {/* Named clients get a real logo; NDA'd ones keep the initial. */}
+      <div
+        className={`testimonial-avatar${
+          t.avatarSrc ? " testimonial-avatar-img" : ""
+        }`}
+      >
+        {t.avatarSrc ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={t.avatarSrc} alt="" width={44} height={44} loading="lazy" />
+        ) : (
+          t.avatar
+        )}
+      </div>
       <div className="testimonial-author-info">
         <span className="testimonial-author-name">
           {t.link ? (

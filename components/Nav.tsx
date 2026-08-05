@@ -35,6 +35,9 @@ export function Nav({
               <Link href="/agencies">For agencies</Link>
             </li>
             <li>
+              <Link href="/audit">Free audit</Link>
+            </li>
+            <li>
               <a href="#faq">FAQ</a>
             </li>
             <li>

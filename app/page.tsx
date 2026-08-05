@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
@@ -14,6 +15,7 @@ import {
   additional,
   testimonials,
   homeFaq,
+  pricing,
 } from "@/lib/site";
 import { jsonLdScript } from "@/lib/jsonld";
 
@@ -135,6 +137,17 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
+
+          <Reveal delay={0.2}>
+            <p className="offers-price-note">
+              Projects start at <b>{pricing.projectFrom}</b>. Scope and price
+              come out of the{" "}
+              <Link href="/audit" className="offers-price-link">
+                free audit
+              </Link>
+              , so you know what you&apos;re buying before you commit.
+            </p>
+          </Reveal>
         </div>
       </section>
 
