@@ -41,8 +41,87 @@ export type CaseStudy = {
 
 export const cases: CaseStudy[] = [
   {
-    slug: "black-camel",
+    slug: "threads-content-engine",
     eyebrow: "Case Study 01",
+    title: "Autonomous Content Engine for Threads",
+    lead: "1.3M+ views and 2,500+ new followers in the first five days — an autonomous system that generates on-voice posts with realistic visuals and publishes on one-tap approval.",
+    metaDescription:
+      "An autonomous content engine for Threads: on-voice posts, realistic visuals, one-tap publishing. 1.3M+ views and 2,500+ followers in five days.",
+    meta: {
+      role: "Autonomous content system",
+      timeline: "Live in production",
+      status: "1.3M+ views in 5 days",
+    },
+    visual: {
+      kind: "pipeline",
+      stages: [
+        { label: "Rank formats", sub: "pull posts, rank by reach" },
+        { label: "Generate on-voice", sub: "few-shot + LLM-as-judge" },
+        { label: "Realistic visuals", sub: "POV screenshots, editable" },
+        { label: "One-tap approve", sub: "Telegram approval loop" },
+        { label: "Auto-publish", sub: "Threads Graph API, scheduled" },
+      ],
+    },
+    sections: [
+      {
+        heading: "The problem",
+        blocks: [
+          { t: "p", html: `An independent language teacher ran their Threads account by hand — writing every post, mocking up screenshots, publishing, and manually tracking what landed. It ate hours, output was inconsistent, and the account mostly sat still.` },
+          { t: "p", html: `The content had to hit a very specific personal voice — sharp, ironic, dark-humoured — to earn reach on Threads, while quietly funnelling readers toward lessons. Doing that every day is a full-time job on top of an already full-time job. So it didn't happen.` },
+          { t: "p", html: `The goal: turn content creation into a pipeline — <strong>generate → approve in one tap → auto-publish</strong> — without losing the author's voice, and grow both reach and inbound leads.` },
+        ],
+      },
+      {
+        heading: "The approach",
+        blocks: [
+          { t: "p", html: `I built an autonomous content system that runs the entire loop.` },
+          { t: "h3", text: "Format-ranking before generation" },
+          { t: "p", html: `This mattered more than the writing itself. Before generating anything, the system pulls every post from the account and ranks them by reach, identifying which formats actually perform for this audience — then leans into the winning pattern while mixing in enough variety to stay fresh. Most content automation skips this and generates blind; matching the platform's proven format is half the battle.` },
+          { t: "h3", text: "Voice that doesn't read like AI" },
+          { t: "p", html: `Raw model output always sounds like a machine. The system builds a voice profile from the author's real posts and retrieves similar high-performing examples for each generation (few-shot over vector search), then runs every draft through an LLM-as-judge pass that scores it against the author's actual voice and re-tunes until it passes — real convergence toward a specific human style, not generic tone descriptions.` },
+          { t: "h3", text: "Realistic visuals" },
+          { t: "p", html: `The winning format is a POV screenshot — a short hook caption over a mock notification (a message from a "student," a payment alert). The system generates these to be visually indistinguishable from real ones, using the author's actual posts as references. Text and details are editable straight from chat in plain language, and a continuity feature lets the author produce "part 2" of a viral story with the same character and background.` },
+          { t: "h3", text: "One-tap approval, automated publishing" },
+          { t: "p", html: `The author reviews finished cards in Telegram — approve, edit, reject, or regenerate — and approved posts publish to Threads automatically, on schedule, via the Threads Graph API.` },
+          { t: "h3", text: "It learns" },
+          { t: "p", html: `The author rates outputs ("their voice / not their voice"), and posts that drove a lesson enquiry get tagged — so the system continuously sharpens both the voice match and the formats that actually convert.` },
+        ],
+      },
+      {
+        heading: "The result",
+        blocks: [
+          { t: "p", html: `The teacher got a content studio in their pocket. The system proposes finished posts in their voice with realistic visuals; publishing happens on a single tap. Manual work dropped to review only.` },
+          { t: "stats", items: [
+            { number: "1.3M+", label: "Views in the first 5 days" },
+            { number: "2,500+", label: "New followers in 5 days" },
+            { number: "865K+", label: "Views on the top post" },
+            { number: "40K+", label: "Likes on the top post" },
+          ] },
+          { t: "p", html: `The top post became the most-viewed on the entire account and drew a comment from one of the country's largest telecom brands — visibility this account could never have sustained by hand.` },
+          { t: "quote", text: `The point isn't one viral post. It's that this now happens every day, whether the client has time or not — because consistency is a system problem, not a willpower problem.` },
+        ],
+      },
+      {
+        heading: "Tech stack",
+        blocks: [
+          { t: "table", rows: [
+            ["Backend", "Python · FastAPI · Celery"],
+            ["Data", "PostgreSQL + pgvector · Redis"],
+            ["LLM layer", "Provider-agnostic — OpenAI · xAI Grok · Anthropic"],
+            ["Images", "Reference-based image model · render-template fallback"],
+            ["Integrations", "Threads Graph API · Telegram (aiogram)"],
+            ["Infrastructure", "Docker · dedicated server · automated migrations"],
+          ] },
+        ],
+      },
+    ],
+    prev: { href: "/work", label: "← All case studies" },
+    next: { href: "/work/black-camel", label: "Next: Black Camel Productions →" },
+  },
+
+  {
+    slug: "black-camel",
+    eyebrow: "Case Study 02",
     title:
       "Automating a Manual Video-Editing Workflow for Educational Content at Scale",
     lead: "A slow, editor-by-editor Premiere Pro process turned into an automated pipeline that cleans, reframes, and AI-edits recorded lesson videos in minutes — built to run hundreds of videos at volume.",
@@ -151,13 +230,13 @@ export const cases: CaseStudy[] = [
         ],
       },
     ],
-    prev: { href: "/agencies", label: "← Back to agencies" },
+    prev: { href: "/work/threads-content-engine", label: "← Previous: Autonomous Content Engine" },
     next: { href: "/work/open-source-lipsync", label: "Next: Lipsync System →" },
   },
 
   {
     slug: "metra-ai",
-    eyebrow: "Case Study 05",
+    eyebrow: "Case Study 06",
     title: "Metra AI — Production SaaS for Telegram Content Automation",
     lead: "Solo-built end-to-end SaaS platform with multi-agent LLM orchestration. From architecture to deployment in 3 months.",
     metaDescription:
@@ -296,7 +375,7 @@ export const cases: CaseStudy[] = [
 
   {
     slug: "open-source-lipsync",
-    eyebrow: "Case Study 02",
+    eyebrow: "Case Study 03",
     title: "Lipsync System — 99%+ Cost Reduction vs Premium Video AI",
     lead: "Replaced premium proprietary video AI at $3–5/minute with open source ComfyUI workflow. Same quality, costs in cents.",
     metaDescription:
@@ -443,7 +522,7 @@ export const cases: CaseStudy[] = [
 
   {
     slug: "video-localization",
-    eyebrow: "Case Study 04",
+    eyebrow: "Case Study 05",
     title: "Multi-Model AI Video Localization Pipeline",
     lead: "Four AI services orchestrated into one coherent pipeline. Source video in, localized derivative video out — for under $1.",
     metaDescription:
@@ -617,7 +696,7 @@ export const cases: CaseStudy[] = [
 
   {
     slug: "motion-control",
-    eyebrow: "Case Study 03",
+    eyebrow: "Case Study 04",
     title: "Motion Control Workflow — 84% Cost Reduction vs Premium Video AI",
     lead: "Replaced premium proprietary motion control services with open source ComfyUI workflow. Approximately $12,000 in annual savings per client at production scale — and capability premium services can't match.",
     metaDescription:

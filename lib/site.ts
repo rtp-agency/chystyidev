@@ -176,10 +176,26 @@ export type WorkItem = {
   kind: WorkKind;
 };
 
-// Flagship agency case — leads the grids. No pricing figures (managed service).
+// Flagship result — leads the grid.
+export const threadsCard: WorkItem = {
+  slug: "threads-content-engine",
+  number: "01 — Autonomous Content Engine",
+  title: "1.3M+ views and 2,500+ followers in five days",
+  meta: ["Autonomous content system", "Threads", "Live in production"],
+  summary:
+    "An autonomous system that generates on-voice posts with realistic visuals, publishes to Threads on one-tap approval, and learns what converts. Off a standing-still account.",
+  highlights: [
+    { number: "1.3M+", label: "Views in the first 5 days" },
+    { number: "2,500+", label: "New followers in 5 days" },
+  ],
+  tech: "Python · FastAPI · Celery · pgvector · LLM ensemble",
+  kind: "pipeline",
+};
+
+// Managed agency case — leads the /agencies grid. No pricing figures.
 export const blackCamelCard: WorkItem = {
   slug: "black-camel",
-  number: "01 — Black Camel Productions",
+  number: "02 — Black Camel Productions",
   title: "~1 hour of manual editing per video → ~3 minutes automated",
   meta: ["Managed service", "London video production agency", "25+ videos processed"],
   summary:
@@ -194,10 +210,11 @@ export const blackCamelCard: WorkItem = {
 
 // Case studies, ordered cost-first (most relevant proof for the primary visitor first).
 export const work: WorkItem[] = [
+  threadsCard,
   blackCamelCard,
   {
     slug: "open-source-lipsync",
-    number: "02 — Lipsync System",
+    number: "03 — Lipsync System",
     title: "99%+ cost reduction vs premium video AI",
     meta: ["Solo Developer", "6+ months in production", "3+ commercial deployments"],
     summary:
@@ -212,7 +229,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "motion-control",
-    number: "03 — Motion Control Workflow",
+    number: "04 — Motion Control Workflow",
     title: "84% cost reduction with capability premium services can't match",
     meta: ["Solo Developer", "4–5 months active production", "2 commercial clients"],
     summary:
@@ -227,7 +244,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "video-localization",
-    number: "04 — Video Localization Pipeline",
+    number: "05 — Video Localization Pipeline",
     title: "Multi-model AI pipeline for video localization at scale",
     meta: ["Solo Developer", "3 months active production"],
     summary:
@@ -241,7 +258,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "metra-ai",
-    number: "05 — Metra AI",
+    number: "06 — Metra AI",
     title: "Production SaaS for Telegram content automation",
     meta: ["Founding Engineer", "Live in production", "metra-ai.org"],
     summary:

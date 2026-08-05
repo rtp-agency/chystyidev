@@ -26,3 +26,6 @@ agencies-landing-brief.md
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# internal case-study source — do not publish
+case_study_EN_1.md
