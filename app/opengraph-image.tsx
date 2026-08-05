@@ -77,7 +77,7 @@ export default function OgImage() {
               borderRadius: 999,
             }}
           >
-            Get a free AI cost audit →
+            Get a free AI Systems Audit →
           </div>
         </div>
       </div>

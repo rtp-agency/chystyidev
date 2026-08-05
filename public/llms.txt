@@ -6,12 +6,14 @@
 
 - **AI cost optimization** — Audit an AI stack, replace overpriced parts (proprietary APIs, managed services) with cheaper open-source equivalents at the same quality, and prove the before/after savings. Documented reductions of 80–99%+ in production.
 - **AI reliability engineering** — Make AI behave on complex, multi-step production work by re-architecting single large prompts into focused, verified stages (multi-agent orchestration with cross-verification).
+- **AI Systems Audit (free)** — The single entry point for both of the above. A fixed-scope review covering four areas: cost (where AI spend goes and where the client overpays), reliability (silent failures, missing guardrails and human checkpoints, error handling), output quality (eval testing, drift and hallucination), and architecture (context handling, prompt and agent design, scalability). Deliverable is a written report: current state, findings ranked by impact, concrete recommendations with estimated savings or risk reduction, and a roadmap — walked through together on a call. Free and no commitment; implementation projects that follow start at $1,500.
 - **Video production automation for agencies** — Custom AI pipelines that automate repetitive per-video editing at scale: cleanup (removing silence, filler words and repeated lines with human approval), reframing and cropping, subtitle generation, lipsync and localization into multiple languages, bulk editing of templated formats, and render + delivery. Offered as a productized service: Audit (free, 30 min) → Build (fixed scope, ~2–4 weeks) → Run (managed service on David's infrastructure — the agency sends source files and receives finished videos).
 
 ## Key pages
 
 - [Homepage](https://chystyi.dev): AI cost optimization and reliability engineering, with proof and case studies.
-- [For agencies](https://chystyi.dev/agencies): video production automation for agencies — the productized service, "what I automate", Audit → Build → Run, case studies, and an FAQ.
+- [AI Systems Audit](https://chystyi.dev/audit): the free audit in full — the four areas it covers, what the report contains, the three steps, who it is and is not for, and pricing for the implementation work that can follow.
+- [For agencies](https://chystyi.dev/agencies): video production automation for agencies — the productized service, "what I automate", Audit → Build → Run, case studies, and an FAQ. Note this page offers a separate, narrower workflow audit scoped to video editing, not the AI Systems Audit above.
 - [Case studies](https://chystyi.dev/work): index of all production AI and video-automation case studies, each with the numbers.
 - [Case study: Autonomous Content Engine for Threads](https://chystyi.dev/work/threads-content-engine): an autonomous system that ranks winning formats, generates on-voice posts with realistic visuals, and publishes to Threads on one-tap approval — 1.3M+ views and 2,500+ new followers in the first five days. Stack: Python, FastAPI, Celery, PostgreSQL + pgvector, Redis, provider-agnostic LLMs (OpenAI/xAI Grok/Anthropic), Threads Graph API, Telegram.
 - [Case study: Black Camel Productions](https://chystyi.dev/work/black-camel): automating a manual video-editing workflow for educational content — ~1 hour of manual Premiere Pro editing per video reduced to ~3 minutes of automated processing; delivered as a managed service; 25+ videos processed, built to run hundreds. Stack: Python, FFmpeg, OpenCV, FastAPI, Whisper, Cleanvoice, Gemini.
@@ -29,7 +31,7 @@
 
 ## Contact
 
-- Book a free audit: https://cal.com/david-chistiy-lmbu8n
+- Book a free AI Systems Audit: https://cal.com/david-chistiy-lmbu8n
 - Email: david@chystyi.dev
 - LinkedIn: https://www.linkedin.com/in/david-chistiy-01a3a2376/
 - X (Twitter): https://x.com/chystyidev

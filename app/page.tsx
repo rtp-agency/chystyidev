@@ -227,27 +227,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA — Free AI Cost Audit */}
+      {/* CTA — the one audit offer. Summary only; /audit carries the detail. */}
       <section id="contact" className="cta section-line">
         <div className="container">
           <Reveal>
             <div className="eyebrow">Free, no commitment</div>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2>A free 30-minute AI cost audit.</h2>
+            <h2>A free AI Systems Audit.</h2>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="lead">
-              Find out exactly how much you could be saving on AI — and how to
-              make it more reliable. No pitch, just a straight diagnostic.
+              A fixed-scope review that shows you where you&apos;re losing
+              money, where your AI is likely to break, and what it would take to
+              fix. Numbers, not opinions.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
             <ul className="audit-list">
-              <li>A review of your current AI tools and where the spend goes</li>
-              <li>The specific places you&apos;re overpaying</li>
-              <li>1–3 concrete, cheaper alternatives for your use case</li>
-              <li>An estimate of your potential annual savings</li>
+              <li>Cost — where your spend goes and where you&apos;re overpaying</li>
+              <li>Reliability — what will break, and when</li>
+              <li>Output quality — whether it&apos;s actually delivering</li>
+              <li>A prioritised report, walked through with you</li>
             </ul>
           </Reveal>
           <Reveal delay={0.2}>
@@ -258,8 +259,11 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="btn btn-primary"
               >
-                Book your free audit <span className="arrow">→</span>
+                Book a free audit <span className="arrow">→</span>
               </a>
+              <Link href="/audit" className="btn btn-secondary">
+                What the audit covers
+              </Link>
             </div>
             <div className="contact-or">or send a message</div>
             <ContactForm />

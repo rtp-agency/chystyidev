@@ -59,7 +59,9 @@ export function Nav({
               <a href="#faq">FAQ</a>
             </li>
             <li>
-              <a href="#contact">Book an audit</a>
+              {/* Named explicitly: this page offers the narrower video
+                  workflow audit, not the site-wide AI Systems Audit. */}
+              <a href="#contact">Workflow audit</a>
             </li>
           </ul>
         ) : variant === "work" ? (

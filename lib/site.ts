@@ -331,8 +331,8 @@ export const homeFaq = [
     a: "AI reliability engineering makes AI behave on complex, multi-step production work. Instead of one large prompt that hallucinates and drifts, I re-architect the task into focused, verified stages with cross-verification, so the output stays consistent at scale.",
   },
   {
-    q: "What does the free AI cost audit include?",
-    a: "The audit is a free 30-minute diagnostic: a review of your current AI tools and where the spend goes, the specific places you're overpaying, one to three cheaper alternatives for your use case, and an estimate of your potential annual savings. No pitch, no commitment.",
+    q: "What does the free AI Systems Audit include?",
+    a: "It's a free, fixed-scope review covering four things: cost (where your AI spend goes and where you're overpaying), reliability (where the system can fail silently or take down production), output quality (whether it's consistent and correct, tested with evals), and architecture (context handling, prompt and agent design, scalability). You get a written report with findings ranked by impact, concrete recommendations, and a roadmap — then we walk through it together. It starts with a short call to understand your setup and get access to what I need to review. No pitch, no commitment.",
   },
   {
     q: "Can you automate video editing for an agency at scale?",

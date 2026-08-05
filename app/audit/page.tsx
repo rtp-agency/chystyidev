@@ -152,7 +152,7 @@ export default function AuditPage() {
                   rel="noopener noreferrer"
                   className="btn btn-primary"
                 >
-                  Book the audit <span className="arrow">→</span>
+                  Book a free audit <span className="arrow">→</span>
                 </a>
                 <a href="#covers" className="btn btn-secondary">
                   What it covers
@@ -362,7 +362,7 @@ export default function AuditPage() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="lead">
-              Book the audit, or tell me about your setup and I&apos;ll come
+              Book a free audit, or tell me about your setup and I&apos;ll come
               back to you.
             </p>
           </Reveal>
@@ -374,7 +374,7 @@ export default function AuditPage() {
                 rel="noopener noreferrer"
                 className="btn btn-primary"
               >
-                Book the audit <span className="arrow">→</span>
+                Book a free audit <span className="arrow">→</span>
               </a>
             </div>
           </Reveal>
