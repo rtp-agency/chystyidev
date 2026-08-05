@@ -54,6 +54,17 @@
     pointer-events: none;
   }
 
+  /* Soft scrim directly under the copy. The perspective projection bunches the
+     brightest points near the middle of the frame, which is exactly where the
+     headline sits, so the dots read as texture on the edges and stay out of
+     the way of the type. */
+  .scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
   .content { position: relative; z-index: 2; height: 100%; }
 
   .eyebrow {
@@ -125,6 +136,14 @@
       radial-gradient(120% 150% at 50% 45%, transparent 30%, rgba(10,10,10,.72) 100%),
       linear-gradient(90deg, rgba(10,10,10,.85) 0%, transparent 22%, transparent 78%, rgba(10,10,10,.85) 100%);
   }
+  #cover .scrim {
+    background: radial-gradient(
+      ellipse 44% 58% at 50% 44%,
+      rgba(10, 10, 10, 0.88) 0%,
+      rgba(10, 10, 10, 0.62) 45%,
+      transparent 100%
+    );
+  }
   #cover .content {
     display: flex;
     flex-direction: column;
@@ -160,6 +179,15 @@
 
   #featured .vignette {
     background: radial-gradient(110% 130% at 50% 40%, transparent 35%, rgba(10,10,10,.8) 100%);
+  }
+  #featured .scrim {
+    /* Offset left, tracking the left-aligned copy block. */
+    background: radial-gradient(
+      ellipse 58% 62% at 36% 50%,
+      rgba(10, 10, 10, 0.9) 0%,
+      rgba(10, 10, 10, 0.6) 50%,
+      transparent 100%
+    );
   }
   #featured .content {
     display: flex;
@@ -204,8 +232,9 @@
 
 <!-- 1584x396 — LinkedIn personal profile cover -->
 <div class="banner" id="cover">
-  <canvas data-seed="7" data-density="5200"></canvas>
+  <canvas data-seed="7" data-density="2300" data-alpha="0.5"></canvas>
   <div class="vignette"></div>
+  <div class="scrim"></div>
   <div class="content">
     <div class="eyebrow center">AI Implementation Consultant</div>
     <h1>AI that&#39;s reliable, safe, and <em>does the work</em>.</h1>
@@ -224,8 +253,9 @@
 
 <!-- 1200x627 — LinkedIn Featured section -->
 <div class="banner" id="featured">
-  <canvas data-seed="21" data-density="4200"></canvas>
+  <canvas data-seed="21" data-density="1900" data-alpha="0.5"></canvas>
   <div class="vignette"></div>
+  <div class="scrim"></div>
   <div class="domain">chystyi.dev</div>
   <div class="content">
     <div class="eyebrow">Free · 30 minutes · No pitch</div>
@@ -286,6 +316,10 @@
 
     const rnd = mulberry32(Number(canvas.dataset.seed) || 1);
     const N = Number(canvas.dataset.density) || 5200;
+    // Global dimmer. The site animates these dots against a full viewport, but
+    // in a short banner they sit right on top of the headline, so they are
+    // knocked back to texture rather than foreground.
+    const ALPHA = Number(canvas.dataset.alpha) || 1;
     const TAU = Math.PI * 2, R = 480, FOV = 900;
     const SX = 1.35, SY = 0.72, SZ = 1.05, CLUSTERS = 15;
     const cx = W / 2, cy = H / 2;
@@ -351,7 +385,7 @@
 
       const depth = (persp - 0.6) / 1.6;
       const tw = 0.75 + 0.25 * Math.sin(phase * 3);
-      const a = bright * (0.22 + 0.78 * depth) * tw;
+      const a = bright * (0.22 + 0.78 * depth) * tw * ALPHA;
       if (a <= 0.02) continue;
       ctx.globalAlpha = a > 1 ? 1 : a;
       const s = size * persp * 0.9;
