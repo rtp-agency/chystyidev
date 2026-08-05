@@ -349,7 +349,14 @@ export const homeFaq = [
 ];
 
 export type Testimonial = {
+  /** Initial shown when there is no avatarSrc. */
   avatar: string;
+  /**
+   * Path to a logo/portrait in /public, e.g. "/avatars/yappi.png". Most quotes
+   * here are under NDA and stay initials-only; this is for the few clients who
+   * agreed to be named.
+   */
+  avatarSrc?: string;
   name: string;
   title: string;
   quote: string;
@@ -390,4 +397,128 @@ export const testimonials: Testimonial[] = [
     quote:
       "David helped us solve a lot of automation challenges. He takes initiative without being asked, assesses the work honestly, and fixes issues long after delivery without extra charges. He genuinely solves the problem instead of just billing for it.",
   },
+];
+
+/* ---------------------------------------------------------------------------
+ * AI Systems Audit
+ *
+ * The productized entry offer. The audit itself is free — it is the thing that
+ * scopes paid work, so its price is deliberately zero and the number that
+ * matters is projectPriceFrom below.
+ * ------------------------------------------------------------------------- */
+
+export const pricing = {
+  /** Entry price for implementing what the audit finds. */
+  projectFrom: "$1,500",
+  auditPrice: "Free",
+};
+
+export const auditLead =
+  "A fixed-scope review of your AI setup that shows you exactly where you're losing money, where it's likely to break, and what it would take to fix.";
+
+export const auditProblem =
+  "You already use AI in your product or operations. But you're not sure if it's costing more than it should, whether it's reliable enough to trust in production, or whether it's actually delivering. This audit answers those questions with numbers, not opinions.";
+
+export type AuditSection = {
+  num: string;
+  title: string;
+  tagline: string;
+  items: string[];
+};
+
+export const auditSections: AuditSection[] = [
+  {
+    num: "01",
+    title: "Cost analysis",
+    tagline: "where your money is actually going",
+    items: [
+      "Full breakdown of your current AI/infrastructure spend — API calls, compute, tooling, per-run fees",
+      "Identification of the biggest cost drivers and where you're overpaying",
+      "Concrete savings opportunities: where proprietary services can be replaced with open-source or self-hosted alternatives, with estimated savings %",
+      "Right-sizing check: are you paying for capacity or models you don't need",
+    ],
+  },
+  {
+    num: "02",
+    title: "Reliability review",
+    tagline: "what will break, and when",
+    items: [
+      "Assessment of failure points: where your AI can fail silently, produce wrong output, or take down production",
+      "Guardrail check: what the AI is allowed to do vs. what it should never be allowed to touch — irreversible actions, destructive commands, data exposure",
+      "Human-in-the-loop analysis: where a human checkpoint is missing and should exist",
+      "Error handling and fallback review: what happens when the AI fails, and whether you'd even know",
+    ],
+  },
+  {
+    num: "03",
+    title: "Output quality",
+    tagline: "is it actually delivering",
+    items: [
+      "Evaluation of whether your AI produces consistent, correct results (eval testing)",
+      "Where output drifts, hallucinates, or degrades over time",
+      "Whether the AI is solving the problem it was built for, or quietly underperforming",
+    ],
+  },
+  {
+    num: "04",
+    title: "Architecture & context",
+    tagline: "how the system is put together",
+    items: [
+      "Review of how your AI system is structured — context handling, prompt design, tool/agent setup",
+      "Where context is lost, where agents drift, where the design causes avoidable problems",
+      "Scalability check: will this hold up as usage grows",
+    ],
+  },
+];
+
+export const auditDeliverables = [
+  {
+    title: "Your current state",
+    body: "Spend, reliability risks, and quality issues, with specifics.",
+  },
+  {
+    title: "Prioritised findings",
+    body: "Ranked by impact — biggest cost leak and biggest reliability risk first.",
+  },
+  {
+    title: "Concrete recommendations",
+    body: "What to fix, in what order, and the estimated cost saving or risk reduction for each.",
+  },
+  {
+    title: "A roadmap",
+    body: "What a fix would involve, so you can decide what's worth doing.",
+  },
+];
+
+export const auditProcess = [
+  {
+    num: "01",
+    title: "Short call",
+    body: "We go over your setup and you give me access to what I need to review.",
+  },
+  { num: "02", title: "I run the audit", body: "No time of yours required." },
+  {
+    num: "03",
+    title: "Report and walkthrough",
+    body: "You get the report, and we walk through it together so you know exactly what it means and what to do next.",
+  },
+];
+
+export const auditFitFor = [
+  "You already use AI in your product or operations, but you're not sure it's worth what it costs",
+  "Your AI/API/compute bills keep growing and you don't have a clear picture of why",
+  "Your AI works in testing but breaks, hallucinates, or behaves unpredictably in production",
+  "You're relying on proprietary AI services and suspect you're overpaying",
+  "You've built AI features but they're underdelivering, and you can't tell if it's the model, the setup, or the approach",
+  "You want AI you can actually trust in production, not a demo that falls apart under real use",
+  "You'd rather know exactly where the money and risk are before spending more",
+];
+
+export const auditNotFor = [
+  "You haven't started using AI yet and just want general advice on getting into it",
+  "You're looking for the cheapest possible freelancer to build a quick prototype",
+  "You want someone to promise AI will magically solve a problem it can't",
+  "You need a full-time employee rather than a focused expert on a specific problem",
+  "Your AI setup is small and simple enough that a quick fix would obviously do",
+  "You're not willing to give access to the actual system, spend data, or code needed to review it properly",
 ];

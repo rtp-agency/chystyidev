@@ -189,36 +189,43 @@
       transparent 100%
     );
   }
-  /* Everything here is sized for the thumbnail, not for this file. LinkedIn
-     renders a Featured item at roughly a quarter of these dimensions, so any
-     type under ~30px collapses into noise. Hence: four elements, all large. */
+  /* Sized for where it is actually seen, not for this file.
+     A Featured card renders about 360px wide, so this 1200px frame is shown at
+     roughly a third — then re-encoded to JPEG. Anything below ~40px here lands
+     under 12px on screen and dissolves. Everything on this card is therefore
+     scaled so it survives the reduction; the eyebrow and the bullet list are
+     gone because at this size they were never going to. */
   #featured .content {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 84px;
+    padding: 0 80px;
   }
-  #featured .eyebrow { font-size: 22px; gap: 18px; margin-bottom: 30px; }
-  #featured .eyebrow::before { width: 44px; }
-  #featured h1 { font-size: 92px; }
-  #featured .lead { font-size: 33px; margin-top: 30px; letter-spacing: -0.015em; }
+  #featured h1 { font-size: 124px; letter-spacing: -0.038em; }
+  #featured .lead {
+    font-size: 44px;
+    margin-top: 34px;
+    letter-spacing: -0.018em;
+    color: var(--color-text);
+  }
   #featured .btn-primary {
-    font-size: 31px;
-    padding: 24px 44px;
-    border-radius: 18px;
-    margin-top: 46px;
+    font-size: 40px;
+    padding: 28px 52px;
+    border-radius: 22px;
+    margin-top: 52px;
     align-self: flex-start;
+    gap: 14px;
   }
   #featured .domain {
     position: absolute;
-    top: 44px;
-    right: 84px;
+    top: 48px;
+    right: 80px;
     z-index: 2;
     font-family: var(--font-mono);
-    font-size: 26px;
-    letter-spacing: 0.08em;
+    font-size: 32px;
+    letter-spacing: 0.06em;
     color: var(--color-warm);
-    opacity: 0.8;
+    opacity: 0.85;
   }
 </style>
 
@@ -245,15 +252,16 @@
 
 <!-- 1200x627 — LinkedIn Featured section -->
 <div class="banner" id="featured">
-  <canvas data-seed="21" data-density="1900" data-alpha="0.5"></canvas>
+  <!-- Dimmer and sparser than the cover: JPEG turns faint single-pixel dots
+       into blocky noise, and this card gets re-encoded by LinkedIn. -->
+  <canvas data-seed="21" data-density="1300" data-alpha="0.32"></canvas>
   <div class="vignette"></div>
   <div class="scrim"></div>
   <div class="domain">chystyi.dev</div>
   <div class="content">
-    <div class="eyebrow">Free · 30 minutes · No pitch</div>
-    <h1>Free audit of<br />your <em>AI system</em>.</h1>
-    <p class="lead">I find where your AI overspends and where it breaks.</p>
-    <div class="btn-primary">Book a free audit <span>&rarr;</span></div>
+    <h1>Free <em>AI</em> audit.</h1>
+    <p class="lead">Where your AI overspends and where it breaks.</p>
+    <div class="btn-primary">Book a 30-min slot <span>&rarr;</span></div>
   </div>
 </div>
 
