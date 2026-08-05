@@ -1,0 +1,368 @@
+<!doctype html>
+<meta charset="utf-8" />
+<title>chystyi.dev — LinkedIn banners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500;1,9..144,600&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+
+<style>
+  /* Tokens lifted verbatim from app/globals.css so these stay on-brand. */
+  :root {
+    --color-bg: #0a0a0a;
+    --color-line: #2a2a2a;
+    --color-text: #fafafa;
+    --color-muted: #7d7d7d;
+    --color-warm: #d8d8d8;
+    --warm-dim: rgba(216, 216, 216, 0.5);
+    --font-sans: "Inter", system-ui, sans-serif;
+    --font-serif: "Fraunces", Georgia, serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #111;
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 40px;
+    align-items: flex-start;
+  }
+
+  .banner {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-bg);
+    isolation: isolate;
+  }
+
+  .banner canvas { position: absolute; inset: 0; z-index: 0; }
+
+  /* Vignette: pulls the eye to the centre and keeps the nebula from
+     competing with the type, same trick the site uses behind the hero. */
+  .vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .content { position: relative; z-index: 2; height: 100%; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-warm);
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .eyebrow::before,
+  .eyebrow.center::after {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--color-warm);
+    opacity: 0.55;
+  }
+
+  h1 {
+    font-weight: 600;
+    line-height: 1.03;
+    letter-spacing: -0.032em;
+  }
+
+  /* The shimmering serif accent from .hero em */
+  em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 500;
+    /* Fraunces italic sets tight; without this "AI system" reads as one word. */
+    word-spacing: 0.12em;
+    background: linear-gradient(100deg, #9a9a9a 20%, #ffffff 50%, #9a9a9a 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .lead { color: var(--color-warm); letter-spacing: -0.01em; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--color-text);
+    color: var(--color-bg);
+    border-radius: 13px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  .island {
+    border-radius: 26px;
+    background: linear-gradient(180deg, rgba(24,24,24,.6), rgba(13,13,13,.62));
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.06),
+      0 44px 90px -46px rgba(0,0,0,.92),
+      0 0 70px -34px rgba(255,255,255,.05);
+  }
+
+  /* ---------- 1. Profile cover: 1584x396 ---------- */
+  #cover { width: 1584px; height: 396px; }
+
+  #cover .vignette {
+    background:
+      radial-gradient(120% 150% at 50% 45%, transparent 30%, rgba(10,10,10,.72) 100%),
+      linear-gradient(90deg, rgba(10,10,10,.85) 0%, transparent 22%, transparent 78%, rgba(10,10,10,.85) 100%);
+  }
+  #cover .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* Bottom padding keeps every glyph clear of the avatar, which overlaps
+       the lower-left of the cover on desktop. */
+    padding: 26px 290px 78px;
+  }
+  #cover .eyebrow { font-size: 13px; margin-bottom: 20px; }
+  #cover h1 { font-size: 54px; }
+  #cover .lead { font-size: 19px; margin-top: 17px; }
+  #cover .metrics {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-top: 26px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  #cover .metrics b { color: var(--color-text); font-weight: 500; }
+  #cover .metrics span {
+    width: 3px; height: 3px; border-radius: 50%;
+    background: var(--color-warm); opacity: 0.45;
+  }
+
+  /* ---------- 2. Featured card: 1200x627 ---------- */
+  #featured { width: 1200px; height: 627px; }
+
+  #featured .vignette {
+    background: radial-gradient(110% 130% at 50% 40%, transparent 35%, rgba(10,10,10,.8) 100%);
+  }
+  #featured .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 34px 84px 0;
+  }
+  #featured .eyebrow { font-size: 13px; margin-bottom: 26px; }
+  #featured h1 { font-size: 60px; max-width: 900px; }
+  #featured .lead { font-size: 21px; margin-top: 22px; max-width: 760px; line-height: 1.5; }
+  #featured ul { list-style: none; display: flex; gap: 34px; margin-top: 34px; }
+  #featured li {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-size: 16px;
+    color: var(--color-warm);
+    letter-spacing: -0.01em;
+  }
+  #featured li svg { flex: none; }
+  #featured .cta-row { display: flex; align-items: center; gap: 26px; margin-top: 44px; }
+  #featured .btn-primary { font-size: 18px; padding: 18px 34px; }
+  #featured .cta-note {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  #featured .domain {
+    position: absolute;
+    top: 46px;
+    right: 84px;
+    z-index: 2;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    color: var(--color-warm);
+    opacity: 0.75;
+  }
+</style>
+
+<!-- 1584x396 — LinkedIn personal profile cover -->
+<div class="banner" id="cover">
+  <canvas data-seed="7" data-density="5200"></canvas>
+  <div class="vignette"></div>
+  <div class="content">
+    <div class="eyebrow center">AI Implementation Consultant</div>
+    <h1>AI that&#39;s reliable, safe, and <em>does the work</em>.</h1>
+    <p class="lead">
+      I cut what you spend running AI — and make production AI stop breaking.
+    </p>
+    <div class="metrics">
+      <div>AI cost optimization <b>−80–99%</b></div>
+      <span></span>
+      <div>AI reliability engineering <b>−90% errors</b></div>
+      <span></span>
+      <div><b>chystyi.dev</b></div>
+    </div>
+  </div>
+</div>
+
+<!-- 1200x627 — LinkedIn Featured section -->
+<div class="banner" id="featured">
+  <canvas data-seed="21" data-density="4200"></canvas>
+  <div class="vignette"></div>
+  <div class="domain">chystyi.dev</div>
+  <div class="content">
+    <div class="eyebrow">Free · 30 minutes · No pitch</div>
+    <h1>Book a free audit<br />of your <em>AI system</em>.</h1>
+    <p class="lead">
+      In 30 minutes I map where your AI overspends and where it breaks — in real
+      numbers. You leave with a plan, whether or not we work together.
+    </p>
+    <ul>
+      <li>
+        <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
+          <path d="M3.5 9L6.8 12.2L13.5 5" stroke="#fafafa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Where your AI budget leaks
+      </li>
+      <li>
+        <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
+          <path d="M3.5 9L6.8 12.2L13.5 5" stroke="#fafafa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Why it fails at scale
+      </li>
+      <li>
+        <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
+          <path d="M3.5 9L6.8 12.2L13.5 5" stroke="#fafafa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        What to fix first
+      </li>
+    </ul>
+    <div class="cta-row">
+      <div class="btn-primary">Book a free audit <span>&rarr;</span></div>
+      <div class="cta-note">Limited slots each week</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Same point-cloud nebula as components/NebulaBackground.tsx, but seeded and
+  // drawn as a single frame so every render of these banners is identical.
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = (a + 0x6d2b79f5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function drawNebula(canvas) {
+    const W = canvas.parentElement.clientWidth;
+    const H = canvas.parentElement.clientHeight;
+    const DPR = 2;
+    canvas.width = W * DPR;
+    canvas.height = H * DPR;
+    canvas.style.width = W + "px";
+    canvas.style.height = H + "px";
+    const ctx = canvas.getContext("2d");
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+
+    const rnd = mulberry32(Number(canvas.dataset.seed) || 1);
+    const N = Number(canvas.dataset.density) || 5200;
+    const TAU = Math.PI * 2, R = 480, FOV = 900;
+    const SX = 1.35, SY = 0.72, SZ = 1.05, CLUSTERS = 15;
+    const cx = W / 2, cy = H / 2;
+
+    const gauss = () => {
+      let u = 0, v = 0;
+      while (u === 0) u = rnd();
+      while (v === 0) v = rnd();
+      return Math.sqrt(-2 * Math.log(u)) * Math.cos(TAU * v);
+    };
+
+    const centers = [];
+    for (let i = 0; i < CLUSTERS; i++) {
+      const r = R * 0.72 * Math.cbrt(rnd());
+      const th = rnd() * TAU;
+      const ph = Math.acos(2 * rnd() - 1);
+      centers.push([
+        Math.sin(ph) * Math.cos(th) * r * SX,
+        Math.cos(ph) * r * SY,
+        Math.sin(ph) * Math.sin(th) * r * SZ,
+        60 + rnd() * 120,
+      ]);
+    }
+
+    // A fixed rotation that lands the densest clusters off-centre, so the
+    // middle of the frame stays calm enough to carry text.
+    const aY = 0.85, aX = -0.12;
+    const cosY = Math.cos(aY), sinY = Math.sin(aY);
+    const cosX = Math.cos(aX), sinX = Math.sin(aX);
+    const gscale = Math.min(W, H) / 900 + 0.55;
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = "#ffffff";
+
+    for (let i = 0; i < N; i++) {
+      let x, y, z;
+      if (rnd() < 0.74) {
+        const c = centers[(rnd() * CLUSTERS) | 0];
+        x = c[0] + gauss() * c[3];
+        y = c[1] + gauss() * c[3] * 0.7;
+        z = c[2] + gauss() * c[3];
+      } else {
+        const r = R * Math.cbrt(rnd());
+        const th = rnd() * TAU;
+        const ph = Math.acos(2 * rnd() - 1);
+        x = Math.sin(ph) * Math.cos(th) * r * SX;
+        y = Math.cos(ph) * r * SY;
+        z = Math.sin(ph) * Math.sin(th) * r * SZ;
+      }
+      const bright = 0.35 + rnd() * 0.65;
+      const size = 0.7 + rnd() * 1.4;
+      const phase = rnd() * TAU;
+
+      let rx = x * cosY - z * sinY;
+      let rz = x * sinY + z * cosY;
+      const ry = y * cosX - rz * sinX;
+      rz = y * sinX + rz * cosX;
+
+      const persp = FOV / (FOV + rz);
+      const sx = cx + rx * persp * gscale;
+      const sy = cy + ry * persp * gscale;
+      if (sx < -20 || sx > W + 20 || sy < -20 || sy > H + 20) continue;
+
+      const depth = (persp - 0.6) / 1.6;
+      const tw = 0.75 + 0.25 * Math.sin(phase * 3);
+      const a = bright * (0.22 + 0.78 * depth) * tw;
+      if (a <= 0.02) continue;
+      ctx.globalAlpha = a > 1 ? 1 : a;
+      const s = size * persp * 0.9;
+      ctx.fillRect(sx, sy, s, s);
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  (async () => {
+    await document.fonts.ready;
+    document.querySelectorAll(".banner canvas").forEach(drawNebula);
+    document.documentElement.dataset.ready = "1";
+  })();
+</script>
