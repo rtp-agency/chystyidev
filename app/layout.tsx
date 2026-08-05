@@ -4,6 +4,7 @@ import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { FloatingCTA } from "@/components/FloatingCTA";
 import { NebulaBackground } from "@/components/NebulaBackground";
+import { jsonLdScript } from "@/lib/jsonld";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -194,7 +195,7 @@ export default function RootLayout({
       <body>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
         />
         <div className="grain" aria-hidden="true" />
         <NebulaBackground />

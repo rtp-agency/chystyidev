@@ -15,6 +15,7 @@ import {
   testimonials,
   homeFaq,
 } from "@/lib/site";
+import { jsonLdScript } from "@/lib/jsonld";
 
 const CAL_URL = "https://cal.com/david-chistiy-lmbu8n";
 
@@ -37,7 +38,7 @@ export default function Home() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(faqJsonLd) }}
       />
       <Nav variant="home" />
 

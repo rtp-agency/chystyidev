@@ -16,6 +16,7 @@ import {
   agencyFaq,
   testimonials,
 } from "@/lib/site";
+import { jsonLdScript } from "@/lib/jsonld";
 
 const CAL_URL = "https://cal.com/david-chistiy-lmbu8n";
 
@@ -257,7 +258,7 @@ export default function Agencies() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(agencyJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(agencyJsonLd) }}
       />
       <div className="bg-grid" aria-hidden="true" />
       <Nav variant="agencies" />

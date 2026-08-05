@@ -41,13 +41,42 @@ export function ContactForm() {
 
   return (
     <form className="contact-form" onSubmit={onSubmit}>
-      <input type="text" name="name" placeholder="Your name" required />
-      <input type="email" name="email" placeholder="Email" required />
+      {/*
+        Honeypot. Web3Forms rejects any submission that arrives with `botcheck`
+        set, and scripted spammers fill every field they can see in the DOM.
+        Hidden from real users and from assistive tech, and kept out of the tab
+        order so nobody can reach it by accident.
+      */}
+      <input
+        type="checkbox"
+        name="botcheck"
+        style={{ display: "none" }}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
+      <input
+        type="text"
+        name="name"
+        placeholder="Your name"
+        required
+        maxLength={100}
+        autoComplete="name"
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        required
+        maxLength={200}
+        autoComplete="email"
+      />
       <textarea
         name="message"
         placeholder="What are you building, and where does AI cost or reliability hurt?"
         rows={4}
         required
+        maxLength={5000}
       />
       <button
         type="submit"

@@ -5,6 +5,7 @@ import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
 import { CaseVisual } from "@/components/CaseVisual";
 import { cases, getCase, type Block } from "@/lib/cases";
+import { jsonLdScript } from "@/lib/jsonld";
 
 export function generateStaticParams() {
   return cases.map((c) => ({ slug: c.slug }));
@@ -160,7 +161,7 @@ export default async function CasePage({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
       <Nav variant="case" />
 

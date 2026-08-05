@@ -4,6 +4,7 @@ import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
 import { CaseCard } from "@/components/CaseCard";
 import { work } from "@/lib/site";
+import { jsonLdScript } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "Case Studies — Production AI & Video Automation · David Chystyi",
@@ -67,7 +68,7 @@ export default function WorkIndex() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
       <Nav variant="work" />
 
