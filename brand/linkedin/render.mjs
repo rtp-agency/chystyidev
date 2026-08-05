@@ -14,13 +14,14 @@ import { dirname, join } from "node:path";
 
 const here = dirname(fileURLToPath(import.meta.url));
 
+// Exact platform sizes, deliberately. LinkedIn builds its own derivatives from
+// whatever it is handed, so the least-mangled result comes from matching the
+// documented dimensions rather than oversampling: 1200x627 is its link-preview
+// spec (1.9139:1) and 1584x396 the profile cover. An earlier 2x version of the
+// Featured card only gave LinkedIn more to rescale, so it is gone.
 const TARGETS = [
   { id: "cover", file: "chystyi-linkedin-cover.png", w: 1584, h: 396 },
   { id: "featured", file: "chystyi-linkedin-featured-audit.png", w: 1200, h: 627 },
-  // Same frame at twice the pixels. LinkedIn re-encodes whatever it is given,
-  // and feeding it the 1200px file leaves nothing spare for a retina display.
-  // Identical aspect ratio, so it cannot crop differently.
-  { id: "featured", file: "chystyi-linkedin-featured-audit@2x.png", w: 2400, h: 1254 },
 ];
 
 const browser = await chromium.launch();
