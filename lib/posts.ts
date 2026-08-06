@@ -47,9 +47,9 @@ export const posts: Post[] = [
     metaTitle: "AI video generation cost per minute",
     lead: "Per-output pricing is the right answer for a one-off and the wrong one for a production line. Here is where the crossover sits, and the limit nobody quotes you until you hit it.",
     metaDescription:
-      "AI video APIs charge $0.05–0.75 per second. Renting the compute instead changes the maths at volume — and removes the length caps that stop you outright.",
+      "Per-output video APIs charge $1–4 a finished minute. The same minute costs 6–9 cents of rented GPU time — if you size the card to the job. Worked numbers.",
     date: "2026-08-06",
-    readingMinutes: 10,
+    readingMinutes: 7,
     draft: true,
     sections: [
       {
@@ -100,6 +100,7 @@ export const posts: Post[] = [
           {
             t: "table",
             rows: [
+              ["RTX 5090 — from ~$0.36/hr", "32 GB VRAM"],
               ["H200 — $3.953/hr", "140 GB VRAM · 4,046 GB/s · 53.5 TFLOPS"],
               ["B200 — $6.006/hr", "179 GB VRAM · 6,061 GB/s · 59.6 TFLOPS"],
             ],
@@ -115,6 +116,52 @@ export const posts: Post[] = [
           {
             t: "p",
             html: `The billing unit changes from "per minute of output" to "per hour of card". Whether that is cheaper comes down to one measurement: how many finished minutes your workflow produces per rented hour.`,
+          },
+        ],
+      },
+      {
+        heading: "The maths, worked",
+        blocks: [
+          {
+            t: "p",
+            html: `Two real shapes of job, using my own render times and the listed hourly rates.`,
+          },
+          {
+            t: "h3",
+            text: "A one-minute clip",
+          },
+          {
+            t: "p",
+            html: `Renders in ten to fifteen minutes, and does not need an expensive card — a 5090 is more than enough. At roughly <b>$0.36/hour</b> that is <b>six to nine cents</b> of compute for a finished minute. The same minute bought per-output runs $1–4 on an avatar API, or $3–45 on the general video APIs.`,
+          },
+          {
+            t: "h3",
+            text: "A ten-minute video",
+          },
+          {
+            t: "p",
+            html: `Renders in about an hour to an hour and a half, and this one does want the big card. At <b>$3.953/hour</b> that is <b>$3.95–5.93</b> for the whole video — <b>40 to 59 cents</b> per finished minute. Bought per output at $1–4 a minute, the same video is $10–40.`,
+          },
+          {
+            t: "table",
+            rows: [
+              ["1 min clip · 5090", "$0.06–0.09 per finished minute"],
+              ["10 min video · H200", "$0.40–0.59 per finished minute"],
+              ["Per-output avatar API", "$1–4 per finished minute"],
+              ["Per-output video APIs", "$3–45 per finished minute"],
+            ],
+          },
+          {
+            t: "p",
+            html: `Now look at the gap between the first two rows. Six cents against fifty is a factor of roughly eight — <i>between two versions of doing it yourself</i>. That spread is larger than many teams' entire saving from leaving a paid API in the first place.`,
+          },
+          {
+            t: "quote",
+            text: "The expensive mistake is usually not paying per output. It is renting a data-centre GPU for work a gaming card finishes just as well.",
+          },
+          {
+            t: "p",
+            html: `Which is why "just self-host it" is not the advice. Size the card to the job, and re-check that sizing when the job changes. A pipeline that quietly runs every short clip through a $4/hour card is burning most of what the switch was supposed to save.`,
           },
         ],
       },
@@ -196,11 +243,15 @@ export const posts: Post[] = [
         blocks: [
           {
             t: "p",
-            html: `Three numbers settle it. How many finished minutes do you need per month? What is the per-minute rate you are paying now? And how many minutes does one hour of a rented card actually produce on your workflow?`,
+            html: `Three numbers settle it. How many finished minutes do you need per month? What is the per-minute rate you are paying now? And how long does your workflow take to render one minute, on the cheapest card that can actually hold the job?`,
           },
           {
             t: "p",
-            html: `If the monthly volume is small, stop — you already have the right answer. If it is large, or if you are hitting a length cap, the third number is the one worth measuring, and it is measurable in an afternoon.`,
+            html: `That last clause is the one people skip, and it is where most of the money is. Measure it on the small card first and only move up when something genuinely does not fit.`,
+          },
+          {
+            t: "p",
+            html: `If the monthly volume is small, stop — you already have the right answer, and it is the paid service. If it is large, the render-time number is worth measuring properly, and it is measurable in an afternoon.`,
           },
           {
             t: "p",
