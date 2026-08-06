@@ -95,40 +95,55 @@ export const posts: Post[] = [
           },
           {
             t: "p",
-            html: `Market rates in 2026: an <b>H200 (141 GB)</b> sits around a <b>$3.95/hour</b> median on demand, with spot capacity closer to $2. A <b>B200 (192 GB)</b> carries a real premium — commonly $5–10/hour, though at the cheaper end of the market the gap narrows to about a dollar. The B200 buys you 192 GB instead of 141 GB and <b>8.0 TB/s of memory bandwidth against 4.8</b>, which matters more for video diffusion than it does for most text work, because these pipelines are usually bandwidth- and VRAM-bound rather than compute-bound.`,
+            html: `Real marketplace listings at the time of writing, not datasheet figures — what you can actually put a card on:`,
+          },
+          {
+            t: "table",
+            rows: [
+              ["H200 — $3.953/hr", "140 GB VRAM · 4,046 GB/s · 53.5 TFLOPS"],
+              ["B200 — $6.006/hr", "179 GB VRAM · 6,061 GB/s · 59.6 TFLOPS"],
+            ],
           },
           {
             t: "p",
-            html: `The unit changes from "per minute of output" to "per hour of card". Whether that is cheaper depends entirely on how many minutes of finished video your workflow gets out of an hour — which is the number to measure before deciding anything.`,
+            html: `Worth reading that table carefully, because the obvious conclusion is the wrong one. The B200 costs <b>52% more</b> and gives 28% more VRAM and 50% more bandwidth — but measured on raw performance per dollar it is actually the <i>worse</i> buy. You take it for one reason: fitting more into a single pass. For video diffusion the binding constraint is usually VRAM and memory bandwidth rather than raw compute, so the card that holds your clip in one piece beats the card with the better price-performance ratio.`,
+          },
+          {
+            t: "p",
+            html: `Note also that these are marketplace numbers, and they move. The first provider I used was priced well above what equivalent capacity costs today. Re-checking the market is part of the job, not a one-time decision.`,
+          },
+          {
+            t: "p",
+            html: `The billing unit changes from "per minute of output" to "per hour of card". Whether that is cheaper comes down to one measurement: how many finished minutes your workflow produces per rented hour.`,
           },
         ],
       },
       {
-        heading: "The limit nobody quotes you",
+        heading: "Length is a constraint you inherit",
         blocks: [
           {
             t: "p",
-            html: `Price is the argument people expect. The one that actually ends the discussion is length.`,
+            html: `Per-output services carry caps that have nothing to do with your budget. A leading avatar API stops at 30 minutes per video. Motion-control services have commonly capped output at 30 <i>seconds</i>.`,
           },
           {
             t: "p",
-            html: `HeyGen caps generated video at <b>30 minutes</b>. I had a client producing <b>50-minute</b> lipsynced videos. That is not an expensive request on a per-output service — it is an impossible one. No budget unlocks it.`,
+            html: `Most work sits comfortably inside those limits, so for most people this never comes up. But when it does, no amount of money moves it — you are not paying for a longer clip, you are asking for a feature that is not on offer.`,
           },
           {
             t: "p",
-            html: `With the card in front of you the constraint is VRAM, and it moves. On a 141 GB H200 a single pass comfortably holds something in the range of seven to eight minutes, and longer material is handled by segmenting rather than by asking permission. The ceiling becomes an engineering decision instead of a line in someone else's pricing page.`,
+            html: `With the card in front of you the ceiling is VRAM instead, and VRAM is something you choose. On a 140 GB card a single pass holds a clip in the range of seven to eight minutes; a 179 GB card holds more. Longer material gets segmented. The limit becomes an engineering decision rather than a line in someone else's pricing page.`,
           },
           {
             t: "p",
-            html: `The same thing showed up on motion control. Replacing a premium motion-control service with our own workflow cut cost by 84% — roughly <b>$12,000 a year</b> at that client's volume, with per-video cost down in the tens of cents against a service charging <b>$0.09–0.14 per second</b>. It also removed the 30-second duration cap the paid service imposed. Sometimes replacing a managed service buys capability, not just margin.`,
+            html: `That is what happened on motion control. Replacing a premium motion-control service with our own workflow cut cost by 84% — roughly <b>$12,000 a year</b> at that client's volume, with per-video cost down in the tens of cents against a service charging <b>$0.09–0.14 per second</b>. It also removed the 30-second cap. Replacing a managed service sometimes buys capability, not only margin.`,
           },
           {
             t: "stats",
             items: [
-              { number: "30 min", label: "Hard cap on a leading avatar API" },
-              { number: "50 min", label: "What the client actually needed" },
               { number: "84%", label: "Motion control cost reduction" },
               { number: "99%+", label: "Lipsync cost reduction" },
+              { number: "~$12K", label: "Annual saving, one client" },
+              { number: "30 sec", label: "Cap the paid service imposed" },
             ],
           },
         ],
