@@ -4,7 +4,7 @@ import { LiquidGlass } from "./LiquidGlass";
 export function Nav({
   variant = "home",
 }: {
-  variant?: "home" | "case" | "agencies" | "work";
+  variant?: "home" | "case" | "agencies" | "work" | "blog";
 }) {
   return (
     <nav>
@@ -38,6 +38,9 @@ export function Nav({
               <Link href="/audit">Free audit</Link>
             </li>
             <li>
+              <Link href="/blog">Blog</Link>
+            </li>
+            <li>
               <a href="#faq">FAQ</a>
             </li>
             <li>
@@ -64,7 +67,7 @@ export function Nav({
               <a href="#contact">Workflow audit</a>
             </li>
           </ul>
-        ) : variant === "work" ? (
+        ) : variant === "work" || variant === "blog" ? (
           <Link href="/" className="nav-back">
             ← Home
           </Link>
