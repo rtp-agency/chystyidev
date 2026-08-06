@@ -18,6 +18,12 @@ export type Post = {
   topic: string;
   title: string;
   lead: string;
+  /**
+   * Short <title> for search results — headline-length titles get truncated
+   * around 60 characters once " · David Chystyi" is appended. Falls back to
+   * `title`.
+   */
+  metaTitle?: string;
   /** ≤155 chars, outcome-first. Falls back to lead. */
   metaDescription?: string;
   /** ISO date, used for sitemap lastmod, JSON-LD and the visible byline. */
@@ -32,6 +38,7 @@ export const posts: Post[] = [
     slug: "cut-ai-inference-costs",
     topic: "AI cost optimization",
     title: "How to cut AI inference costs by 80–99% without losing quality",
+    metaTitle: "How to cut AI inference costs 80–99%",
     lead: "Most teams overpay for AI by a large multiple and never measure where. Here is the method I use to find the waste and replace it — and what it actually produced on four production systems.",
     metaDescription:
       "The method behind 84–99% AI cost reductions: find the per-unit price, isolate the expensive step, replace it with a self-hosted equivalent, and prove it.",
@@ -155,6 +162,7 @@ export const posts: Post[] = [
     slug: "ai-works-in-demo-breaks-in-production",
     topic: "AI reliability",
     title: "Why your AI works in the demo and breaks in production",
+    metaTitle: "Why AI breaks in production",
     lead: "The failure is rarely the model. It is asking one prompt to satisfy too many constraints at once — and having nothing in place to catch it when it quietly gets one wrong.",
     metaDescription:
       "Production AI usually fails for structural reasons, not model quality: overloaded prompts, no verification, no guardrails, and silent failures nobody sees.",

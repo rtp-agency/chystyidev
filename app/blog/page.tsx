@@ -7,7 +7,7 @@ import { cases } from "@/lib/cases";
 import { jsonLdScript } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
-  title: "Blog — Cutting AI Costs & Making Production AI Reliable · David Chystyi",
+  title: "Blog — AI Cost & Reliability · David Chystyi",
   description:
     "Writing on AI cost optimization and production reliability, plus case studies from shipped systems — every figure traced to real work.",
   keywords: [

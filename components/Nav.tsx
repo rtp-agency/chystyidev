@@ -41,6 +41,9 @@ export function Nav({
               <Link href="/blog">Blog</Link>
             </li>
             <li>
+              <Link href="/about">About</Link>
+            </li>
+            <li>
               <a href="#faq">FAQ</a>
             </li>
             <li>

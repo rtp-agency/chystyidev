@@ -7,7 +7,7 @@ import { work } from "@/lib/site";
 import { jsonLdScript } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
-  title: "Case Studies — Production AI & Video Automation · David Chystyi",
+  title: "Case Studies — Production AI · David Chystyi",
   description:
     "Case studies: open-source AI pipelines that cut video-AI costs 84–99%, automated video editing at scale, and multi-model localization under $1 per video.",
   keywords: [

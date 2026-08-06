@@ -17,7 +17,7 @@ import {
 const CAL_URL = "https://cal.com/david-chistiy-lmbu8n";
 
 export const metadata: Metadata = {
-  title: "Free AI Systems Audit — Cost, Reliability & Quality · David Chystyi",
+  title: "Free AI Systems Audit · David Chystyi",
   description:
     "A free, fixed-scope review of your AI setup: where you're overpaying, where it will break, and whether it's actually delivering. You get a prioritised report and a roadmap.",
   keywords: [

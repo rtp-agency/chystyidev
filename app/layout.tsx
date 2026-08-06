@@ -4,6 +4,7 @@ import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { FloatingCTA } from "@/components/FloatingCTA";
 import { NebulaBackground } from "@/components/NebulaBackground";
+import { Analytics } from "@vercel/analytics/next";
 import { jsonLdScript } from "@/lib/jsonld";
 
 const inter = Inter({
@@ -87,7 +88,11 @@ const jsonLd = {
         occupationalCategory: "15-1299 Computer Occupations",
       },
       url: "https://chystyi.dev",
-      image: "https://chystyi.dev/opengraph-image",
+      // A real portrait rather than the OG card: this is the Person entity
+      // search engines attach to the name, and a photo of the actual human is
+      // the stronger signal.
+      image: "https://chystyi.dev/img/david-chystyi.jpg",
+      mainEntityOfPage: "https://chystyi.dev/about",
       description:
         "David Chystyi is a solo AI engineer and consultant. He replaces expensive proprietary AI services with custom open-source pipelines (typically 80–99% lower running cost) and builds production video-automation pipelines for creative and content agencies.",
       knowsAbout: [
@@ -202,6 +207,13 @@ export default function RootLayout({
         {children}
         <Footer />
         <FloatingCTA />
+        {/*
+          Vercel Analytics serves its script and receives its beacons from
+          /_vercel/insights/* on this same origin, so the existing CSP covers
+          it — script-src 'self' and connect-src 'self' need no third-party
+          host added, and no cookies are set.
+        */}
+        <Analytics />
       </body>
     </html>
   );

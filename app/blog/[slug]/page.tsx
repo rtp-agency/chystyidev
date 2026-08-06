@@ -21,7 +21,7 @@ export async function generateMetadata({
   if (!p) return {};
   const description = p.metaDescription ?? p.lead;
   return {
-    title: `${p.title} · David Chystyi`,
+    title: `${p.metaTitle ?? p.title} · David Chystyi`,
     description,
     alternates: { canonical: `/blog/${p.slug}` },
     openGraph: {

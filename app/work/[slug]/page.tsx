@@ -22,7 +22,7 @@ export async function generateMetadata({
   if (!c) return {};
   const description = c.metaDescription ?? c.lead;
   return {
-    title: `${c.title} · David Chystyi`,
+    title: `${c.metaTitle ?? c.title} · David Chystyi`,
     description,
     keywords: caseKeywords(c.slug),
     alternates: { canonical: `/work/${c.slug}` },
