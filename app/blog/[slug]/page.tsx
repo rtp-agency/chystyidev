@@ -4,11 +4,11 @@ import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
 import { BlockView } from "@/components/BlockView";
-import { posts, getPost, postsByDate } from "@/lib/posts";
+import { publishedPosts, getPost, postsByDate } from "@/lib/posts";
 import { jsonLdScript } from "@/lib/jsonld";
 
 export function generateStaticParams() {
-  return posts.map((p) => ({ slug: p.slug }));
+  return publishedPosts.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({

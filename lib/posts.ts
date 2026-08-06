@@ -30,10 +30,171 @@ export type Post = {
   date: string;
   updated?: string;
   readingMinutes: number;
+  /**
+   * Written but not published. Drafts are excluded from the index, the
+   * sitemap, the RSS feed and static generation, so nothing reaches search
+   * engines or readers until this is removed.
+   */
+  draft?: boolean;
   sections: Section[];
 };
 
 export const posts: Post[] = [
+  {
+    slug: "ai-video-generation-cost-per-minute",
+    topic: "AI cost optimization",
+    title: "What AI video generation really costs per minute at volume",
+    metaTitle: "AI video generation cost per minute",
+    lead: "Per-output pricing is the right answer for a one-off and the wrong one for a production line. Here is where the crossover sits, and the limit nobody quotes you until you hit it.",
+    metaDescription:
+      "AI video APIs charge $0.05–0.75 per second. Renting the compute instead changes the maths at volume — and removes the length caps that stop you outright.",
+    date: "2026-08-06",
+    readingMinutes: 10,
+    draft: true,
+    sections: [
+      {
+        heading: "The only question that matters: once, or every day",
+        blocks: [
+          {
+            t: "p",
+            html: `If you need one video, use a finished service. HeyGen, Kling, Runway and the rest are genuinely good, they cost a few dollars, and building anything yourself would be a waste of a week. That is not a close call and I would tell any client the same.`,
+          },
+          {
+            t: "p",
+            html: `The decision only changes when the same job repeats — hundreds of videos a month, or dozens a day. At that point you stop buying a video and start buying a production line, and the pricing model that was cheap for one becomes the most expensive line in the business.`,
+          },
+          {
+            t: "quote",
+            text: "Per-output pricing is rented convenience. It is worth paying for until the moment it becomes the product itself.",
+          },
+        ],
+      },
+      {
+        heading: "What paying per output costs",
+        blocks: [
+          {
+            t: "p",
+            html: `Video APIs bill per second of finished output. As of 2026 the range across the main providers runs roughly <b>$0.05 to $0.75 per second</b> — about <b>$3 to $45 per minute</b>. The spread between cheapest and dearest is around 7×, which already tells you the price reflects positioning as much as compute.`,
+          },
+          {
+            t: "p",
+            html: `Avatar and lipsync services price the same way. HeyGen's pay-as-you-go API works out at roughly <b>$1 to $4 per finished minute</b> depending on the avatar engine, and its subscription tiers convert to credits at a similar rate — the entry plan is about ten minutes of its top avatar engine per month.`,
+          },
+          {
+            t: "p",
+            html: `None of that is unreasonable for occasional use. Run it daily and do the multiplication: one thirty-minute video a day on a $2-per-minute engine is $1,800 a month, for one video a day.`,
+          },
+        ],
+      },
+      {
+        heading: "What paying for compute costs instead",
+        blocks: [
+          {
+            t: "p",
+            html: `The alternative is not "buy a server". I have never bought a GPU for a client. You rent the card by the hour, run your own workflow on it, and pay for time rather than for output.`,
+          },
+          {
+            t: "p",
+            html: `Market rates in 2026: an <b>H200 (141 GB)</b> sits around a <b>$3.95/hour</b> median on demand, with spot capacity closer to $2. A <b>B200 (192 GB)</b> carries a real premium — commonly $5–10/hour, though at the cheaper end of the market the gap narrows to about a dollar. The B200 buys you 192 GB instead of 141 GB and <b>8.0 TB/s of memory bandwidth against 4.8</b>, which matters more for video diffusion than it does for most text work, because these pipelines are usually bandwidth- and VRAM-bound rather than compute-bound.`,
+          },
+          {
+            t: "p",
+            html: `The unit changes from "per minute of output" to "per hour of card". Whether that is cheaper depends entirely on how many minutes of finished video your workflow gets out of an hour — which is the number to measure before deciding anything.`,
+          },
+        ],
+      },
+      {
+        heading: "The limit nobody quotes you",
+        blocks: [
+          {
+            t: "p",
+            html: `Price is the argument people expect. The one that actually ends the discussion is length.`,
+          },
+          {
+            t: "p",
+            html: `HeyGen caps generated video at <b>30 minutes</b>. I had a client producing <b>50-minute</b> lipsynced videos. That is not an expensive request on a per-output service — it is an impossible one. No budget unlocks it.`,
+          },
+          {
+            t: "p",
+            html: `With the card in front of you the constraint is VRAM, and it moves. On a 141 GB H200 a single pass comfortably holds something in the range of seven to eight minutes, and longer material is handled by segmenting rather than by asking permission. The ceiling becomes an engineering decision instead of a line in someone else's pricing page.`,
+          },
+          {
+            t: "p",
+            html: `The same thing showed up on motion control. Replacing a premium motion-control service with our own workflow cut cost by 84% — roughly <b>$12,000 a year</b> at that client's volume, with per-video cost down in the tens of cents against a service charging <b>$0.09–0.14 per second</b>. It also removed the 30-second duration cap the paid service imposed. Sometimes replacing a managed service buys capability, not just margin.`,
+          },
+          {
+            t: "stats",
+            items: [
+              { number: "30 min", label: "Hard cap on a leading avatar API" },
+              { number: "50 min", label: "What the client actually needed" },
+              { number: "84%", label: "Motion control cost reduction" },
+              { number: "99%+", label: "Lipsync cost reduction" },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Where the saving actually comes from",
+        blocks: [
+          {
+            t: "p",
+            html: `"Use open source" is the lazy version of this answer and it is not what does the work. Four separate levers matter, and the model licence is only one of them.`,
+          },
+          {
+            t: "ul",
+            items: [
+              `<b>Which model you call.</b> The largest available model is rarely the one that clears the bar for a specific step. Most pipelines are sized once during prototyping and never revisited.`,
+              `<b>Whether you call a model at all.</b> This is the one most teams miss. A surprising share of steps inside an "AI pipeline" are deterministic — trimming, reframing, cropping, sequencing, format conversion — and belong in ordinary code. Every one of those you move out of a model call costs nothing and never hallucinates.`,
+              `<b>What you pay for.</b> Per-output APIs, pay-per-generation services and rented compute are three different pricing models for the same result. The cheapest one changes with volume, and nothing stops you using different ones for different steps.`,
+              `<b>Where it runs.</b> Rented capacity, chosen per workload. The first provider I used was priced well above what the same work costs now; the market moves and it is worth re-checking.`,
+            ],
+          },
+          {
+            t: "p",
+            html: `Most of the reduction on the pipelines I have built came from the first three. Compute was the last step, not the trick.`,
+          },
+        ],
+      },
+      {
+        heading: "Where the proprietary service still wins",
+        blocks: [
+          {
+            t: "p",
+            html: `Worth being straight about the limits, because the honest version of this argument is narrower than the marketing version.`,
+          },
+          {
+            t: "p",
+            html: `<b>One-off work.</b> Already covered — do not build a pipeline for a job you will run once.`,
+          },
+          {
+            t: "p",
+            html: `<b>Top-end photorealism.</b> The open video models are not currently at the level of the best proprietary ones for pure realism. They can get remarkably close, but doing it needs a very specific workflow — the right model, the right LoRAs, prompts tuned for that combination — and that is a real engineering effort, not a download. If your output is a brand film where realism is the product, the paid service is probably still the right call.`,
+          },
+          {
+            t: "p",
+            html: `One useful piece of context: I rebuilt these workflows more than six months ago and re-checked the landscape while writing this. The significant open video models have not changed. That stability cuts both ways — the quality gap has not closed, but a workflow built on them does not rot either.`,
+          },
+        ],
+      },
+      {
+        heading: "How to decide",
+        blocks: [
+          {
+            t: "p",
+            html: `Three numbers settle it. How many finished minutes do you need per month? What is the per-minute rate you are paying now? And how many minutes does one hour of a rented card actually produce on your workflow?`,
+          },
+          {
+            t: "p",
+            html: `If the monthly volume is small, stop — you already have the right answer. If it is large, or if you are hitting a length cap, the third number is the one worth measuring, and it is measurable in an afternoon.`,
+          },
+          {
+            t: "p",
+            html: `If you want that worked out against your actual volume rather than a generic table, the <a href="/audit">free AI Systems Audit</a> does exactly this: your current per-unit cost, where it goes, and what the realistic alternative would be.`,
+          },
+        ],
+      },
+    ],
+  },
   {
     slug: "cut-ai-inference-costs",
     topic: "AI cost optimization",
@@ -272,11 +433,18 @@ export const posts: Post[] = [
   },
 ];
 
+/**
+ * Everything publishable. Import this — not `posts` — anywhere the output is
+ * user- or crawler-facing, so a draft cannot leak into the index, the sitemap,
+ * the feed or a generated route.
+ */
+export const publishedPosts = posts.filter((p) => !p.draft);
+
 export function getPost(slug: string): Post | undefined {
-  return posts.find((p) => p.slug === slug);
+  return publishedPosts.find((p) => p.slug === slug);
 }
 
 /** Newest first, for the index and the feed. */
-export const postsByDate = [...posts].sort((a, b) =>
+export const postsByDate = [...publishedPosts].sort((a, b) =>
   b.date.localeCompare(a.date)
 );
