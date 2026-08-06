@@ -218,23 +218,23 @@ export const posts: Post[] = [
         ],
       },
       {
-        heading: "Where the proprietary service still wins",
+        heading: "Where the paid service still wins",
         blocks: [
           {
             t: "p",
-            html: `Worth being straight about the limits, because the honest version of this argument is narrower than the marketing version.`,
+            html: `Volume. That is the whole test, and it is worth stating plainly because the answer people expect is quality.`,
           },
           {
             t: "p",
-            html: `<b>One-off work.</b> Already covered — do not build a pipeline for a job you will run once.`,
+            html: `Quality is not the trade-off here. Lipsync out of the open models is good — realistic, and it holds up in front of an audience without caveats or apology. I have had it in production for over six months. Nobody has ever asked why the output looks different, because it does not.`,
           },
           {
             t: "p",
-            html: `<b>Top-end photorealism.</b> The open video models are not currently at the level of the best proprietary ones for pure realism. They can get remarkably close, but doing it needs a very specific workflow — the right model, the right LoRAs, prompts tuned for that combination — and that is a real engineering effort, not a download. If your output is a brand film where realism is the product, the paid service is probably still the right call.`,
+            html: `So the decision is not "cheaper but worse". It is the same result, priced two different ways, and below a certain volume the per-output price is simply the better deal. If you need a handful of videos a month, a finished service costs you a few dollars and no engineering time at all. Building a pipeline for that is a hobby, not a saving.`,
           },
           {
             t: "p",
-            html: `One useful piece of context: I rebuilt these workflows more than six months ago and re-checked the landscape while writing this. The significant open video models have not changed. That stability cuts both ways — the quality gap has not closed, but a workflow built on them does not rot either.`,
+            html: `One piece of context on durability: I built these workflows more than six months ago and re-checked the landscape while writing this. The significant open video models have not changed. A pipeline built on them does not rot underneath you the way an integration against a fast-moving paid API can.`,
           },
         ],
       },
