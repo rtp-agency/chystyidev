@@ -6,11 +6,9 @@ import { ContactForm } from "@/components/ContactForm";
 import { NicheCases } from "@/components/NicheCases";
 import { AdditionalScrolly } from "@/components/AdditionalScrolly";
 import { TestimonialsScrolly } from "@/components/TestimonialsScrolly";
-import { OfferVisual } from "@/components/OfferVisual";
 import { ProcessSteps } from "@/components/ProcessSteps";
 import {
   stats,
-  offers,
   additional,
   testimonials,
   homeFaq,
@@ -49,18 +47,19 @@ export default function Home() {
           <div className="hero-copy-center">
             <Reveal>
               <div className="eyebrow eyebrow-center">
-                Reliable · Safe · Automated
+                Automation for teams &amp; agencies
               </div>
             </Reveal>
             <Reveal delay={0.05}>
               <h1>
-                AI that&apos;s reliable, safe, and <em>does the work</em>.
+                Automation that makes your team <em>faster</em> — not smaller.
               </h1>
             </Reveal>
             <Reveal delay={0.12}>
               <p className="lead">
-                I make production AI dependable and secure — and automate the
-                high-volume processes behind your business.
+                I build custom tools that take the repetitive work off your
+                team — so your people spend their time on what actually matters.
+                I augment, I don&apos;t replace.
               </p>
             </Reveal>
             <Reveal delay={0.2}>
@@ -71,7 +70,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="btn btn-primary"
                 >
-                  Book a free audit <span className="arrow">→</span>
+                  Book a call <span className="arrow">→</span>
                 </a>
                 <a href="#work" className="btn btn-secondary">
                   See the work
@@ -109,38 +108,53 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Offers */}
+      {/* What I do */}
       <section id="services" className="section-line floating-section">
         <div className="container">
           <div className="section-header">
             <Reveal>
-              <div className="eyebrow">How I help</div>
+              <div className="eyebrow">What I do</div>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2>Two things, done exceptionally well.</h2>
+              <h2>I automate the busywork. Your team does the rest.</h2>
             </Reveal>
           </div>
 
-          <div className="offers">
-            {offers.map((o, i) => (
-              <Reveal key={o.num} delay={i * 0.1}>
-                <div className="offer offer-min island">
-                  <OfferVisual kind={o.visual} />
-                  <h3 className="offer-name">{o.name}</h3>
-                  <p className="offer-promise">{o.promise}</p>
-                  <div className="offer-metric">
-                    <span className="offer-metric-num">{o.metric}</span>
-                    <span className="offer-metric-label">{o.metricLabel}</span>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
+          <div className="princ-grid">
+            <Reveal>
+              <div className="princ-card island">
+                <h3>Augment, not replace</h3>
+                <p>
+                  I don&apos;t cut headcount. I take the repetitive, mechanical
+                  work off your team, so your people spend their hours on
+                  judgment, relationships and craft.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <div className="princ-card island">
+                <h3>Built around your process</h3>
+                <p>
+                  Not off-the-shelf SaaS. Custom tools shaped to how your team
+                  already works — content, video, sales, ops.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <div className="princ-card island">
+                <h3>Proven across niches</h3>
+                <p>
+                  The same idea, fitted to your world: e-commerce, media, video
+                  production, education, and professional services.
+                </p>
+              </div>
+            </Reveal>
           </div>
 
           <Reveal delay={0.2}>
             <p className="offers-price-note">
               Projects start at <b>{pricing.projectFrom}</b>. Scope and price
-              come out of the{" "}
+              come out of a{" "}
               <Link href="/audit" className="offers-price-link">
                 free audit
               </Link>

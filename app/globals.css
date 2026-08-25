@@ -4802,3 +4802,19 @@ footer {
   .vt2-play, .cb-full .cb-fill, .cb-short .cb-fill, .lf b, .rc-row { animation: none; }
   .cb-short .cb-fill { width: 6%; }
 }
+
+/* homepage "what I do" — augmentation principle cards */
+.princ-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.princ-card { padding: 34px 32px; }
+.princ-card h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 1.3rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.princ-card p { color: var(--color-text2); font-size: 0.98rem; line-height: 1.62; }
+@media (max-width: 820px) {
+  .princ-grid { grid-template-columns: 1fr; }
+}
