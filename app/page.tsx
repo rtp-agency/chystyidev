@@ -3,7 +3,7 @@ import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
 import { ContactForm } from "@/components/ContactForm";
-import { CaseScrolly } from "@/components/CaseScrolly";
+import { NicheCases } from "@/components/NicheCases";
 import { AdditionalScrolly } from "@/components/AdditionalScrolly";
 import { TestimonialsScrolly } from "@/components/TestimonialsScrolly";
 import { OfferVisual } from "@/components/OfferVisual";
@@ -11,7 +11,6 @@ import { ProcessSteps } from "@/components/ProcessSteps";
 import {
   stats,
   offers,
-  work,
   additional,
   testimonials,
   homeFaq,
@@ -169,16 +168,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Work */}
+      {/* Cases by niche */}
       <section id="work" className="section-line cases-section">
-        <CaseScrolly
-          items={work}
-          intro={{
-            eyebrow: "Selected work",
-            heading: "Production AI systems that shipped.",
-            sub: "Not demos — real pipelines running in production, each one with the numbers.",
-          }}
-        />
+        <NicheCases />
       </section>
 
       {/* Additional */}
