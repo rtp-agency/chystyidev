@@ -13,7 +13,6 @@
 
 - [Homepage](https://chystyi.dev): AI cost optimization and reliability engineering, with proof and case studies.
 - [AI Systems Audit](https://chystyi.dev/audit): the free audit in full — the four areas it covers, what the report contains, the three steps, who it is and is not for, and pricing for the implementation work that can follow.
-- [For agencies](https://chystyi.dev/agencies): video production automation for agencies — the productized service, "what I automate", Audit → Build → Run, case studies, and an FAQ. Note this page offers a separate, narrower workflow audit scoped to video editing, not the AI Systems Audit above.
 - [Blog](https://chystyi.dev/blog): articles on AI cost optimization and production reliability, written from shipped systems. RSS at https://chystyi.dev/feed.xml.
 - [How to cut AI inference costs by 80–99% without losing quality](https://chystyi.dev/blog/cut-ai-inference-costs): the method — establish per-unit cost, find the expensive step, replace it with a self-hosted equivalent, verify on production traffic. Worked examples at 99%+ (lipsync), 84% (motion control) and under $1 per 20-minute localized video, plus context compression cutting per-video cost to ~200 tokens.
 - [Why your AI works in the demo and breaks in production](https://chystyi.dev/blog/ai-works-in-demo-breaks-in-production): overloaded prompts diluting attention across constraints, silent failure, guardrails for irreversible actions, and using evals to make drift measurable.

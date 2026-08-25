@@ -193,15 +193,6 @@ export default async function CasePage({
               </Link>
             ))}
           </div>
-          {isVideo && (
-            <p className="case-related-note">
-              Running a video or content agency?{" "}
-              <Link href="/agencies">
-                See video production automation for agencies
-              </Link>
-              .
-            </p>
-          )}
         </section>
 
         <section className="case-cta">

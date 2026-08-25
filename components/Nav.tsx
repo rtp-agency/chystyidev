@@ -4,7 +4,7 @@ import { LiquidGlass } from "./LiquidGlass";
 export function Nav({
   variant = "home",
 }: {
-  variant?: "home" | "case" | "agencies" | "work" | "blog";
+  variant?: "home" | "case" | "work" | "blog";
 }) {
   return (
     <nav>
@@ -32,10 +32,7 @@ export function Nav({
               <a href="#testimonials">Clients</a>
             </li>
             <li>
-              <Link href="/agencies">For agencies</Link>
-            </li>
-            <li>
-              <Link href="/audit">Free audit</Link>
+              <Link href="/audit">AI audit</Link>
             </li>
             <li>
               <Link href="/blog">Blog</Link>
@@ -48,26 +45,6 @@ export function Nav({
             </li>
             <li>
               <a href="#contact">Contact</a>
-            </li>
-          </ul>
-        ) : variant === "agencies" ? (
-          <ul className="nav-links">
-            <li>
-              <a href="#automate">What I automate</a>
-            </li>
-            <li>
-              <a href="#how">How it works</a>
-            </li>
-            <li>
-              <a href="#work">Work</a>
-            </li>
-            <li>
-              <a href="#faq">FAQ</a>
-            </li>
-            <li>
-              {/* Named explicitly: this page offers the narrower video
-                  workflow audit, not the site-wide AI Systems Audit. */}
-              <a href="#contact">Workflow audit</a>
             </li>
           </ul>
         ) : variant === "work" || variant === "blog" ? (
