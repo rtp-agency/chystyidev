@@ -70,10 +70,10 @@ const NICHES: Niche[] = [
     key: "ecom",
     accent: "#6bbf7b",
     eyebrow: "E-commerce",
-    title: "Leads in, scored and personally reached out — automatically.",
-    desc: "A lead-processing system built on the Metra AI stack: aggregate leads, score relevance with an LLM, and generate personalised outreach — so the team works only the leads worth working.",
+    title: "Every incoming lead scored, routed and answered.",
+    desc: "A lead-processing system on the Metra AI stack: incoming leads are enriched and scored, routed to the right place, and given a personalised first reply — so nothing sits unhandled and the team spends its time only where it counts.",
     metrics: [
-      { n: "Auto", l: "scoring + outreach" },
+      { n: "Auto", l: "score · route · reply" },
       { n: "Metra AI", l: "multi-agent stack" },
     ],
     graphic: "leads",
@@ -200,10 +200,10 @@ function Graphic({ kind }: { kind: Graphic }) {
     return (
       <div className="gfx">
         <div className="lf">
-          <span className="lf-tag lf-in">raw leads</span>
+          <span className="lf-tag lf-in">incoming leads</span>
           <div className="lf-fun" />
-          <span className="lf-tag lf-mid">scored</span>
-          <span className="lf-tag lf-out">personalised outreach</span>
+          <span className="lf-tag lf-mid">scored &amp; routed</span>
+          <span className="lf-tag lf-out">answered</span>
           <b style={{ "--x": "-34px", animationDelay: "0s" } as CSSProperties} />
           <b className="q" style={{ "--x": "-8px", animationDelay: ".5s" } as CSSProperties} />
           <b style={{ "--x": "20px", animationDelay: "1s" } as CSSProperties} />

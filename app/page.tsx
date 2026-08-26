@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
@@ -90,7 +91,7 @@ export default function Home() {
       <section className="stats floating-section">
         <div className="container">
           <div className="island island-float stats-island">
-            <div className="stats-grid">
+            <div className="stats-grid cols-4">
               {stats.map((s, i) => (
                 <Reveal key={s.label} delay={i * 0.1} className="stat">
                   <div className="stat-number">
@@ -121,33 +122,43 @@ export default function Home() {
           </div>
 
           <div className="princ-grid">
-            <Reveal>
-              <div className="princ-card island">
-                <h3>Augment, not replace</h3>
-                <p>
-                  I don&apos;t cut headcount. I take the repetitive, mechanical
-                  work off your team, so your people spend their hours on
-                  judgment, relationships and craft.
-                </p>
-              </div>
+            <Reveal className="princ-card island">
+              <span className="pf pf-grow" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+              </span>
+              <h3>Augment, not replace</h3>
+              <p>
+                I don&apos;t cut headcount. I take the repetitive work off your
+                team, so people spend their time on judgment and craft.
+              </p>
             </Reveal>
-            <Reveal delay={0.08}>
-              <div className="princ-card island">
-                <h3>Built around your process</h3>
-                <p>
-                  Not off-the-shelf SaaS. Custom tools shaped to how your team
-                  already works — content, video, sales, ops.
-                </p>
-              </div>
+            <Reveal delay={0.08} className="princ-card island">
+              <span className="pf pf-flow" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+              </span>
+              <h3>Built around your process</h3>
+              <p>
+                Not off-the-shelf SaaS — custom tools shaped to how your team
+                already works.
+              </p>
             </Reveal>
-            <Reveal delay={0.16}>
-              <div className="princ-card island">
-                <h3>Proven across niches</h3>
-                <p>
-                  The same idea, fitted to your world: e-commerce, media, video
-                  production, education, and professional services.
-                </p>
-              </div>
+            <Reveal delay={0.16} className="princ-card island">
+              <span className="pf pf-niches" aria-hidden="true">
+                <i style={{ "--c": "#52b6ae" } as CSSProperties} />
+                <i style={{ "--c": "#cf9a5c" } as CSSProperties} />
+                <i style={{ "--c": "#8b93df" } as CSSProperties} />
+                <i style={{ "--c": "#6bbf7b" } as CSSProperties} />
+                <i style={{ "--c": "#6aa3d8" } as CSSProperties} />
+              </span>
+              <h3>Proven across niches</h3>
+              <p>
+                The same idea, fitted to your world: e-com, media, video,
+                education, professional services.
+              </p>
             </Reveal>
           </div>
 

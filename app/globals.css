@@ -4818,3 +4818,46 @@ footer {
 @media (max-width: 820px) {
   .princ-grid { grid-template-columns: 1fr; }
 }
+
+/* fixes + additions (niche centering, 4-up stats, what-I-do infographics) */
+.niche-head { margin-left: auto; margin-right: auto; }
+
+.stats-grid.cols-4 { grid-template-columns: repeat(4, 1fr); gap: 34px; }
+.cols-4 .stat-number { font-size: clamp(34px, 4vw, 50px); }
+@media (max-width: 760px) {
+  .stats-grid.cols-4 { grid-template-columns: repeat(2, 1fr); gap: 34px 24px; }
+}
+@media (max-width: 400px) {
+  .stats-grid.cols-4 { grid-template-columns: 1fr; }
+}
+
+/* what-I-do cards: equal height + mini infographic */
+.princ-card { display: flex; flex-direction: column; height: 100%; }
+.pf { display: flex; align-items: flex-end; gap: 5px; height: 40px; margin-bottom: 22px; }
+.pf i { display: block; }
+.pf-grow i { width: 10px; border-radius: 3px; background: var(--color-warm); transform-origin: bottom; }
+.pf-grow i:nth-child(1) { height: 42%; animation: pf-bar 2.4s ease-in-out infinite; }
+.pf-grow i:nth-child(2) { height: 68%; animation: pf-bar 2.4s ease-in-out infinite 0.2s; }
+.pf-grow i:nth-child(3) { height: 100%; animation: pf-bar 2.4s ease-in-out infinite 0.4s; }
+@keyframes pf-bar { 0%, 100% { transform: scaleY(0.65); opacity: 0.55; } 50% { transform: scaleY(1); opacity: 1; } }
+.pf-flow { align-items: center; gap: 20px; }
+.pf-flow i { width: 12px; height: 12px; border-radius: 50%; border: 1.6px solid var(--color-warm); position: relative; }
+.pf-flow i:not(:last-child)::after { content: ""; position: absolute; left: 100%; top: 50%; width: 20px; height: 1.6px; background: var(--color-line); transform: translateY(-50%); }
+.pf-flow i:nth-child(1) { animation: pf-node 2.1s ease-in-out infinite; }
+.pf-flow i:nth-child(2) { animation: pf-node 2.1s ease-in-out infinite 0.35s; }
+.pf-flow i:nth-child(3) { animation: pf-node 2.1s ease-in-out infinite 0.7s; }
+@keyframes pf-node { 0%, 100% { background: transparent; } 35% { background: var(--color-warm); } }
+.pf-niches { align-items: center; gap: 7px; }
+.pf-niches i { width: 13px; height: 13px; border-radius: 3px; background: color-mix(in oklab, var(--c) 25%, var(--color-bg3)); animation: pf-lit 3.2s ease-in-out infinite; }
+.pf-niches i:nth-child(2) { animation-delay: 0.25s; }
+.pf-niches i:nth-child(3) { animation-delay: 0.5s; }
+.pf-niches i:nth-child(4) { animation-delay: 0.75s; }
+.pf-niches i:nth-child(5) { animation-delay: 1s; }
+@keyframes pf-lit {
+  0%, 100% { background: color-mix(in oklab, var(--c) 22%, var(--color-bg3)); box-shadow: none; }
+  45% { background: var(--c); box-shadow: 0 0 8px 0 color-mix(in oklab, var(--c) 60%, transparent); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pf-grow i, .pf-flow i, .pf-niches i { animation: none; }
+  .pf-grow i { transform: none; opacity: 1; }
+}

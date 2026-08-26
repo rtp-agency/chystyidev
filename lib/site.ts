@@ -1,7 +1,8 @@
 export const stats = [
-  { value: 99, prefix: "", suffix: "%+", label: "Maximum reduction in AI running costs" },
-  { value: 30, prefix: "$", suffix: "K+", label: "Annual client AI infrastructure costs eliminated" },
-  { value: 4, prefix: "", suffix: "", label: "Production AI systems in active commercial use" },
+  { value: 2000, prefix: "", suffix: "+", label: "Hours saved for client teams" },
+  { value: 15, prefix: "", suffix: "+", label: "Custom tools that sped teams up" },
+  { value: 50, prefix: "€", suffix: "K+", label: "Saved for clients" },
+  { value: 20, prefix: "", suffix: "+", label: "Teams working more efficiently" },
 ];
 
 // Scrolling credibility strip under the hero.
